@@ -88,7 +88,7 @@ body {
   position: relative;
   width: 100%;
   padding: 2rem 0;
-  max-width: 1000px;
+  max-width: 1400px;
   margin: auto;
 }
 .carousel-wrapper {
@@ -106,22 +106,22 @@ body {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 15px var(--card-shadow-color);
-  width: 300px;
-  height: 600px;
-  margin: 0 1rem;
+  width: 450px;
+  height: 500px;
+  margin: 0 0.5rem;
   flex-shrink: 0;
   display: flex;
   z-index: 1;
   flex-direction: column;
   color: var(--card-text-color);
   transition: transform 0.5s ease, box-shadow 0.2s ease;
-  padding: 0.4rem;
+  padding: 0.2rem;
   align-items: center;
   text-align: center;
 }
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 0 2px var(--accent-color);
+  transform: translateY(-10px);
+  box-shadow: 0 0 0 3px var(--accent-color);
 }
 iframe {
   width: 100%;
