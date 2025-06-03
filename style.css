@@ -88,7 +88,7 @@ body {
   position: relative;
   width: 100%;
   padding: 2rem 0;
-  max-width: 1280px;
+  max-width: 1000px;
   margin: auto;
 }
 .carousel-wrapper {
@@ -106,9 +106,9 @@ body {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 15px var(--card-shadow-color);
-  width: 400px;
+  width: 300px;
   height: 600px;
-  margin: 0 0.5rem;
+  margin: 0 1rem;
   flex-shrink: 0;
   display: flex;
   z-index: 1;
@@ -129,6 +129,7 @@ iframe {
   border: none;
   margin: 0;
   border-radius: 0.5rem;
+  pointer-events: none;
 }
 .card-content {
   padding: 1rem;
@@ -283,13 +284,6 @@ iframe {
 
 .hero-text strong {
   color: var(--hero-strong-text-color);
-}
-
-@media (max-width: 1024px) {
-  .card {
-    width: 300px;
-    height: 500px;
-  }
 }
 
 #theme-toggle-btn {

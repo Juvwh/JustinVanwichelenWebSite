@@ -1,185 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinite Carousel</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
-<body class="dark-theme">
-  <button id="theme-toggle-btn">Toggle Theme</button>
-  <!-- Hero Introduction Section -->
-<section class="hero-section">
-  <img src="./src_index/cv_photo2.svg" alt="Portrait of Justin" class="hero-image" />
-  <div class="hero-text">
-    <h2>HI ALL, I'M JUSTIN 👋</h2>
-    <p>As a graduate <strong>Technical Artist</strong> currently pursuing a <strong>Master’s degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I blend <strong>creativity and technical expertise</strong> to build immersive digital experiences. Proficient in Photoshop, I excel in crafting detailed visual assets.</p>
-    <p>My Master’s thesis explores the applications of AI in role-playing games, focusing on how intelligent systems can enhance interactivity and narrative depth. I am also fascinated by <strong>Large Language Models (LLMs)</strong>, from their design to their applications. Additionally, my course in health informatics has allowed me to apply AI in healthcare, broadening my understanding of its impactful, cross-industry potential.</p>
-  </div>
-</section>
-  <div class="hero-text"></div>
-  <h3 class="carousel-header">Highlighted projects</h3>
-<!--    -->
-
-
-<!-- CAROUSEL   -->
-  <div class="carousel-container">
-    <div class="controls">
-      <button class="arrow nav left"><i class="fas fa-chevron-left"></i></button>
-      <button class="arrow nav right"><i class="fas fa-chevron-right"></i></button>
+<body>
+  <header>
+    <div class="hero-section">
+      <img src="images/me.png" alt="Your Name" class="hero-image">
+      <div class="hero-text">
+        <h2>HI, I'M <STRong>JOHN DOE</STRong></h2>
+        <p>A passionate <strong>software engineer</strong> with a love for creating elegant and efficient solutions. My journey in tech has been driven by a relentless curiosity and a desire to make a tangible impact. From intricate backend systems to intuitive user interfaces, I thrive on challenges that push the boundaries of my knowledge. When I'm not coding, you'll find me exploring the latest advancements in AI, contributing to open-source projects, or simply enjoying a good book. I believe in the power of technology to transform ideas into reality, and I'm always excited to collaborate on projects that aim to do just that.</p>
+      </div>
     </div>
-    <div class="carousel-track" id="carousel-track">
-      
-        <!-- Card -- RPG --  -->
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/WDQ9-HO_ciI?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=WDQ9-HO_ciI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3>ROLES PLAY GAME WITH LLM (2025)</h3>
-          <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i>By 2 people</span>
-            <span class="badge"><i class="fa-regular fa-clock"></i>7 months</span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
-          </div>
-          <div class="description">
-            Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices.
-          </div>
-          <button class="btn">Really?? I want to know more!</button>
-        </div>
-      </div>
-
-        <!-- Card -- LOKI --  -->
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/1EbfonuRipw?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=1EbfonuRipw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3>LOKI GAME (2022)</h3>
-          <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i>By 8 people</span>
-            <span class="badge"><i class="fa-regular fa-clock"></i>3 months</span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unreal Engine 4</span>
-          </div>
-          <div class="description">
-            A school project completed in 3 months by 8 keen student in 2022. I worked on the UI, the code, modular system, gameplay, HUD and VFX.
-          </div>
-          <button class="btn">I'm as curious as a cat</button>
-        </div>
-      </div>
-
-              <!-- Card -- DIABLO --  -->
-      <div class="card">
-        <iframe src="https://www.youtube.com/embed/rfodBcYEb9I?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=rfodBcYEb9I" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <div class="card-content">
-          <h3>DIABOLO III CYBERPUNK (2021) </h3>
-          <div class="badges">
-            <span class="badge"><i class="fa-solid fa-user"></i>Made alone</span>
-            <span class="badge"><i class="fa-regular fa-clock"></i>3 months</span>
-            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
-          </div>
-          <div class="description">
-            I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.
-          </div>
-          <button class="btn">I'm as curious as a cat</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-<!--    -->
+  </header>
 
 
+  <button id="theme-toggle-btn">Light/Dark</button>
 
-  <!-- Custom image + video + text section -->
-  <div class="custom-section">
+  <section class="custom-section">
     <div class="overlay-container">
-      <img src="./src_index/proj1.webp" alt="Demo Image" class="custom-image" />
+      <img src="images/image.png" alt="Descriptive Alt Text" class="custom-image">
       <div class="video-overlay">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
       </div>
     </div>
     <div class="text-beside-video">
-      <h2>Texte</h2>
-      <p>Paragraphe</p>
-      <button class="btn">Bouton</button>
+      <h2>Section Title</h2>
+      <p>This is some text content beside the video. It can describe the video, provide context, or offer supplementary information. This layout helps in engaging the user with both visual and textual content simultaneously.</p>
+    </div>
+  </section>
+
+
+  <h2 class="carousel-header">PROJECTS</h2>
+  <div class="carousel-container">
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carousel-track">
+        <!-- Card 1 -->
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/rokGy0huYEA?si=5q7aPgr3E0n9WtSA" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Project Alpha</h3>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-python"></i> Python</span>
+              <span class="badge"><i class="fab fa-js"></i> JavaScript</span>
+              <span class="badge"><i class="fas fa-database"></i> SQL</span>
+            </div>
+            <p class="description">Alpha is a cutting-edge web application...</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/rokGy0huYEA?si=5q7aPgr3E0n9WtSA" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Project Beta</h3>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-java"></i> Java</span>
+              <span class="badge"><i class="fab fa-angular"></i> Angular</span>
+              <span class="badge"><i class="fas fa-cloud"></i> AWS</span>
+            </div>
+            <p class="description">Beta is a robust mobile application...</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/rokGy0huYEA?si=5q7aPgr3E0n9WtSA" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Project Gamma</h3>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-react"></i> React</span>
+              <span class="badge"><i class="fab fa-node-js"></i> Node.js</span>
+              <span class="badge"><i class="fas fa-database"></i> MongoDB</span>
+            </div>
+            <p class="description">Gamma is a scalable cloud platform...</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/rokGy0huYEA?si=5q7aPgr3E0n9WtSA" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Project Delta</h3>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+              <span class="badge"><i class="fab fa-php"></i> PHP</span>
+              <span class="badge"><i class="fas fa-server"></i> Docker</span>
+            </div>
+            <p class="description">Delta is a comprehensive e-commerce solution...</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/rokGy0huYEA?si=5q7aPgr3E0n9WtSA" allowfullscreen></iframe>
+          <div class="card-content">
+            <h3>Project Epsilon</h3>
+            <div class="badges">
+              <span class="badge"><i class="fab fa-swift"></i> Swift</span>
+              <span class="badge"><i class="fab fa-android"></i> Kotlin</span>
+              <span class="badge"><i class="fas fa-mobile-alt"></i> Mobile</span>
+            </div>
+            <p class="description">Epsilon is a cross-platform mobile app...</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="arrow nav left" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="arrow nav right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
-<!--    -->
 
-
-
-
-<!-- Script -->
   <script>
-    const track = document.getElementById('carousel-track');
-    const leftBtn = document.querySelector('.nav.left');
-    const rightBtn = document.querySelector('.nav.right');
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('carousel-track');
+      const leftBtn = document.getElementById('prev-btn'); // Corrected ID
+      const rightBtn = document.getElementById('next-btn'); // Corrected ID
 
-    const cards = Array.from(track.children);
-    cards.forEach(card => {
-      const clone = card.cloneNode(true);
-      clone.classList.add('clone');
-      track.appendChild(clone);
-    });
-
-    let position = 0;
-    const cardWidth = cards[0].offsetWidth + 32;
-    const totalCards = cards.length;
-
-    function move(direction) {
-      position += direction * cardWidth;
-      track.style.transform = `translateX(${-position}px)`;
-
-      if (position >= cardWidth * totalCards) {
-        setTimeout(() => {
-          track.style.transition = 'none';
-          position = 0;
-          track.style.transform = `translateX(0px)`;
-          void track.offsetWidth;
-          track.style.transition = 'transform 0.5s ease';
-        }, 500);
+      if (!track || !leftBtn || !rightBtn) {
+        console.error('Carousel elements not found. Check IDs.');
+        return;
       }
 
-      if (position < 0) {
-        setTimeout(() => {
-          track.style.transition = 'none';
-          position = cardWidth * (totalCards - 1);
-          track.style.transform = `translateX(${-position}px)`;
-          void track.offsetWidth;
-          track.style.transition = 'transform 0.5s ease';
-        }, 500);
+      const originalCards = Array.from(track.children);
+      const numOriginalCards = originalCards.length;
+      const numVisibleCards = 3; // Assuming 3 cards are visible as per CSS
+
+      if (numOriginalCards === 0) {
+        console.warn('No cards found in the carousel track.');
+        return;
       }
-    }
 
-    rightBtn.addEventListener('click', () => move(1));
-    leftBtn.addEventListener('click', () => move(-1));
+      const cardStyle = window.getComputedStyle(originalCards[0]);
+      const cardMarginLeft = parseFloat(cardStyle.marginLeft);
+      const cardMarginRight = parseFloat(cardStyle.marginRight);
+      // Ensure offsetWidth is available and fallback if not fully rendered.
+      const cardClientWidth = originalCards[0].offsetWidth;
+      const cardWidth = cardClientWidth + cardMarginLeft + cardMarginRight;
 
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeft = 0;
 
-    track.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.pageX;
-      scrollLeft = position;
-      track.style.cursor = 'grabbing';
-    });
+      if (cardWidth <= 0) {
+          console.error("Card width calculation resulted in zero or negative. Check card styling and rendering.");
+          return;
+      }
 
-    track.addEventListener('mouseleave', () => {
-      isDragging = false;
-      track.style.cursor = 'grab';
-    });
+      const clonesToCreate = numVisibleCards;
 
-    track.addEventListener('mouseup', () => {
-      isDragging = false;
-      track.style.cursor = 'grab';
-    });
+      // Clear the track for new content
+      track.innerHTML = '';
 
-    track.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const dx = e.pageX - startX;
-      if (Math.abs(dx) > 50) {
-        move(dx < 0 ? 1 : -1);
+      // Prepend clones (last 'clonesToCreate' original cards)
+      for (let i = 0; i < clonesToCreate; i++) {
+        const cardIndex = (numOriginalCards - clonesToCreate + i + numOriginalCards) % numOriginalCards; // Ensure positive index
+        const clone = originalCards[cardIndex].cloneNode(true);
+        clone.classList.add('clone-start');
+        track.appendChild(clone);
+      }
+
+      // Append original cards
+      originalCards.forEach(card => {
+        track.appendChild(card.cloneNode(true)); // Append clones of originals to be safe
+      });
+
+      // Append clones (first 'clonesToCreate' original cards)
+      for (let i = 0; i < clonesToCreate; i++) {
+        const clone = originalCards[i].cloneNode(true);
+        clone.classList.add('clone-end');
+        track.appendChild(clone);
+      }
+
+      let currentIndex = 0; // Index relative to the start of the *original* cards virtual set
+      let currentOffset = clonesToCreate * cardWidth;
+      track.style.transform = `translateX(-${currentOffset}px)`;
+
+      // Wait for images/iframes if necessary, then apply transition.
+      // For simplicity, applying directly. Consider window.onload or image load events for robustness.
+      requestAnimationFrame(() => {
+          requestAnimationFrame(() => { // Double RAF to ensure styles are applied and initial render is done.
+              track.style.transition = 'transform 0.5s ease';
+          });
+      });
+
+
+      function moveTo(newIndex, animated = true) {
+        currentOffset = (clonesToCreate + newIndex) * cardWidth;
+        track.style.transition = animated ? 'transform 0.5s ease' : 'none';
+        track.style.transform = `translateX(-${currentOffset}px)`;
+        currentIndex = newIndex;
+      }
+
+      rightBtn.addEventListener('click', () => {
+        if (currentIndex >= numOriginalCards -1 ) { // about to transition from last original to first clone (of first items)
+          moveTo(currentIndex + 1);
+          const transitionEndHandler = () => {
+            track.removeEventListener('transitionend', transitionEndHandler);
+            moveTo(0, false); // Jump to the actual first set of original cards
+            // currentIndex is already 0 implicitly from moveTo's last line
+          };
+          track.addEventListener('transitionend', transitionEndHandler);
+        } else {
+          moveTo(currentIndex + 1);
+        }
+      });
+
+      leftBtn.addEventListener('click', () => {
+        if (currentIndex <= 0) { // about to transition from first original to last clone (of last items)
+          moveTo(currentIndex - 1);
+          const transitionEndHandler = () => {
+            track.removeEventListener('transitionend', transitionEndHandler);
+            // Jump to the actual last set of original cards.
+            // If numVisibleCards is 3, and numOriginalCards is 5:
+            // We want to show cards [2,3,4]. So newIndex should be 5-3 = 2.
+            moveTo(numOriginalCards - 1, false);
+            // currentIndex is already numOriginalCards -1 from moveTo.
+          };
+          track.addEventListener('transitionend', transitionEndHandler);
+        } else {
+          moveTo(currentIndex - 1);
+        }
+      });
+
+      // Drag Navigation
+      let isDragging = false;
+      let startX = 0;
+      let dragInitialOffset = 0; // Store the offset at the beginning of a drag
+
+      track.addEventListener('mousedown', (e) => {
+        // Prevent drag if clicking on interactive elements within cards, though iframes are now pointer-events: none
+        if (e.target.closest('button, a, input, textarea')) {
+            return;
+        }
+        isDragging = true;
+        startX = e.pageX;
+        // currentOffset is the one set by moveTo, which is what we deviate from
+        dragInitialOffset = currentOffset;
+        track.style.transition = 'none'; // Disable transition during drag
+        track.style.cursor = 'grabbing';
+        e.preventDefault(); // Prevents text selection, etc.
+      });
+
+      document.addEventListener('mousemove', (e) => { // Listen on document for wider drag area
+        if (!isDragging) return;
+        const dx = e.pageX - startX;
+        // Translate from the position where the drag started
+        track.style.transform = `translateX(-${dragInitialOffset - dx}px)`;
+      });
+
+      const handleDragEnd = (e) => {
+        if (!isDragging) return;
         isDragging = false;
-      }
+        track.style.cursor = 'grab';
+        track.style.transition = 'transform 0.5s ease'; // Re-enable transition
+
+        const dx = e.pageX - startX;
+        const threshold = cardWidth / 4; // Threshold to decide slide or snap back
+
+        // We need to determine how many cards were swiped
+        // dx is the displacement. cardWidth is width of one card.
+        // If dx is positive, user swiped right (want to see previous cards)
+        // If dx is negative, user swiped left (want to see next cards)
+
+        if (dx < -threshold) { // Swiped left enough to go to next card(s)
+            // Calculate how many cards to move. Could be more than 1 if dragged far.
+            // For simplicity, this version moves one card at a time like buttons.
+            rightBtn.click();
+        } else if (dx > threshold) { // Swiped right enough to go to previous card(s)
+            leftBtn.click();
+        } else {
+          // Not enough drag, snap back to current card's correct position
+          moveTo(currentIndex, true);
+        }
+      };
+
+      document.addEventListener('mouseup', handleDragEnd); // Listen on document
+      track.addEventListener('mouseleave', (e) => { // If mouse leaves track, treat as drag end
+          if (isDragging) {
+              handleDragEnd(e);
+          }
+      });
+
+      // Optional: Recalculate on window resize
+      window.addEventListener('resize', () => {
+          // Re-calculate cardWidth as it might change due to responsive CSS
+          const newCardClientWidth = originalCards[0].offsetWidth;
+          const newCardWidth = newCardClientWidth + cardMarginLeft + cardMarginRight;
+
+          if (newCardWidth !== cardWidth && newCardWidth > 0) {
+            // cardWidth = newCardWidth; // This would update cardWidth for future calculations
+            // For a robust solution, might need to re-initialize the carousel (re-clone, reset positions)
+            // Simple approach: just reset to current index with new width (might cause visual jump)
+            // moveTo(currentIndex, false);
+            // For now, let's log and suggest refresh, as full re-init is complex here.
+            console.log("Carousel card width changed on resize. For optimal experience, please refresh or implement full re-initialization.");
+            // A simple re-positioning based on current index:
+            currentOffset = (clonesToCreate + currentIndex) * newCardWidth;
+            track.style.transform = `translateX(-${currentOffset}px)`;
+            // Note: This simple resize handling doesn't update the global cardWidth, so subsequent drags/moves
+            // might use the old cardWidth until a more robust resize handler is implemented.
+            // The best approach is to re-initialize, but that's a larger change.
+          }
+      });
+
     });
   </script>
   <script src="theme-switcher.js" defer></script>
