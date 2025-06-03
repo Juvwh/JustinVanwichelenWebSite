@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Carousel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
+    @font-face {
+    font-family: 'AdamCGPro';
+    src: url('./font/adam.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    body {
+      margin: 0;
+      background: #0b1b3f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+    .carousel-header {
+      text-align: center;
+      font-size: 2rem;
+      color: #ffffff;   
+      margin-top: 4rem;
+      margin-bottom: 0rem;
+      font-family: 'AdamCGPro', sans-serif;
+          font-size: 1.7rem;
+    }
+    .carousel-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 2rem ;
+      margin-top: 0rem;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      cursor: grab;
+      user-select: none; 
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+      width: 400px;
+      height: 600px;
+      margin: 0 1rem;
+      flex-shrink: 0;
+      display: flex;
+      z-index: 1;
+      flex-direction: column;
+      color: black;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 0.4rem;
+      align-items: center;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 2px #efc634;
+    }
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      margin: 0;
+      border-radius: 0.5rem;
+    }
+    .card-content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      justify-content: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: #dfe6f3;
+      color: #2e3b66;
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .badge i {
+      font-size: 0.9rem;
+    }
+    .description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      margin-top: auto;
+      background: #102750;
+      border: none;
+      padding: 0.75rem 1rem;
+      color: white;
+      border-radius: 999px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      width: fit-content;
+      align-self: center;
+    }
+    .controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    .arrow {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #efc634;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1100;
+      pointer-events: auto;
+    }
+    .custom-section {
+      position: relative;
+      max-width: 1750px;
+      margin: 0rem auto;
+      padding: 1rem;
+    }
+    .custom-image {
+      width: 100%;
+      border-radius: 1rem;
+      display: block;
+    }
+    .overlay-container {
+      position: relative;
+    }
+    .video-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(50%);
+      margin-left: 100px;
+      width: 550px;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(182, 182, 182, 0.404);
+      z-index: 2;
+    }
+    .video-overlay iframe {
+      width: 100%;
+      height: 300px;
+      margin: 0;
+    }
+    .text-beside-video {
+      margin-left: 800px;
+      margin-top: 2rem;
+      z-index: 1;
+      position: relative;
+    }
+    .text-beside-video h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .text-beside-video p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    /*Moi*/
+
+    .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background-color: #0b1b3f;
+    color: white;
+    }
+
+    .hero-image {
+    max-width: 300px;
+    border-radius: 99px;
+    background: radial-gradient(circle at 30% 30%, #ffffff00 40%, #3195bd00 100%);
+    padding: 0rem;
+    }
+
+    .hero-text {
+    max-width: 950px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    }
+
+    .hero-text h2 {
+    font-size: 4.6rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 0.01rem;
+    text-align: center;
+    font-family: 'AdamCGPro', sans-serif;
+    }
+
+    .hero-text strong {
+    color: #efc634;
+    }
+
+    @media (max-width: 768px) {
+      .video-overlay {
+        position: static;
+        transform: none;
+        margin: 1rem auto 0;
+      }
+      .text-beside-video {
+        margin: 2rem auto 0;
+        position: static;
+        text-align: center;
+      }
+      .overlay-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Introduction Section -->
+<section class="hero-section">
+  <img src="./src_index/cv_photo2.svg" alt="Portrait of Justin" class="hero-image" />
+  <div class="hero-text">
+    <h2>HI ALL, I'M JUSTIN 👋</h2>
+    <p>As a graduate <strong>Technical Artist</strong> currently pursuing a <strong>Master’s degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I blend <strong>creativity and technical expertise</strong> to build immersive digital experiences. Proficient in Photoshop, I excel in crafting detailed visual assets.</p>
+    <p>My Master’s thesis explores the applications of AI in role-playing games, focusing on how intelligent systems can enhance interactivity and narrative depth. I am also fascinated by <strong>Large Language Models (LLMs)</strong>, from their design to their applications. Additionally, my course in health informatics has allowed me to apply AI in healthcare, broadening my understanding of its impactful, cross-industry potential.</p>
+  </div>
+</section>
+  <div class="hero-text"></div>
+  <h3 class="carousel-header">Highlighted projects</h3>
+<!--    -->
+
+
+<!-- CAROUSEL   -->
+  <div class="carousel-container">
+    <div class="controls">
+      <button class="arrow nav left"><i class="fas fa-chevron-left"></i></button>
+      <button class="arrow nav right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-track" id="carousel-track">
+      
+        <!-- Card -- RPG --  -->
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/WDQ9-HO_ciI?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=WDQ9-HO_ciI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>ROLES PLAY GAME WITH LLM (2025)</h3>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-user"></i>By 2 people</span>
+            <span class="badge"><i class="fa-regular fa-clock"></i>7 months</span>
+            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+          </div>
+          <div class="description">
+            Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices.
+          </div>
+          <button class="btn">Really?? I want to know more!</button>
+        </div>
+      </div>
+
+        <!-- Card -- LOKI --  -->
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/1EbfonuRipw?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=1EbfonuRipw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>LOKI GAME (2022)</h3>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-user"></i>By 8 people</span>
+            <span class="badge"><i class="fa-regular fa-clock"></i>3 months</span>
+            <span class="badge"><i class="fa-brands fa-unity"></i>Unreal Engine 4</span>
+          </div>
+          <div class="description">
+            A school project completed in 3 months by 8 keen student in 2022. I worked on the UI, the code, modular system, gameplay, HUD and VFX.
+          </div>
+          <button class="btn">I'm as curious as a cat</button>
+        </div>
+      </div>
+
+              <!-- Card -- DIABLO --  -->
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/rfodBcYEb9I?rel=0&amp;autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;controls=0&amp;loop=1&amp;playlist=rfodBcYEb9I" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>DIABOLO III CYBERPUNK (2021) </h3>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-user"></i>Made alone</span>
+            <span class="badge"><i class="fa-regular fa-clock"></i>3 months</span>
+            <span class="badge"><i class="fa-brands fa-unity"></i>Unity</span>
+          </div>
+          <div class="description">
+            I've recreated a cyberpunk version of Diablo III, complete with homemade gameplay, VFX, animations and HUD. Combat, puzzles and futuristic powers await you.
+          </div>
+          <button class="btn">I'm as curious as a cat</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!--    -->
+
+
+
+  <!-- Custom image + video + text section -->
+  <div class="custom-section">
+    <div class="overlay-container">
+      <img src="./src_index/proj1.webp" alt="Demo Image" class="custom-image" />
+      <div class="video-overlay">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="text-beside-video">
+      <h2>Texte</h2>
+      <p>Paragraphe</p>
+      <button class="btn">Bouton</button>
+    </div>
+  </div>
+<!--    -->
+
+
+
+
+<!-- Script -->
+  <script>
+    const track = document.getElementById('carousel-track');
+    const leftBtn = document.querySelector('.nav.left');
+    const rightBtn = document.querySelector('.nav.right');
+
+    const cards = Array.from(track.children);
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('clone');
+      track.appendChild(clone);
+    });
+
+    let position = 0;
+    const cardWidth = cards[0].offsetWidth + 32;
+    const totalCards = cards.length;
+
+    function move(direction) {
+      position += direction * cardWidth;
+      track.style.transform = `translateX(${-position}px)`;
+
+      if (position >= cardWidth * totalCards) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          position = 0;
+          track.style.transform = `translateX(0px)`;
+          void track.offsetWidth;
+          track.style.transition = 'transform 0.5s ease';
+        }, 500);
+      }
+
+      if (position < 0) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          position = cardWidth * (totalCards - 1);
+          track.style.transform = `translateX(${-position}px)`;
+          void track.offsetWidth;
+          track.style.transition = 'transform 0.5s ease';
+        }, 500);
+      }
+    }
+
+    rightBtn.addEventListener('click', () => move(1));
+    leftBtn.addEventListener('click', () => move(-1));
+
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX;
+      scrollLeft = position;
+      track.style.cursor = 'grabbing';
+    });
+
+    track.addEventListener('mouseleave', () => {
+      isDragging = false;
+      track.style.cursor = 'grab';
+    });
+
+    track.addEventListener('mouseup', () => {
+      isDragging = false;
+      track.style.cursor = 'grab';
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) > 50) {
+        move(dx < 0 ? 1 : -1);
+        isDragging = false;
+      }
+    });
+  </script>
+</body>
+</html>
