@@ -24,14 +24,13 @@
   <title>
    Home | My Website
   </title>
-  <link href="./index_files/web.assets_frontend.min.css" rel="stylesheet" type="text/css"/>
+  <link href="new_style.css" rel="stylesheet" type="text/css"/>
   <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-T9xEvKbHkTGiFwL+TrQ9xYhTj9NDpmy2Rrj3Xt3JXqQj+ro7cqHbEqUorKhOv9EbzK6Yr0ukwQk9OjYz0ljLOw==" referrerpolicy="no-referrer" rel="stylesheet">
-   <style id="conditional_visibility">
-   </style>
    <meta data-extension-version="1.0.7" id="ConnectiveDocSignExtentionInstalled" name="ConnectiveDocSignExtentionInstalled"/>
   </link>
  </head>
  <body class="">
+  <button id="theme-toggle-btn">Toggle Theme</button>
   <div class="homepage" id="wrapwrap">
    <header class="o_header_standard o_header_affixed o_header_is_scrolled o_top_fixed_element" data-anchor="true" data-extra-items-toggle-aria-label="Bouton d'&eacute;l&eacute;ments suppl&eacute;mentaires" data-name="Header" id="top" style="transform: translate(0px, 0px);">
     <nav aria-label="Main" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc o_header_force_no_radius d-none d-lg-block p-0 shadow-sm" data-name="Navbar">
@@ -438,155 +437,6 @@
       <template class="s_embed_code_saved">
       </template>
       <div class="s_embed_code_embedded o_not_editable container-fluid">
-       <link href="./index_files/all.min.css" rel="stylesheet"/>
-       <style>
-        body { 
-  font-family: "Montserrat", "Arial", sans-serif;
-  margin: 0;
-}
-
-.timeline {
-  --background: #0E1528;
-  --accent: #efc631;
-  --text: white;
-  --line: #c4c4c4;
-  background: var(--background);
-  color: var(--text);
-  padding: 30px;
-}
-
-.timeline h1 {
-  border-left: 4px solid var(--accent);
-  padding: 10px 12px 10px;
-}
-
-.timeline ul {
-  list-style: none;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(var(--items), 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.timeline ul:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  border-top: 3px solid var(--text);
-  left: 11px;
-}
-
-.timeline ul:after {
-  content: "\f04b";
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 1px;
-  right: -15px;
-  font-size: 25px;
-  color: var(--accent);
-}
-
-.timeline ul li {
-  --circle-size: 15px;
-  grid-column: var(--index);
-  overflow: hidden;
-  position: relative;
-  height: calc(100% + var(--circle-size) * 0.5);
-}
-
-.timeline ul li:after {
-  content: '';
-  width: var(--circle-size);
-  height: var(--circle-size);
-  background: var(--line);
-  position: absolute;
-  bottom: 0;
-  left: var(--circle-size);
-  border-radius: 100px;
-  transform: translateX(-50%);
-  z-index: 1;
-}
-
-.timeline ul li:nth-child(even):after {
-  bottom: auto;
-  top: 0;
-}
-
-.timeline ul li:nth-child(even) {
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 40px;
-  margin-top: calc(var(--circle-size) * -0.45);
-}
-
-.timeline ul li:nth-child(odd) p:after,
-.timeline ul li:nth-child(even) h3:before {
-  content: "";
-  display: block;
-  border-left: 2px dashed var(--text);
-  height: 100vh;
-  margin-top: 10px;
-  position: absolute;
-  left: calc(var(--circle-size) - 1px);
-}
-
-.timeline ul li:nth-child(even) h3:before {
-  bottom: 100%;
-  margin-bottom: 5px;
-}
-
-.timeline ul li>* {
-  padding-left: calc(var(--circle-size) * 0.4);
-}
-
-.timeline ul li h3 {
-  color: var(--accent);
-  margin: 0;
-  margin-bottom: 5px;
-  font-size: 1.6em;
-  position: relative;
-}
-
-.timeline ul li p {
-  margin: 0;
-  position: relative;
-  text-wrap: pretty;
-}
-
-@media (max-width: 568px) {
-  .timeline ul {
-    display: flex;
-    flex-direction: column;
-  }
-  .timeline ul li {
-    grid-column: 1 !important;
-    grid-row: var(--index) !important;
-    height: 100%;
-    padding-bottom: 30px;
-    padding-top: 10px;
-  }
-}
-.timeline-image-wrapper {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.timeline-icon {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-}
-       </style>
        <div class="timeline" style="--items: 7;">
         <ul>
          <li style="--index: 1">
@@ -859,5 +709,6 @@
    <div class="o_notification_manager">
    </div>
   </div>
+  <script src="new_script.js"></script>
  </body>
 </html>
