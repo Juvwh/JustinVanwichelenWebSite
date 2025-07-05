@@ -17,10 +17,14 @@
   --hero-section-text-color: white; /* Same as body text */
   --hero-title-text-color: #ffffff; /* Same as header text */
   --hero-strong-text-color: #efc634; /* Same as accent */
+  --navbar-bg-color-dark: #0e1528; /* Nouvelle couleur pour la navbar en dark mode */
+  --navbar-outline-color-dark: white; /* Outline pour dark mode (inchangé) */
 }
 
 .dark-theme {
-  --body-bg-color: #0b1b3f;
+  --body-bg-color: #0b1b3f; /* Gardé pour le fond général du body */
+  --navbar-bg-color-dark: #0e1528; /* Spécifique pour la navbar */
+  --navbar-outline-color-dark: white;
   --body-text-color: white;
   --header-text-color: #ffffff;
   --card-bg-color: white;
@@ -59,6 +63,9 @@
   --hero-section-text-color: #333333; /* Dark gray */
   --hero-title-text-color: #000000; /* Black */
   --hero-strong-text-color: #0056b3; /* Darker blue */
+  --navbar-bg-color-light: #0056b3; /* Couleur spécifique pour navbar en light mode */
+  --navbar-text-color-light: #ffffff; /* Texte blanc pour navbar en light mode */
+  --navbar-outline-color-light: #DDDDDD; /* Outline plus clair pour navbar en light mode si besoin */
 }
 
 * {
@@ -88,7 +95,7 @@ body {
   position: relative;
   width: 100%;
   padding: 2rem 0;
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto;
 }
 .carousel-wrapper {
@@ -106,8 +113,8 @@ body {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 15px var(--card-shadow-color);
-  width: 400px;
-  height: 600px;
+  width: 450px;
+  height: 500px;
   margin: 0 0.5rem;
   flex-shrink: 0;
   display: flex;
@@ -115,13 +122,13 @@ body {
   flex-direction: column;
   color: var(--card-text-color);
   transition: transform 0.5s ease, box-shadow 0.2s ease;
-  padding: 0.4rem;
+  padding: 0.2rem;
   align-items: center;
   text-align: center;
 }
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 0 2px var(--accent-color);
+  transform: translateY(-10px);
+  box-shadow: 0 0 0 3px var(--accent-color);
 }
 iframe {
   width: 100%;
@@ -129,6 +136,7 @@ iframe {
   border: none;
   margin: 0;
   border-radius: 0.5rem;
+  pointer-events: none;
 }
 .card-content {
   padding: 1rem;
@@ -248,6 +256,10 @@ iframe {
 
 /*Moi*/
 .hero-section {
+  padding-top: 80px; /* Ajout d'un padding-top pour décaler le contenu sous la navbar */
+  /* La valeur 80px est une estimation, à ajuster si la hauteur de la navbar change.
+     On pourrait aussi calculer la hauteur de la navbar avec JS et l'appliquer,
+     mais pour l'instant une valeur fixe devrait suffire. */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -285,13 +297,6 @@ iframe {
   color: var(--hero-strong-text-color);
 }
 
-@media (max-width: 1024px) {
-  .card {
-    width: 300px;
-    height: 500px;
-  }
-}
-
 #theme-toggle-btn {
   position: fixed;
   top: 20px;
@@ -310,21 +315,273 @@ iframe {
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
-  .video-overlay {
-    position: static;
-    transform: none;
-    margin: 1rem auto 0;
-  }
+/* Navbar styles */
+.navbar {
+  background-color: var(--navbar-bg-color-dark); /* Utilise la nouvelle variable pour dark mode */
+  padding: 1rem 0;
+  position: fixed; /* Fixe en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Assure qu'elle est au-dessus des autres éléments */
+  border-bottom: 2px solid var(--navbar-outline-color-dark); /* Utilise la variable pour l'outline en dark mode */
+  transition: border-bottom-color 0.3s ease; /* Pour la disparition de la bordure */
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 2rem; /* Ajoute un peu de padding horizontal */
+  display: flex;
+  justify-content: space-between; /* Modifié pour espacer les éléments */
+  align-items: center; /* Aligne verticalement les éléments au centre */
+  gap: 2rem; /* Espace entre les éléments de navigation principaux */
+}
+
+.navbar li {
+  display: inline;
+}
+
+/* Styles pour les éléments de navigation principaux (liens) */
+.navbar li:not(.theme-toggle-item) {
+  /* Vous pouvez ajouter des styles spécifiques ici si nécessaire */
+}
+
+/* Conteneur pour les liens de navigation pour les garder groupés */
+.navbar ul .nav-links-group {
+  display: flex;
+  gap: 2rem;
+  justify-content: center; /* Centre les liens de navigation */
+  flex-grow: 1; /* Permet au groupe de liens de prendre l'espace central */
+}
+
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: var(--accent-color); /* Couleur d'accentuation au survol */
+  color: var(--body-bg-color); /* Texte foncé sur fond clair pour le survol */
+}
+
+/* Classe pour masquer la bordure au défilement */
+.navbar-scrolled {
+  border-bottom-color: transparent !important; /* Important pour s'assurer qu'il override le thème light */
+}
+
+/* Styles spécifiques pour la navbar en light theme */
+.light-theme .navbar {
+  background-color: var(--navbar-bg-color-light);
+  border-bottom-color: var(--navbar-outline-color-light); /* Outline pour light mode */
+}
+
+.light-theme .navbar a {
+  color: var(--navbar-text-color-light);
+}
+
+.light-theme .navbar a:hover {
+  background-color: var(--accent-color); /* Peut-être ajuster l'accent color pour light theme navbar hover */
+  color: var(--navbar-bg-color-light); /* Texte de la couleur du fond de la navbar light au survol */
+}
+
+/* S'assurer que le bouton de thème dans la navbar light a des couleurs appropriées */
+.light-theme #theme-toggle-btn {
+  background-color: var(--button-bg-color); /* Utilise le bouton bg du thème light */
+  color: var(--button-text-color); /* Utilise le bouton text color du thème light */
+  border: 1px solid var(--navbar-text-color-light); /* Petite bordure pour visibilité si besoin */
+}
+.light-theme #theme-toggle-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* Ajustement pour le bouton de thème dans la navbar */
+.navbar .theme-toggle-item {
+  margin-left: auto; /* Pousse le bouton vers la droite */
+}
+
+#theme-toggle-btn {
+  /* Ajustements spécifiques si nécessaire pour le bouton dans la navbar */
+  /* Par exemple, si la taille/padding par défaut du bouton ne convient pas ici */
+  padding: 0.5rem 0.75rem; /* Léger ajustement du padding pour la navbar */
+  font-size: 0.9rem; /* Ajustement de la taille de la police */
+  position: static; /* Assure que les positionnements fixed/absolute précédents sont annulés */
+  top: auto;
+  right: auto;
+}
+
+/* Custom Section Styles */
+.custom-section {
+  position: relative;
+  max-width: 1750px; /* Conservé de votre exemple */
+  margin: 4rem auto; /* Ajout de marge verticale pour espacement */
+  padding: 1rem;
+  color: var(--body-text-color); /* Utilisation de la variable de thème pour la couleur du texte */
+}
+
+.custom-image {
+  width: 100%;
+  border-radius: 1rem;
+  display: block;
+  box-shadow: 0 10px 25px var(--card-shadow-color); /* Ombre cohérente avec les cartes */
+}
+
+.overlay-container {
+  position: relative;
+  margin-bottom: 100px; /* Espace pour que la vidéo en superposition ne soit pas coupée et pour le texte en dessous */
+                       /* Ajustez cette valeur si la vidéo est plus haute ou si plus d'espace est nécessaire */
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0; /* Aligné en bas de .overlay-container */
+  left: 80px; /* Légèrement décalé vers la gauche */
+  transform: translateY(50%); /* Décale la vidéo vers le bas pour qu'elle chevauche l'image et sorte en dessous */
+  width: 550px; 
+  border-radius: 1rem; /* Cohérent avec .custom-image */
+  overflow: hidden;
+  box-shadow: 0 8px 16px var(--video-overlay-shadow-color); /* Utilisation de la variable existante */
+  z-index: 2; /* Au-dessus de l'image mais en dessous du texte si le texte doit passer par dessus */
+}
+
+.video-overlay iframe {
+  width: 100%;
+  height: 300px; /* Conservé */
+  margin: 0;
+  display: block; /* Évite les espaces indésirables sous l'iframe */
+  border: none; /* Supprime la bordure par défaut de l'iframe */
+}
+
+.text-beside-video {
+  /* Initialement, j'avais margin-left: 800px. Cela suppose une largeur fixe pour la vidéo et l'image.
+     Pour plus de flexibilité, nous pourrions utiliser Flexbox ou Grid pour le parent .custom-section
+     si la mise en page doit être plus dynamique. Pour l'instant, je garde votre approche
+     mais notez que cela peut nécessiter des ajustements pour différentes tailles d'écran avant le breakpoint mobile. */
+  margin-left: 650px; /* Ajusté pour commencer un peu plus à gauche */
+  margin-right: 50px; /* Ajout d'une marge à droite pour limiter l'extension */
+  max-width: 900px; /* Limite explicite de la largeur du bloc de texte */
+  margin-top: -120px; /* Négatif pour remonter à côté de la vidéo qui est en translateY(50%) */
+                      /* Cette valeur dépendra fortement de la hauteur de la vidéo et de l'image */
+  z-index: 1; /* S'assure qu'il est au-dessus de l'image si .video-overlay a un z-index plus élevé */
+  position: relative; /* Nécessaire pour z-index */
+  padding: 1.5rem; /* Augmentation du padding pour un meilleur espacement interne */
+  background-color: var(--card-bg-color); /* Pour que le texte soit lisible s'il chevauche l'image de fond */
+  color: var(--card-text-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px var(--card-shadow-color);
+}
+
+.text-beside-video h2 {
+  font-size: 1.7rem; /* Légèrement plus grand */
+  margin-bottom: 0.75rem;
+  font-family: 'AdamCGPro', sans-serif; /* Cohérence avec .carousel-header */
+  color: var(--header-text-color); /* Si sur fond de carte, sinon var(--body-text-color) */
+}
+
+.light-theme .text-beside-video h2 {
+  color: var(--header-text-color); /* Le header-text-color du thème light est noir */
+}
+.dark-theme .text-beside-video h2 {
+  color: var(--header-text-color); /* Le header-text-color du thème dark est blanc */
+}
+
+
+.text-beside-video p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem; /* Plus d'espace avant le bouton */
+  line-height: 1.6;
+}
+
+/* Le bouton .btn est déjà stylé globalement, il devrait hériter de ces styles.
+   Pas besoin de redéfinir ici sauf si un style spécifique est nécessaire. */
+
+
+@media (max-width: 1200px) { /* Un breakpoint intermédiaire pour ajuster le texte à côté de la vidéo */
   .text-beside-video {
-    margin: 2rem auto 0;
-    position: static;
-    text-align: center;
+    margin-left: 550px; /* Réduire la marge quand l'écran se rétrécit un peu */
+    margin-top: -100px; /* Ajuster si besoin */
+  }
+  .video-overlay {
+    left: 50px; /* Réduire un peu le décalage gauche de la vidéo */
+    width: 500px; /* Réduire un peu la largeur de la vidéo */
+  }
+}
+
+@media (max-width: 992px) { /* Un autre breakpoint pour une meilleure transition vers le mobile */
+  .text-beside-video {
+    margin-left: 0; /* Le texte prend toute la largeur disponible sous l'image/vidéo */
+    margin-top: 2rem; /* Espacement standard après la vidéo */
+    text-align: center; /* Centrer le texte */
   }
   .overlay-container {
+    margin-bottom: 2rem; /* Réduire la marge si la vidéo n'est plus en translateY(50%) */
+  }
+  .video-overlay {
+    position: relative; /* Change de absolute à relative pour s'empiler normalement */
+    transform: translateY(0); /* Annuler le décalage vertical */
+    width: 90%; /* Prendre une plus grande partie de la largeur */
+    max-width: 550px; /* Garder une largeur max raisonnable */
+    margin: 1rem auto 0; /* Centrer la vidéo */
+    left: auto; /* Annuler le décalage gauche */
+  }
+  .custom-section {
+    padding: 1rem; /* S'assurer que le padding est cohérent */
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Les styles pour .video-overlay et .text-beside-video de votre exemple original sont bons pour cette taille.
+     Je vais les vérifier et les intégrer/ajuster si nécessaire. */
+
+  .hero-section { /* S'assurer que le padding-top est ajusté si la navbar change de hauteur en mobile */
+    padding-top: 70px; /* Exemple, à ajuster si la navbar mobile est moins haute */
+  }
+
+  .navbar ul {
+    padding: 0 1rem; /* Moins de padding sur mobile */
+    gap: 0.5rem; /* Moins d'espace entre les éléments */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si besoin */
+    justify-content: center;
+  }
+  .navbar .nav-links-group {
+    gap: 0.5rem;
+    flex-basis: 100%; /* Prend toute la largeur pour centrer les liens */
+    justify-content: center;
+    order: 2; /* Mettre les liens après le bouton de thème si ça wrap */
+  }
+  .navbar .theme-toggle-item {
+    margin-left: 0; /* Plus de marge auto sur mobile */
+    order: 1; /* Mettre le bouton en premier s'ils wrappent */
+  }
+
+
+  .video-overlay { /* Styles déjà fournis, confirmés et légèrement ajustés */
+    position: relative; /* Doit être relatif pour s'empiler */
+    transform: none; /* Annuler le transform */
+    margin: 1rem auto 0; /* Centrer et espacer */
+    width: 95%; /* Plus large sur mobile */
+    max-width: 500px;
+    left: auto;
+    bottom: auto;
+  }
+  .text-beside-video { /* Styles déjà fournis, confirmés */
+    margin: 2rem auto 0;
+    position: static; /* Annuler le positionnement absolu/relatif spécifique au desktop */
+    text-align: center;
+    width: 95%; /* Prendre la largeur */
+  }
+  .overlay-container { /* Styles déjà fournis, confirmés */
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1rem; /* Ajuster l'espacement */
   }
   .carousel-wrapper {
     flex-direction: column;
