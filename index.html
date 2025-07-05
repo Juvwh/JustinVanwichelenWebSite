@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+  <nav class="navbar">
+    <ul>
+      <div class="nav-links-group">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#game-projects">Game projects</a></li>
+        <li><a href="#it-projects">IT projects</a></li>
+      </div>
+      <li class="theme-toggle-item"><button id="theme-toggle-btn">Light/Dark</button></li>
+    </ul>
+  </nav>
   <header>
     <div class="hero-section">
       <img src="src_index/cv_photo2.svg" alt="Your Name" class="hero-image">
@@ -19,8 +29,6 @@
     </div>
   </header>
 
-
-  <button id="theme-toggle-btn">Light/Dark</button>
 
 
 
@@ -105,6 +113,22 @@
       <button class="arrow nav right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
+
+  <!-- Custom image + video + text section -->
+  <div class="custom-section">
+    <div class="overlay-container">
+      <img src="./index_files/img_TheHumanVariable_Header.webp" alt="Demo Image" class="custom-image" />
+      <div class="video-overlay">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe> <!-- Placeholder Video ID -->
+      </div>
+    </div>
+    <div class="text-beside-video">
+      <h2>Un Titre Accrocheur</h2>
+      <p>Décrivez ici le projet ou le concept illustré par l'image et la vidéo. Mettez en avant les aspects clés et les technologies utilisées.</p>
+      <button class="btn">En Savoir Plus</button>
+    </div>
+  </div>
+  <!--    -->
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -299,5 +323,6 @@
     });
   </script>
   <script src="theme-switcher.js" defer></script>
+  <script src="navbar.js" defer></script>
 </body>
 </html>
