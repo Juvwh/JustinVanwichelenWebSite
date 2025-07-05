@@ -19,6 +19,7 @@
   --hero-strong-text-color: #efc634; /* Same as accent */
   --navbar-bg-color-dark: #0e1528; /* Nouvelle couleur pour la navbar en dark mode */
   --navbar-outline-color-dark: white; /* Outline pour dark mode (inchangé) */
+  --image-outline-color: #efc634; /* Outline pour image en dark mode */
 }
 
 .dark-theme {
@@ -66,6 +67,7 @@
   --navbar-bg-color-light: #0056b3; /* Couleur spécifique pour navbar en light mode */
   --navbar-text-color-light: #ffffff; /* Texte blanc pour navbar en light mode */
   --navbar-outline-color-light: #DDDDDD; /* Outline plus clair pour navbar en light mode si besoin */
+  --image-outline-color: #0034dd; /* Outline pour image en light mode */
 }
 
 * {
@@ -417,7 +419,7 @@ iframe {
 }
 
 /* Custom Section Styles */
-.custom-section {
+.section-projet-en-avant {
   position: relative;
   max-width: 1750px; /* Conservé de votre exemple */
   margin: 4rem auto; /* Ajout de marge verticale pour espacement */
@@ -430,6 +432,7 @@ iframe {
   border-radius: 1rem;
   display: block;
   box-shadow: 0 10px 25px var(--card-shadow-color); /* Ombre cohérente avec les cartes */
+  outline: 0px solid var(--image-outline-color); /* Outline de l'image à 0px */
 }
 
 .overlay-container {
@@ -466,11 +469,11 @@ iframe {
   margin-left: 650px; /* Ajusté pour commencer un peu plus à gauche */
   margin-right: 50px; /* Ajout d'une marge à droite pour limiter l'extension */
   max-width: 900px; /* Limite explicite de la largeur du bloc de texte */
-  margin-top: -120px; /* Négatif pour remonter à côté de la vidéo qui est en translateY(50%) */
+  margin-top: -190px; /* Ajusté à -190px selon la demande */
                       /* Cette valeur dépendra fortement de la hauteur de la vidéo et de l'image */
   z-index: 1; /* S'assure qu'il est au-dessus de l'image si .video-overlay a un z-index plus élevé */
   position: relative; /* Nécessaire pour z-index */
-  padding: 1.5rem; /* Augmentation du padding pour un meilleur espacement interne */
+  padding: 1rem 1.5rem 1.5rem 8rem; /* Augmentation du padding à gauche pour décaler le texte */
   background-color: var(--card-bg-color); /* Pour que le texte soit lisible s'il chevauche l'image de fond */
   color: var(--card-text-color);
   border-radius: 0.5rem;
@@ -488,7 +491,7 @@ iframe {
   color: var(--header-text-color); /* Le header-text-color du thème light est noir */
 }
 .dark-theme .text-beside-video h2 {
-  color: var(--header-text-color); /* Le header-text-color du thème dark est blanc */
+  color: #000000; /* Forcé en noir pour le thème sombre car le fond de la carte est blanc */
 }
 
 
@@ -505,7 +508,7 @@ iframe {
 @media (max-width: 1200px) { /* Un breakpoint intermédiaire pour ajuster le texte à côté de la vidéo */
   .text-beside-video {
     margin-left: 550px; /* Réduire la marge quand l'écran se rétrécit un peu */
-    margin-top: -100px; /* Ajuster si besoin */
+    margin-top: -130px; /* Ajusté proportionnellement, de -100px */
   }
   .video-overlay {
     left: 50px; /* Réduire un peu le décalage gauche de la vidéo */
@@ -530,7 +533,7 @@ iframe {
     margin: 1rem auto 0; /* Centrer la vidéo */
     left: auto; /* Annuler le décalage gauche */
   }
-  .custom-section {
+  .section-projet-en-avant {
     padding: 1rem; /* S'assurer que le padding est cohérent */
   }
 }
