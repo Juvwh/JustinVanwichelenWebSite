@@ -473,7 +473,7 @@ iframe {
                       /* Cette valeur dépendra fortement de la hauteur de la vidéo et de l'image */
   z-index: 1; /* S'assure qu'il est au-dessus de l'image si .video-overlay a un z-index plus élevé */
   position: relative; /* Nécessaire pour z-index */
-  padding: 1rem 1.5rem 1.5rem 8rem; /* Augmentation du padding à gauche pour décaler le texte */
+  padding: 0.2rem 1.5rem 1.5rem 8rem; /* Augmentation du padding à gauche pour décaler le texte */
   background-color: var(--card-bg-color); /* Pour que le texte soit lisible s'il chevauche l'image de fond */
   color: var(--card-text-color);
   border-radius: 0.5rem;
