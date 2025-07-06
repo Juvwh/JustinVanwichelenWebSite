@@ -643,6 +643,8 @@ iframe {
   background: var(--timeline-background);
   color: var(--timeline-text);
   padding: 30px;
+  position: relative; /* Ensure the timeline itself is a positioning context */
+  overflow: hidden; /* Contain the wave background if it exceeds height */
 }
 
 /* Light theme overrides for timeline */
@@ -810,13 +812,40 @@ iframe {
 /* Assuming Wavy_01_001.svg is dark and Wavy_24_V2.svg is light or adaptable */
 /* In a real scenario, you might need to adjust SVG colors or use different files */
 .dark-theme .gallery_wavy_background {
-  background-image: url('./index_files/Wavy_01_001.svg'); /* Dark blue waves */
+  background-image: url('./index_files/Wavy_24_V2.svg'); /* Using lighter waves for dark mode */
+  opacity: 1; /* Ensure full visibility */
   /* background-color: #0c1a3f; Default dark bg color from original snippet */
 }
 
 .light-theme .gallery_wavy_background {
   background-image: url('./index_files/Wavy_24_V2.svg'); /* Light blue waves - CHOSE V2 for potentially lighter look */
   /* background-color: #e0e8f0; Example light bg color */
+}
+
+/* Wavy background for the entire timeline section top */
+.timeline_section_wavy_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Adjust height as needed for the transition effect */
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+
+  z-index: 0; /* Below timeline content */
+  pointer-events: none; /* Ensure it doesn't interfere with mouse events */
+
+}
+
+.dark-theme .timeline_section_wavy_background {
+  background-image: url('./index_files/Wavy_24_V2.svg');
+  opacity: 0.8;
+}
+
+.light-theme .timeline_section_wavy_background {
+  background-image: url('./index_files/Wavy_24_V2.svg');
+  opacity: 0.7;
 }
 
 .icon-gallery .o_container_small {
