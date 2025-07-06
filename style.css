@@ -504,6 +504,21 @@ iframe {
 /* Le bouton .btn est déjà stylé globalement, il devrait hériter de ces styles.
    Pas besoin de redéfinir ici sauf si un style spécifique est nécessaire. */
 
+/* Styles for the reversed layout variant */
+.section-projet-en-avant--reversed .video-overlay {
+  left: auto; /* Remove the original left positioning */
+  right: 200px; /* Position on the right */
+}
+
+.section-projet-en-avant--reversed .text-beside-video {
+  margin-left: 150px; /* Adjust margin to position text on the left */
+  margin-right: 650px; /* Add margin on the right to make space for the video */
+  /* The negative margin-top: -190px; should still apply if the vertical alignment is to be maintained. */
+  /* We might need to adjust padding if the text content feels too close to the edge */
+  padding-left: 1.5rem; /* Reset padding left */
+  padding-right: 8rem; /* Add padding to the right, similar to original left padding for text */
+}
+
 
 @media (max-width: 1200px) { /* Un breakpoint intermédiaire pour ajuster le texte à côté de la vidéo */
   .text-beside-video {
