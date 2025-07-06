@@ -68,6 +68,12 @@
   --navbar-text-color-light: #ffffff; /* Texte blanc pour navbar en light mode */
   --navbar-outline-color-light: #DDDDDD; /* Outline plus clair pour navbar en light mode si besoin */
   --image-outline-color: #0034dd; /* Outline pour image en light mode */
+
+  /* Timeline Light Theme Variables */
+  --timeline-background-light: #FFFFFF; /* White background */
+  --timeline-accent-light: #007AFF; /* Vibrant blue accent */
+  --timeline-text-light: #333333; /* Dark gray text */
+  --timeline-line-light: #DDDDDD; /* Light gray line */
 }
 
 * {
@@ -619,17 +625,27 @@ iframe {
 
 /* Timeline Styles */
 .timeline {
-  --background: #0E1528;
-  --accent: #efc631;
-  --text: white;
-  --line: #c4c4c4;
-  background: var(--background);
-  color: var(--text);
+  /* Default to dark theme variables */
+  --timeline-background: #0E1528;
+  --timeline-accent: #efc631;
+  --timeline-text: white;
+  --timeline-line: #c4c4c4;
+
+  background: var(--timeline-background);
+  color: var(--timeline-text);
   padding: 30px;
 }
 
+/* Light theme overrides for timeline */
+.light-theme .timeline {
+  --timeline-background: var(--timeline-background-light);
+  --timeline-accent: var(--timeline-accent-light);
+  --timeline-text: var(--timeline-text-light);
+  --timeline-line: var(--timeline-line-light);
+}
+
 .timeline h1 {
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--timeline-accent);
   padding: 10px 12px 10px;
 }
 
@@ -650,7 +666,7 @@ iframe {
   position: absolute;
   top: 50%;
   width: 100%;
-  border-top: 3px solid var(--text);
+  border-top: 3px solid var(--timeline-text);
   left: 11px;
 }
 
@@ -664,7 +680,7 @@ iframe {
   margin-top: 1px;
   right: -15px;
   font-size: 25px;
-  color: var(--accent);
+  color: var(--timeline-accent);
 }
 
 .timeline ul li {
@@ -679,7 +695,7 @@ iframe {
   content: '';
   width: var(--circle-size);
   height: var(--circle-size);
-  background: var(--line);
+  background: var(--timeline-line);
   position: absolute;
   bottom: 0;
   left: var(--circle-size);
@@ -706,7 +722,7 @@ iframe {
 .timeline ul li:nth-child(even) h3:before {
   content: "";
   display: block;
-  border-left: 2px dashed var(--text);
+  border-left: 2px dashed var(--timeline-text);
   height: 100vh;
   margin-top: 10px;
   position: absolute;
@@ -723,7 +739,7 @@ iframe {
 }
 
 .timeline ul li h3 {
-  color: var(--accent);
+  color: var(--timeline-accent);
   margin: 0;
   margin-bottom: 5px;
   font-size: 1.6em;
