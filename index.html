@@ -37,6 +37,7 @@
 
   <h2 class="carousel-header">Highlighted projects</h2>
   <div class="carousel-container">
+    <button class="arrow nav left" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
     <div class="carousel-wrapper">
       <div class="carousel-track" id="carousel-track">
         <!-- Card -- RPG --  -->
@@ -111,10 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="controls">
-      <button class="arrow nav left" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
-      <button class="arrow nav right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
-    </div>
+    <button class="arrow nav right" id="next-btn"><i class="fas fa-chevron-right"></i></button>
   </div>
 
   <!-- Custom image + video + text section -->
@@ -234,77 +232,149 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <!--    -->
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.getElementById('carousel-track');
-      const leftBtn = document.getElementById('prev-btn'); // Corrected ID
-      const rightBtn = document.getElementById('next-btn'); // Corrected ID
+    // Carousel Global Variables
+    let track;
+    let leftBtn;
+    let rightBtn;
+    let carouselWrapper; // Added
+    let originalCards = [];
+    let numOriginalCards = 0;
+    let cardWidth = 0; // Includes margins
+    let currentNumVisibleCards = 0;
+    let clonesToCreate = 0;
+    let currentIndex = 0;
+    let currentOffset = 0;
+    let isDragging = false;
+    let startX = 0;
+    let dragInitialOffset = 0;
 
-      if (!track || !leftBtn || !rightBtn) {
-        console.error('Carousel elements not found. Check IDs.');
+    // Breakpoints (approximate, based on cardFullWidth ~466px and padding/arrows ~200px)
+    const BP_3_CARDS = 1598; // window.innerWidth to show 3 cards
+    const BP_2_CARDS = 1132; // window.innerWidth to show 2 cards (else 1)
+
+    function calculateCardWidth() {
+      if (originalCards.length === 0) return 0;
+      const cardStyle = window.getComputedStyle(originalCards[0]);
+      const cardMarginLeft = parseFloat(cardStyle.marginLeft);
+      const cardMarginRight = parseFloat(cardStyle.marginRight);
+      const cardClientWidth = originalCards[0].offsetWidth;
+      return cardClientWidth + cardMarginLeft + cardMarginRight;
+    }
+
+    function initializeCarousel() {
+      console.log(`Initializing carousel with ${currentNumVisibleCards} visible cards.`);
+
+      if (!track || originalCards.length === 0 || cardWidth <= 0) {
+        console.error("Carousel cannot be initialized. Missing elements or card width.");
+        return;
+      }
+      
+      // Reset interaction states
+      isDragging = false;
+      // Any pending transitionend listeners are on the old track children, which will be removed by innerHTML = ''
+
+      clonesToCreate = currentNumVisibleCards; 
+
+      track.innerHTML = ''; // Clear the track
+
+      // Prepend clones: last 'clonesToCreate' cards from originalCards
+      for (let i = 0; i < clonesToCreate; i++) {
+        const originalCardIndex = (numOriginalCards - clonesToCreate + i + numOriginalCards) % numOriginalCards;
+        const clone = originalCards[originalCardIndex].cloneNode(true);
+        clone.classList.add('clone-start');
+        if (clone.id) clone.removeAttribute('id'); // Avoid duplicate IDs
+        track.appendChild(clone);
+      }
+
+      // Append original cards (as clones, to keep originalCards array pristine)
+      originalCards.forEach(cardNode => {
+        const clone = cardNode.cloneNode(true);
+        if (clone.id) clone.removeAttribute('id');
+        track.appendChild(clone);
+      });
+
+      // Append clones: first 'clonesToCreate' cards from originalCards
+      for (let i = 0; i < clonesToCreate; i++) {
+        const originalCardIndex = i % numOriginalCards;
+        const clone = originalCards[originalCardIndex].cloneNode(true);
+        clone.classList.add('clone-end');
+        if (clone.id) clone.removeAttribute('id');
+        track.appendChild(clone);
+      }
+
+      currentIndex = 0; 
+      currentOffset = clonesToCreate * cardWidth;
+      
+      track.style.transition = 'none'; // Disable transition during immediate repositioning
+      track.style.transform = `translateX(-${currentOffset}px)`;
+
+      // Force reflow/repaint before re-enabling transitions for reliability
+      requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+              track.style.transition = 'transform 0.5s ease';
+          });
+      });
+    }
+
+    function updateCarouselLayout() {
+      const windowWidth = window.innerWidth;
+      let newNumVisibleCards;
+
+      if (windowWidth >= BP_3_CARDS) {
+        newNumVisibleCards = 3;
+      } else if (windowWidth >= BP_2_CARDS) {
+        newNumVisibleCards = 2;
+      } else {
+        newNumVisibleCards = 1;
+      }
+
+      if (newNumVisibleCards !== currentNumVisibleCards || currentNumVisibleCards === 0) { // Also run on initial load
+        currentNumVisibleCards = newNumVisibleCards;
+        
+        if (carouselWrapper && cardWidth > 0) {
+          carouselWrapper.style.width = (currentNumVisibleCards * cardWidth) + 'px';
+        }
+        
+        // Full re-initialization needed as cloning and offsets depend on numVisibleCards
+        initializeCarousel(); 
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      track = document.getElementById('carousel-track');
+      leftBtn = document.getElementById('prev-btn');
+      rightBtn = document.getElementById('next-btn');
+      carouselWrapper = document.querySelector('.carousel-wrapper'); // Get wrapper
+
+      if (!track || !leftBtn || !rightBtn || !carouselWrapper) {
+        console.error('Carousel elements not found. Check IDs and classes.');
         return;
       }
 
-      const originalCards = Array.from(track.children);
-      const numOriginalCards = originalCards.length;
-      const numVisibleCards = 3; // Assuming 3 cards are visible as per CSS
-
+      // Store original cards before doing anything else
+      if (track.children.length > 0) {
+          originalCards = Array.from(track.children);
+          numOriginalCards = originalCards.length;
+      }
+      
       if (numOriginalCards === 0) {
         console.warn('No cards found in the carousel track.');
         return;
       }
 
-      const cardStyle = window.getComputedStyle(originalCards[0]);
-      const cardMarginLeft = parseFloat(cardStyle.marginLeft);
-      const cardMarginRight = parseFloat(cardStyle.marginRight);
-      // Ensure offsetWidth is available and fallback if not fully rendered.
-      const cardClientWidth = originalCards[0].offsetWidth;
-      const cardWidth = cardClientWidth + cardMarginLeft + cardMarginRight;
-
-
+      cardWidth = calculateCardWidth();
       if (cardWidth <= 0) {
           console.error("Card width calculation resulted in zero or negative. Check card styling and rendering.");
           return;
       }
 
-      const clonesToCreate = numVisibleCards;
+      updateCarouselLayout(); // Initial setup based on screen width
 
-      // Clear the track for new content
-      track.innerHTML = '';
-
-      // Prepend clones (last 'clonesToCreate' original cards)
-      for (let i = 0; i < clonesToCreate; i++) {
-        const cardIndex = (numOriginalCards - clonesToCreate + i + numOriginalCards) % numOriginalCards; // Ensure positive index
-        const clone = originalCards[cardIndex].cloneNode(true);
-        clone.classList.add('clone-start');
-        track.appendChild(clone);
-      }
-
-      // Append original cards
-      originalCards.forEach(card => {
-        track.appendChild(card.cloneNode(true)); // Append clones of originals to be safe
-      });
-
-      // Append clones (first 'clonesToCreate' original cards)
-      for (let i = 0; i < clonesToCreate; i++) {
-        const clone = originalCards[i].cloneNode(true);
-        clone.classList.add('clone-end');
-        track.appendChild(clone);
-      }
-
-      let currentIndex = 0; // Index relative to the start of the *original* cards virtual set
-      let currentOffset = clonesToCreate * cardWidth;
-      track.style.transform = `translateX(-${currentOffset}px)`;
-
-      // Wait for images/iframes if necessary, then apply transition.
-      // For simplicity, applying directly. Consider window.onload or image load events for robustness.
-      requestAnimationFrame(() => {
-          requestAnimationFrame(() => { // Double RAF to ensure styles are applied and initial render is done.
-              track.style.transition = 'transform 0.5s ease';
-          });
-      });
-
+      // Event listeners (moveTo, button clicks, drag)
+      // These functions will now use global variables like `currentNumVisibleCards`, `cardWidth`, `numOriginalCards`
 
       function moveTo(newIndex, animated = true) {
+        // clonesToCreate is now global and updated by initializeCarousel
         currentOffset = (clonesToCreate + newIndex) * cardWidth;
         track.style.transition = animated ? 'transform 0.5s ease' : 'none';
         track.style.transform = `translateX(-${currentOffset}px)`;
@@ -312,12 +382,11 @@ Blend in. Speak like an AI… or be eliminated.</p>
       }
 
       rightBtn.addEventListener('click', () => {
-        if (currentIndex >= numOriginalCards -1 ) { // about to transition from last original to first clone (of first items)
+        if (currentIndex >= numOriginalCards -1 ) { 
           moveTo(currentIndex + 1);
           const transitionEndHandler = () => {
             track.removeEventListener('transitionend', transitionEndHandler);
-            moveTo(0, false); // Jump to the actual first set of original cards
-            // currentIndex is already 0 implicitly from moveTo's last line
+            moveTo(0, false); 
           };
           track.addEventListener('transitionend', transitionEndHandler);
         } else {
@@ -326,15 +395,11 @@ Blend in. Speak like an AI… or be eliminated.</p>
       });
 
       leftBtn.addEventListener('click', () => {
-        if (currentIndex <= 0) { // about to transition from first original to last clone (of last items)
+        if (currentIndex <= 0) { 
           moveTo(currentIndex - 1);
           const transitionEndHandler = () => {
             track.removeEventListener('transitionend', transitionEndHandler);
-            // Jump to the actual last set of original cards.
-            // If numVisibleCards is 3, and numOriginalCards is 5:
-            // We want to show cards [2,3,4]. So newIndex should be 5-3 = 2.
-            moveTo(numOriginalCards - 1, false);
-            // currentIndex is already numOriginalCards -1 from moveTo.
+            moveTo(numOriginalCards - 1, false); 
           };
           track.addEventListener('transitionend', transitionEndHandler);
         } else {
@@ -342,9 +407,28 @@ Blend in. Speak like an AI… or be eliminated.</p>
         }
       });
 
-      // Drag Navigation
-      let isDragging = false;
-      let startX = 0;
+      // Drag Navigation (uses global vars like cardWidth, currentIndex)
+      // ... (drag logic is further down, ensure it's included if not shown in search)
+
+      // Window Resize Listener
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // Recalculate cardWidth only if it could change (e.g., rem-based margins and root font size change)
+          // For fixed px widths and margins, cardWidth should be stable unless CSS itself changes.
+          // However, it's safer to recalculate if there's any doubt.
+          const newCalculatedCardWidth = calculateCardWidth();
+          if (newCalculatedCardWidth !== cardWidth && newCalculatedCardWidth > 0) {
+             cardWidth = newCalculatedCardWidth; // Update if it changed
+          }
+          updateCarouselLayout();
+        }, 250); // Debounce resize event
+      });
+
+      // Original Drag Navigation Logic (ensure it's all present)
+      isDragging = false; // Reset for clarity, though it's global
+      startX = 0; // Reset for clarity
       let dragInitialOffset = 0; // Store the offset at the beginning of a drag
 
       track.addEventListener('mousedown', (e) => {

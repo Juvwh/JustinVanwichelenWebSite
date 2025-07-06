@@ -102,12 +102,18 @@ body {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 2rem 0;
-  max-width: 1400px;
+  padding: 2rem 1rem; /* Adjusted padding */
+  max-width: 1600px; /* Increased from 1400px to accommodate 3 cards + arrows + padding */
   margin: auto;
+  display: flex; /* Added */
+  align-items: center; /* Added */
+  justify-content: center; /* Changed from space-between */
 }
 .carousel-wrapper {
   overflow: hidden;
+  /* width will be set by JS */
+  /* flex-grow: 1; Removed */
+  /* min-width: 0; Removed */
 }
 .carousel-track {
   display: flex;
@@ -195,17 +201,7 @@ iframe {
   width: fit-content;
   align-self: center;
 }
-.controls {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1rem;
-  pointer-events: none;
-  z-index: 100;
-}
+/* Removed .controls CSS rule */
 .arrow {
   background: var(--arrow-bg-color);
   border: none;
@@ -215,6 +211,7 @@ iframe {
   pointer-events: auto;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
+  margin: 0 10px; /* Added margin */
 }
 .custom-section {
   position: relative;
@@ -607,20 +604,32 @@ iframe {
     align-items: center;
     margin-bottom: 1rem; /* Ajuster l'espacement */
   }
-  .carousel-wrapper {
+  .carousel-container { /* Added for mobile responsiveness */
     flex-direction: column;
+    align-items: center;
+  }
+  .carousel-wrapper {
+    /* flex-direction: column; */ /* This was likely an error, removing/commenting out */
+    width: 100%; /* Ensure wrapper takes full width in column layout */
+    order: 1; /* Cards first */
+  }
+  .arrow { /* Added for mobile responsiveness */
+    order: 2; /* Arrows after cards */
+    margin: 1rem 0.5rem; /* Adjust margin for stacked layout */
   }
   .card {
-    width: 90%;
+    width: 90%; /* This should be fine, cards take 90% of the wrapper width */
     height: auto;
   }
-  .controls {
+  /*
+  .controls { // This rule is orphaned as .controls div was removed from HTML
     position: static;
     margin-top: 1rem;
     width: 100%;
     justify-content: center;
     gap: 2rem;
   }
+  */
 }
 
 /* Timeline Styles */
