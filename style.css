@@ -784,3 +784,142 @@ iframe {
   height: 75px;
   object-fit: contain;
 }
+
+/* Icon Gallery Section Styling */
+.icon-gallery {
+  position: relative; /* For positioning the wavy background */
+  padding: 4rem 1rem; /* Vertical and horizontal padding */
+  background-color: var(--body-bg-color); /* Fallback, but wavy bg should cover */
+  overflow: hidden; /* To contain the wavy shape if it extends outside */
+}
+
+.gallery_wavy_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  z-index: 0;
+  opacity: 0.7; /* Adjust opacity as needed */
+}
+
+/* Theme-dependent wavy backgrounds */
+/* Assuming Wavy_01_001.svg is dark and Wavy_24_V2.svg is light or adaptable */
+/* In a real scenario, you might need to adjust SVG colors or use different files */
+.dark-theme .gallery_wavy_background {
+  background-image: url('./index_files/Wavy_01_001.svg'); /* Dark blue waves */
+  /* background-color: #0c1a3f; Default dark bg color from original snippet */
+}
+
+.light-theme .gallery_wavy_background {
+  background-image: url('./index_files/Wavy_24_V2.svg'); /* Light blue waves - CHOSE V2 for potentially lighter look */
+  /* background-color: #e0e8f0; Example light bg color */
+}
+
+.icon-gallery .o_container_small {
+  position: relative; /* To ensure content is above the background */
+  z-index: 1;
+  max-width: 1200px; /* Or your preferred container width */
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.icon-gallery-title {
+  text-align: center;
+  font-family: 'AdamCGPro', sans-serif;
+  font-size: 2rem;
+  color: var(--header-text-color);
+  margin-bottom: 2.5rem;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Six columns */
+  grid-template-rows: auto auto; /* Two rows, height determined by content */
+  gap: 1.5rem; /* Space between icons */
+  justify-items: center; /* Center items horizontally in their grid cell */
+  align-items: center; /* Center items vertically in their grid cell */
+}
+
+.icon-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon-item img {
+  max-width: 80px; /* Adjust max-width as needed for icon size */
+  max-height: 80px; /* Adjust max-height as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+.icon-item:hover {
+  transform: scale(1.15); /* Enlarge icon on hover */
+}
+
+/* Responsive adjustments for the icon gallery */
+@media (max-width: 992px) {
+  .icon-gallery-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .icon-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens */
+    gap: 1rem;
+  }
+  .icon-item img {
+    max-width: 70px;
+    max-height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .icon-gallery {
+    padding: 3rem 1rem;
+  }
+  .icon-gallery-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .icon-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+  }
+  .icon-item img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+    gap: 0.75rem;
+  }
+  .icon-item img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+}
+
+/* Smooth transition with adjacent sections */
+/* The timeline section has padding: 30px.
+   The icon-gallery has padding: 4rem 1rem.
+   This should provide decent spacing. If more specific transitions are needed,
+   we might need to use negative margins with the wavy shape or ::before/::after pseudo-elements.
+   For now, the wavy background itself should help soften the edge.
+*/
+
+/* Ensure body background variables are set for the gallery if not already covered */
+.dark-theme .icon-gallery {
+    /* background-color: var(--body-bg-color); */ /* Already set by .icon-gallery */
+}
+
+.light-theme .icon-gallery {
+    /* background-color: var(--body-bg-color); */ /* Already set by .icon-gallery */
+}
