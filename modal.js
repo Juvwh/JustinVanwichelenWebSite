@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitleElement = modalOverlay ? modalOverlay.querySelector('.modal-title') : null;
   const modalDescriptionElement = modalOverlay ? modalOverlay.querySelector('.modal-description') : null;
   const modalVideoIframe = modalOverlay ? modalOverlay.querySelector('.modal-video-container iframe') : null;
+  const modalVideoContainer = modalOverlay ? modalOverlay.querySelector('.modal-video-container') : null; // MODIFICATION: Get the video container itself
+  const modalHoverImageElement = modalOverlay ? modalOverlay.querySelector('#modal-hover-image') : null; // MODIFICATION: Get reference to the hover image display element
   const modalGalleryElement = modalOverlay ? modalOverlay.querySelector('.modal-gallery') : null;
   const modalBadgesContainer = modalOverlay ? modalOverlay.querySelector('.modal-badges') : null;
   const modalPlayButton = modalOverlay ? modalOverlay.querySelector('.modal-play-btn') : null;
@@ -71,6 +73,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgEl.addEventListener('click', () => {
                     openLightbox(index); // Open lightbox with the clicked image's index
                 });
+
+                // MODIFICATION START: Add hover effect for gallery images to show in video area
+                if (modalHoverImageElement && modalVideoContainer) {
+                  imgEl.addEventListener('mouseover', () => {
+                    // Show hovered image, hide video
+                    modalHoverImageElement.src = imgSrc;
+                    modalHoverImageElement.style.display = 'block';
+                    // Show hovered image, hide video
+                    // Use visibility and opacity for video container to prevent layout shift
+                    modalVideoContainer.style.visibility = 'hidden';
+                    modalVideoContainer.style.opacity = '0';
+                    modalVideoContainer.style.pointerEvents = 'none'; // Prevent interaction with hidden video
+
+                    modalHoverImageElement.src = imgSrc;
+                    modalHoverImageElement.style.display = 'block'; // Make it visible in layout
+                    requestAnimationFrame(() => { // Ensure display block is applied before opacity transition
+                        modalHoverImageElement.style.opacity = '1';
+                        modalHoverImageElement.style.pointerEvents = 'auto';
+                    });
+                  });
+
+                  imgEl.addEventListener('mouseout', () => {
+                    // Show video, hide hovered image
+                    modalHoverImageElement.style.opacity = '0';
+                    modalHoverImageElement.style.pointerEvents = 'none';
+                    // Can set modalHoverImageElement.style.display = 'none' after transition if needed,
+                    // but opacity 0 and pointer-events none should suffice for an absolutely positioned element.
+                    // For simplicity, we'll rely on opacity and pointer-events for now.
+                    // If performance becomes an issue with many transparent items, display:none could be added on transitionend.
+
+                    modalVideoContainer.style.visibility = 'visible';
+                    modalVideoContainer.style.opacity = '1';
+                    modalVideoContainer.style.pointerEvents = 'auto'; // Make video interactive again
+                  });
+                }
+                // MODIFICATION END: Gallery image hover effect
+
                 modalGalleryElement.appendChild(imgEl);
             });
         }

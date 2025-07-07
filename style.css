@@ -1045,13 +1045,23 @@ iframe {
 }
 
 /* Video Container: For responsive YouTube embed */
+/* Style for the container that holds both the video and the hover image */
+.modal-video-hover-container {
+  position: relative; /* Establishes a positioning context for the absolute positioned hover image */
+  /* This container will inherently take the size of its content, 
+     which is the modal-video-container by default.
+     The hover image will be positioned over this. */
+}
+
 .modal-video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative; /* This might not be strictly necessary if .modal-video-hover-container is relative, but doesn't harm */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio. This is key for maintaining height. */
   height: 0;
   overflow: hidden;
   border-radius: 0.5rem; /* Rounded corners for the video */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: opacity 0.3s ease-in-out; /* Added for smooth video fade */
+  /* pointer-events: auto; /* Default, will be toggled by JS */
 }
 
 .modal-video-container iframe {
@@ -1061,6 +1071,22 @@ iframe {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Styles for the hover image that replaces the video */
+.modal-hover-image-style {
+  position: absolute; /* Positioned relative to modal-video-hover-container */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure the hover image covers the same area as the video */
+  height: 100%; /* Ensure the hover image covers the same area as the video */
+  object-fit: contain; /* Displays the entire image, letterboxed if aspect ratios differ */
+  background-color: #000; /* Optional: background for letterboxing if image is transparent or aspect ratio differs */
+  display: none; /* Initially hide the hover image. JS will change to 'block' when active. */
+  opacity: 0; /* Initially transparent */
+  pointer-events: none; /* Initially not interactive */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition for appearing/disappearing */
+  z-index: 10; /* Ensure it's above the video iframe */
 }
 
 /* Image Gallery: Small thumbnails below the video */
