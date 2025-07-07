@@ -134,7 +134,14 @@
       <p>You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma.
 Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real?
 Blend in. Speak like an AI… or be eliminated.</p>
-      <button class="btn">En Savoir Plus</button>
+      <button class="btn project-modal-trigger"
+              data-modal-title="Five androids. One impostor. You."
+              data-modal-video-url="https://www.youtube.com/embed/rokGy0huYEA"
+              data-modal-description="You're the only human among five androids. The others are driven by real LLMs : GPT, Mistral, LLaMA, and Gemma. Each round, a question is asked. Everyone answers. Then, they vote: who felt too human? Too emotional? Too real? Blend in. Speak like an AI… or be eliminated. This project explores human-AI interaction under pressure, using advanced natural language processing."
+              data-modal-badges='[{"icon": "fa-regular fa-calendar-alt", "text": "Dev: Q1 2024"}, {"icon": "fa-regular fa-clock", "text": "Concept: 2 Weeks"}, {"icon": "fa-solid fa-brain", "text": "Core: LLM Tech"}]'
+              data-modal-gallery='["./index_files/MasterThesis.webp", "./index_files/BachelorThesis.webp", "./index_files/BachelorThesis.webp"]'
+              data-modal-play-url="#play-thv-demo"
+      >En Savoir Plus</button>
     </div>
   </div>
   <!--    -->
@@ -144,13 +151,20 @@ Blend in. Speak like an AI… or be eliminated.</p>
     <div class="overlay-container">
       <img src="./index_files/img_RPGwithLLM_Header.webp" alt="Demo Image" class="custom-image" />
       <div class="video-overlay">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe> <!-- Placeholder Video ID -->
+        <iframe src="https://www.youtube.com/embed/WDQ9-HO_ciI" allowfullscreen></iframe> <!-- Placeholder Video ID, actual ID WDQ9-HO_ciI -->
       </div>
     </div>
     <div class="text-beside-video">
       <h2>Where every game tells a new story</h2>
       <p>Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.</p>
-      <button class="btn">En Savoir Plus</button>
+      <button class="btn project-modal-trigger"
+              data-modal-title="Where every game tells a new story"
+              data-modal-video-url="https://www.youtube.com/embed/WDQ9-HO_ciI"
+              data-modal-description="Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. This project leverages procedural content generation and dynamic narrative systems powered by large language models to create endlessly replayable experiences. Discover how AI becomes a true game master."
+              data-modal-badges='[{"icon": "fa-regular fa-calendar-alt", "text": "Ongoing"}, {"icon": "fa-regular fa-clock", "text": "7 Months (Part-Time)"}, {"icon": "fa-brands fa-unity", "text": "Unity Engine"}, {"icon": "fa-solid fa-microchip", "text": "AI Storytelling"}]'
+              data-modal-gallery='["./index_files/MasterThesis.webp", "./index_files/BachelorThesis.webp", "./index_files/BachelorThesis.webp"]'
+              data-modal-play-url="#play-rpg-demo"
+      >En Savoir Plus</button>
     </div>
   </div>
          <div class="timeline" style="--items: 7;">
@@ -571,5 +585,67 @@ Blend in. Speak like an AI… or be eliminated.</p>
   </script>
   <script src="theme-switcher.js" defer></script>
   <script src="navbar.js" defer></script>
+  <script src="modal.js" defer></script>
+
+  <!-- Modal Structure -->
+  <!-- Add this section just before the closing </body> tag -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-card">
+      <span class="modal-close-btn" id="modal-close-btn">&times;</span>
+      <div class="modal-content-wrapper">
+        <!-- Left Side: Video and Gallery -->
+        <div class="modal-left">
+          <div class="modal-video-container">
+            <!-- YouTube video URL will be set here -->
+            <iframe 
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+            <!-- To change the YouTube video, update the src attribute above -->
+            <!-- Example: src="https://www.youtube.com/embed/YOUR_VIDEO_ID" -->
+          </div>
+          <div class="modal-gallery">
+            <!-- Gallery images will be added here -->
+            <!-- To update gallery images, change the src attribute of these <img> tags -->
+            <img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Img1" alt="Gallery image 1" class="modal-gallery-img">
+            <img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Img2" alt="Gallery image 2" class="modal-gallery-img">
+            <img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Img3" alt="Gallery image 3" class="modal-gallery-img">
+            <!-- Add more <img src="..." alt="..."> tags for more images -->
+          </div>
+        </div>
+        <!-- Right Side: Text Content -->
+        <div class="modal-right">
+          <!-- Project Title - uses ADAM.CG PRO font (defined in style.css) -->
+          <h3 class="modal-title">Project Title Goes Here</h3>
+          <!-- Project Description -->
+          <!-- Edit text below. Use <strong> for bold, <a> for links, <span class="highlight"> for blue highlights -->
+          <p class="modal-description">
+            This is a <strong>detailed description</strong> of the project. It can include <a href="#">links to relevant resources</a> or <span class="highlight">highlighted key features</span>. We aim to showcase the project's unique aspects and technical achievements.
+            The goal is to capture attention and provide comprehensive information in a digestible format.
+          </p>
+          <!-- Informational Badges -->
+          <!-- Update badge text and potentially icons (Font Awesome) -->
+          <div class="modal-badges">
+            <span class="badge"><i class="fa-regular fa-calendar-alt"></i> Date: Q4 2024</span>
+            <span class="badge"><i class="fa-regular fa-clock"></i> Time: 6 Months</span>
+            <span class="badge"><i class="fa-solid fa-wrench"></i> Tools: Vanilla JS, CSS3</span>
+            <!-- Add more <span class="badge">...</span> for more badges -->
+          </div>
+          <!-- "Play the Demo" Button -->
+          <button class="btn modal-play-btn">Play the Demo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox for Gallery Images -->
+  <div class="lightbox" id="gallery-lightbox">
+    <span class="lightbox-close-btn" id="lightbox-close-btn">&times;</span>
+    <img src="" alt="Enlarged gallery image" class="lightbox-image" id="lightbox-img">
+  </div>
+
 </body>
 </html>
