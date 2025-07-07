@@ -661,7 +661,7 @@ iframe {
 
 /* Light theme overrides for timeline */
 .light-theme .timeline {
-  --timeline-background: #0056b3; /* Light blue background */
+  --timeline-background: var(--navbar-bg-color-light  ); /* Light blue background */
   --timeline-accent: #efc631;
   --timeline-text: white;
   --timeline-line: var(--timeline-line-light);
@@ -828,7 +828,7 @@ iframe {
 }
 
 .light-theme .gallery_wavy_background {
-  background-color: #e0e8f0; 
+  background-color: white; /* Light background for light theme */
 }
 
 /* Wavy background for the entire timeline section top */
@@ -1102,6 +1102,17 @@ iframe {
 }
 .dark-theme .modal-title {
   color: #eee; /* Lighter title in dark mode for readability on dark card */
+}
+
+/* Ensure title and badges within modal-left are styled appropriately after HTML move */
+.modal-left .modal-title {
+  margin-top: 1rem; /* Add some space above the title if it's after gallery */
+  text-align: center; /* Center the title if it's in a column */
+}
+
+.modal-left .modal-badges {
+  justify-content: center; /* Center badges if they are in a flex container */
+  margin-top: 0.5rem; /* Space between title and badges */
 }
 
 
@@ -1483,3 +1494,116 @@ iframe {
   font-family: 'AdamCGPro';
   src: url('./font/adam.otf') format('truetype');
 } */
+
+/* Footer Styles */
+/* Comments for customization:
+  - Footer background/text colors: use theme variables like var(--body-bg-color), var(--body-text-color) or define specific footer variables.
+  - Social icon colors: var(--accent-color) or specific icon colors.
+  - CV button: styled with .btn-cv, can use var(--accent-color).
+  - Email link: styled to match site links.
+  - Responsive breakpoints: adjust min-width in media query as needed.
+*/
+.site-footer {
+  background-color: var(--navbar-bg-color-dark); /* Using navbar color for consistency in dark mode */
+  color: var(--body-text-color);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--navbar-outline-color-dark); /* Subtle top border */
+}
+
+.light-theme .site-footer {
+  background-color: var(--navbar-bg-color-light); /* Using navbar color for consistency in light mode */
+  color: var(--navbar-text-color-light);
+  border-top: 1px solid var(--navbar-outline-color-light);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* Stack vertically by default */
+  align-items: center;
+  gap: 1.5rem; /* Space between footer sections */
+  margin-bottom: 1rem;
+}
+
+.footer-social-links a {
+  color: var(--body-text-color); /* Default icon color */
+  font-size: 1.8rem; /* Icon size */
+  margin: 0 0.75rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.light-theme .footer-social-links a {
+  color: var(--navbar-text-color-light);
+}
+
+.footer-social-links a:hover {
+  color: var(--accent-color); /* Highlight color on hover */
+  transform: scale(1.1);
+}
+
+.footer-cv-download .btn-cv {
+  /* Inherits .btn styles, add specific overrides or enhancements here */
+  background-color: var(--accent-color);
+  color: var(--body-bg-color); /* Text color for dark theme button */
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+}
+
+.light-theme .footer-cv-download .btn-cv {
+  color: var(--button-text-color); /* Text color for light theme button (usually white) */
+  background-color: var(--accent-color); /* Ensure accent color is used */
+}
+
+.footer-cv-download .btn-cv:hover {
+  background-color: var(--body-text-color); /* Invert colors on hover */
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.light-theme .footer-cv-download .btn-cv:hover {
+  background-color: var(--button-text-color); /* Invert for light theme */
+  color: var(--accent-color);
+}
+
+
+.footer-email a {
+  color: var(--body-text-color); /* Default email link color */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.light-theme .footer-email a {
+  color: var(--navbar-text-color-light);
+}
+
+.footer-email a:hover {
+  color: var(--accent-color); /* Highlight on hover */
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 1rem;
+}
+
+/* Responsive layout for footer */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+  .footer-content {
+    flex-direction: row; /* Horizontal layout on larger screens */
+    justify-content: center; /* Center items instead of spreading them out */
+    align-items: center; /* Align items vertically */
+    gap: 3rem; /* Add space between the centered items */
+  }
+
+  .footer-social-links,
+  .footer-cv-download,
+  .footer-email {
+    margin-bottom: 0; /* Remove bottom margin for horizontal layout */
+  }
+}
+/* End Footer Styles */

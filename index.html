@@ -599,6 +599,44 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <script src="navbar.js" defer></script>
   <script src="modal.js" defer></script>
 
+  <!-- Footer Section -->
+  <!-- To update social media links, change the href attribute in the <a> tags below. -->
+  <!-- To update the CV, replace the cv.pdf file and update the href attribute if the name changes. -->
+  <!-- To update the email address, change it in the <a> tag and the displayed text. -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-social-links">
+        <!-- GitHub Link: Replace #your-github-url with your actual GitHub profile URL -->
+        <a href="https://github.com/Juvwh" aria-label="Visit my GitHub profile" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i>
+        </a>
+        <!-- LinkedIn Link: Replace #your-linkedin-url with your actual LinkedIn profile URL -->
+        <a href="https://www.linkedin.com/in/justin-vanwichelen-883a1a224/" aria-label="Visit my LinkedIn profile" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <!-- YouTube Link: Replace #your-youtube-url with your actual YouTube channel URL -->
+        <a href="https://www.youtube.com/@justinvanwichelen6576" aria-label="Visit my YouTube channel" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+
+      <div class="footer-cv-download">
+        <!-- CV Download: Replace cv.pdf with your actual CV file path if different -->
+        <a href="./index_files/JustinVanwichelen_Resume.pdf" class="btn btn-cv" aria-label="Download my CV" download>Download CV</a>
+      </div>
+
+      <div class="footer-email">
+        <!-- Email Address: Replace your-email@example.com with your actual email address -->
+        <a href="mailto:justinvanwichelen@gmail.com" aria-label="Send me an email">justinvanwichelen@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <!-- Optional: Add a copyright or last updated message here -->
+      <p>&copy; 2025 Justin Vanwichelen. All rights reserved. --> My website's code is available on GitHub.</p>
+    </div>
+  </footer>
+  <!-- End Footer Section -->
+
   <!-- Modal Structure -->
   <!-- Add this section just before the closing </body> tag -->
   <div class="modal-overlay" id="project-modal">
@@ -627,19 +665,21 @@ Blend in. Speak like an AI… or be eliminated.</p>
             <img src="https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Img3" alt="Gallery image 3" class="modal-gallery-img">
             <!-- Add more <img src="..." alt="..."> tags for more images -->
           </div>
-        </div>
-        <!-- Right Side: Text Content -->
-        <div class="modal-right">
           <!-- Project Title - uses ADAM.CG PRO font (defined in style.css) -->
+          <!-- Moved under modal-gallery as per user request -->
           <h3 class="modal-title">Project Title Goes Here</h3>
           <!-- Informational Badges -->
           <!-- Update badge text and potentially icons (Font Awesome) -->
+          <!-- Moved under modal-gallery as per user request -->
           <div class="modal-badges">
             <span class="badge"><i class="fa-regular fa-calendar-alt"></i> Date: Q4 2024</span>
             <span class="badge"><i class="fa-regular fa-clock"></i> Time: 6 Months</span>
             <span class="badge"><i class="fa-solid fa-wrench"></i> Tools: Vanilla JS, CSS3</span>
             <!-- Add more <span class="badge">...</span> for more badges -->
           </div>
+        </div>
+        <!-- Right Side: Text Content -->
+        <div class="modal-right">
           <!-- Project Description -->
           <!-- Edit text below. Use <strong> for bold, <a> for links, <span class="highlight"> for blue CSS class based highlights, or <span class="text-highlight"> for general text highlighting -->
           <p class="modal-description">
