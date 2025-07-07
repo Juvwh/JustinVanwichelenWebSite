@@ -1,15 +1,12 @@
 // Wait for the DOM to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM fully loaded and parsed. modal.js executing."); // 1. Script start
+  console.log("DOM fully loaded and parsed. modal.js executing.");
 
   // --- MODAL ELEMENTS ---
   const modalTriggerButtons = document.querySelectorAll('.section-projet-en-avant .btn, .project-modal-trigger');
-  console.log("Modal Trigger Buttons Found:", modalTriggerButtons); // 2. Log the NodeList
-
   const modalOverlay = document.getElementById('project-modal');
-   const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
   
-  // Direct references to modal content elements
   const modalTitleElement = modalOverlay ? modalOverlay.querySelector('.modal-title') : null;
   const modalDescriptionElement = modalOverlay ? modalOverlay.querySelector('.modal-description') : null;
   const modalVideoIframe = modalOverlay ? modalOverlay.querySelector('.modal-video-container iframe') : null;
@@ -17,11 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalBadgesContainer = modalOverlay ? modalOverlay.querySelector('.modal-badges') : null;
   const modalPlayButton = modalOverlay ? modalOverlay.querySelector('.modal-play-btn') : null;
 
-  // --- LIGHTBOX ELEMENTS ---
-  // Note: galleryImages will be populated dynamically when modal opens
+  // --- ENHANCED LIGHTBOX ELEMENTS ---
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+  const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+  const lightboxPrevZone = document.getElementById('lightbox-prev-zone');
+  const lightboxNextZone = document.getElementById('lightbox-next-zone');
+
+  let currentLightboxImages = []; // To store {src, alt} for current gallery
+  let currentLightboxIndex = 0;
 
   // --- MODAL FUNCTIONALITY ---
 
@@ -30,21 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (modalTitleElement) modalTitleElement.textContent = data.title || "Project Title";
     if (modalDescriptionElement) {
-        // Basic sanitization or use a more robust method if HTML content is allowed
         modalDescriptionElement.innerHTML = data.description ? data.description.replace(/\n/g, '<br>') : "Description not available.";
     }
-    if (modalVideoIframe) modalVideoIframe.src = data.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+    if (modalVideoIframe) modalVideoIframe.src = data.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ"; // Placeholder
     
     if (modalBadgesContainer) {
-        modalBadgesContainer.innerHTML = ''; // Clear existing badges
+        modalBadgesContainer.innerHTML = ''; 
         if (data.badges && Array.isArray(data.badges)) {
             data.badges.forEach(badgeData => {
                 const badgeEl = document.createElement('span');
                 badgeEl.className = 'badge';
                 let iconHTML = '';
-                if (badgeData.icon) {
-                    iconHTML = `<i class="${badgeData.icon}"></i> `;
-                }
+                if (badgeData.icon) iconHTML = `<i class="${badgeData.icon}"></i> `;
                 badgeEl.innerHTML = `${iconHTML}${badgeData.text || ''}`;
                 modalBadgesContainer.appendChild(badgeEl);
             });
@@ -52,19 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (modalGalleryElement) {
-        modalGalleryElement.innerHTML = ''; // Clear existing gallery images
+        modalGalleryElement.innerHTML = ''; 
+        currentLightboxImages = []; // Reset for current modal
         if (data.gallery && Array.isArray(data.gallery)) {
             data.gallery.forEach((imgSrc, index) => {
                 const imgEl = document.createElement('img');
                 imgEl.src = imgSrc;
-                // For lightbox: use current src as hires, or implement data-lightbox-src on trigger button's gallery items
-                imgEl.dataset.lightboxSrc = imgSrc; // Or a different URL if provided
-                imgEl.alt = `Gallery image ${index + 1}`;
+                // For caption: use a default or encourage data-caption on source `<a>` or in gallery array
+                // For now, using a placeholder alt based on index for the thumbnail
+                const altText = `Gallery image ${index + 1}${data.galleryCaptions && data.galleryCaptions[index] ? `: ${data.galleryCaptions[index]}` : ''}`;
+                imgEl.alt = altText; 
                 imgEl.className = 'modal-gallery-img';
+                
+                // Store for lightbox
+                currentLightboxImages.push({ src: imgSrc, alt: altText });
+
                 imgEl.addEventListener('click', () => {
-                    // Use data-lightbox-src if available, otherwise fallback to src
-                    const hiresSrc = imgEl.dataset.lightboxSrc || imgEl.src;
-                    openLightbox(hiresSrc);
+                    openLightbox(index); // Open lightbox with the clicked image's index
                 });
                 modalGalleryElement.appendChild(imgEl);
             });
@@ -75,9 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (data.playUrl) {
             modalPlayButton.style.display = '';
             modalPlayButton.onclick = () => {
-                // Could be window.open(data.playUrl, '_blank') or other actions
-                console.log("Play button clicked for:", data.playUrl);
-                // For now, let's make it navigate:
                 if (data.playUrl.startsWith('#')) {
                     window.location.hash = data.playUrl;
                 } else {
@@ -93,12 +95,33 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(triggerButton) {
     if (!modalOverlay) return;
 
+    // Extract gallery data. If `data-modal-gallery` contains objects with src and alt:
+    let galleryItems = [];
+    let galleryCaptions = []; // Optional, if captions are separate
+    try {
+        const rawGalleryData = JSON.parse(triggerButton.dataset.modalGallery || '[]');
+        if (rawGalleryData.length > 0 && typeof rawGalleryData[0] === 'object') {
+            galleryItems = rawGalleryData.map(item => item.src);
+            // Assuming 'alt' or 'caption' field in the object for captions
+            galleryCaptions = rawGalleryData.map(item => item.alt || item.caption || `Image ${galleryItems.indexOf(item.src) + 1}`);
+        } else {
+            galleryItems = rawGalleryData; // Assumes array of strings
+            // Default captions if not objects
+            galleryCaptions = galleryItems.map((_, idx) => `Image ${idx + 1}`);
+        }
+    } catch (e) {
+        console.error("Error parsing modal gallery data:", e);
+        galleryItems = [];
+        galleryCaptions = [];
+    }
+
     const modalData = {
         title: triggerButton.dataset.modalTitle,
         description: triggerButton.dataset.modalDescription,
         videoUrl: triggerButton.dataset.modalVideoUrl,
         badges: JSON.parse(triggerButton.dataset.modalBadges || '[]'),
-        gallery: JSON.parse(triggerButton.dataset.modalGallery || '[]'),
+        gallery: galleryItems,
+        galleryCaptions: galleryCaptions, // Pass captions to populateModal
         playUrl: triggerButton.dataset.modalPlayUrl
     };
     
@@ -109,79 +132,252 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeModal() {
-    if (!modalOverlay) return;
+    if (!modalOverlay || !modalOverlay.classList.contains('active')) return;
     modalOverlay.classList.remove('active');
     document.body.classList.remove('modal-open');
-    // Stop video when modal closes
     if (modalVideoIframe) {
       const currentVideoSrc = modalVideoIframe.src;
-      modalVideoIframe.src = currentVideoSrc; // This reloads the iframe, stopping playback
+      modalVideoIframe.src = currentVideoSrc; 
     }
   }
 
-
-  modalTriggerButtons.forEach((button, index) => {
-    console.log(`Attaching listener to button ${index}:`, button); // 3. Log each button listener attachment
+  modalTriggerButtons.forEach(button => {
     button.addEventListener('click', (event) => {
-      console.log("Modal trigger button clicked:", button); // 4. Log when a button is clicked
       event.preventDefault(); 
       openModal(button);
     });
   });
 
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', closeModal);
-  }
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (event) => {
-      if (event.target === modalOverlay) {
-        closeModal();
-      }
-    });
-  }
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
-      closeModal();
-    }
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalOverlay) modalOverlay.addEventListener('click', (event) => {
+    if (event.target === modalOverlay) closeModal();
   });
 
-  // --- LIGHTBOX FUNCTIONALITY ---
+  // --- ENHANCED LIGHTBOX FUNCTIONALITY ---
 
-  function openLightbox(imageSrc) {
-    if (!lightbox || !lightboxImg) return;
-    lightboxImg.src = imageSrc; 
+  function showLightboxImage(index) {
+    if (!lightbox || !lightboxImg || !lightboxCaption || index < 0 || index >= currentLightboxImages.length) {
+        // Optionally hide arrows if no images or at ends, handled by updateLightboxNavControls
+        updateLightboxNavControls();
+        return;
+    }
+    currentLightboxIndex = index;
+    lightboxImg.style.opacity = 0; // Fade out current image
+    lightboxCaption.style.opacity = 0;
+
+    // Preload current image before fully showing (though browser might do this well)
+    const imageToLoad = new Image();
+    imageToLoad.onload = () => {
+        lightboxImg.src = currentLightboxImages[currentLightboxIndex].src;
+        lightboxCaption.textContent = currentLightboxImages[currentLightboxIndex].alt || ''; // Use alt as caption
+        // Comments: To customize captions, ensure `alt` attribute of `modal-gallery-img` is set,
+        // or modify `currentLightboxImages` to include a dedicated caption property from `data-modal-gallery`.
+        
+        // Fade in new image
+        lightboxImg.style.opacity = 1;
+        lightboxCaption.style.opacity = 1;
+
+        updateLightboxNavControls();
+        preloadNeighboringImages();
+    };
+    imageToLoad.onerror = () => {
+        lightboxCaption.textContent = "Error loading image.";
+        lightboxImg.src = ""; // Clear broken image
+        lightboxImg.style.opacity = 1; // Show error message if any
+        lightboxCaption.style.opacity = 1;
+        updateLightboxNavControls();
+    };
+    imageToLoad.src = currentLightboxImages[currentLightboxIndex].src;
+  }
+
+  function updateLightboxNavControls() {
+    if (!lightboxPrevBtn || !lightboxNextBtn) return;
+    if (currentLightboxImages.length <= 1) {
+        lightboxPrevBtn.style.display = 'none';
+        lightboxNextBtn.style.display = 'none';
+        if(lightboxPrevZone) lightboxPrevZone.style.display = 'none';
+        if(lightboxNextZone) lightboxNextZone.style.display = 'none';
+    } else {
+        lightboxPrevBtn.style.display = currentLightboxIndex === 0 ? 'none' : 'block';
+        lightboxNextBtn.style.display = currentLightboxIndex === currentLightboxImages.length - 1 ? 'none' : 'block';
+        if(lightboxPrevZone) lightboxPrevZone.style.display = currentLightboxIndex === 0 ? 'none' : 'block';
+        if(lightboxNextZone) lightboxNextZone.style.display = currentLightboxIndex === currentLightboxImages.length - 1 ? 'none' : 'block';
+    }
+  }
+
+  function preloadNeighboringImages() {
+    // Comments: Preloading next/previous images for smoother navigation.
+    // Preload next
+    if (currentLightboxIndex < currentLightboxImages.length - 1) {
+        const nextImg = new Image();
+        nextImg.src = currentLightboxImages[currentLightboxIndex + 1].src;
+    }
+    // Preload previous
+    if (currentLightboxIndex > 0) {
+        const prevImg = new Image();
+        prevImg.src = currentLightboxImages[currentLightboxIndex - 1].src;
+    }
+  }
+
+  function openLightbox(startIndex) {
+    if (!lightbox || currentLightboxImages.length === 0) return;
+    document.body.classList.add('modal-open'); // Prevent body scroll
     lightbox.classList.add('active');
+    showLightboxImage(startIndex);
+    // Add keydown listener when lightbox opens, remove when closes
+    document.addEventListener('keydown', handleLightboxKeydown);
   }
 
   function closeLightbox() {
-    if (!lightbox) return;
+    if (!lightbox || !lightbox.classList.contains('active')) return;
     lightbox.classList.remove('active');
-    lightboxImg.src = ""; 
+    document.body.classList.remove('modal-open'); // Re-enable body scroll
+    lightboxImg.src = ""; // Clear image
+    lightboxCaption.textContent = "";
+    document.removeEventListener('keydown', handleLightboxKeydown);
+    
+    // Signal that lightbox was just closed to prevent modal from closing on the same Escape press.
+    lightboxJustClosed = true; 
+    // This flag will be reset by the global Escape handler or by opening modal again.
+    // To be absolutely safe, also reset it if modal is opened and lightbox isn't the target.
+    // However, the current global handler logic should suffice.
+  }
+  
+  function showNextImage() {
+    if (currentLightboxIndex < currentLightboxImages.length - 1) {
+      showLightboxImage(currentLightboxIndex + 1);
+    }
   }
 
-  // Gallery image event listeners are now added dynamically when modal is populated.
-
-  if (lightboxCloseBtn) {
-    lightboxCloseBtn.addEventListener('click', closeLightbox);
+  function showPrevImage() {
+    if (currentLightboxIndex > 0) {
+      showLightboxImage(currentLightboxIndex - 1);
+    }
   }
 
-  // Event listener to close lightbox when clicking on the overlay (outside the image)
+  // Event listeners for lightbox controls
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', showPrevImage);
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', showNextImage);
+  if (lightboxPrevZone) lightboxPrevZone.addEventListener('click', showPrevImage);
+  if (lightboxNextZone) lightboxNextZone.addEventListener('click', showNextImage);
+
   if (lightbox) {
     lightbox.addEventListener('click', (event) => {
+      // Close if clicked on the overlay itself, not on image, caption or controls
       if (event.target === lightbox) {
         closeLightbox();
       }
     });
   }
 
-  // Event listener for 'Escape' key to close lightbox
+  function handleLightboxKeydown(event) {
+    if (!lightbox.classList.contains('active')) return;
+    switch (event.key) {
+      case 'Escape':
+        event.stopPropagation(); // Prevent this Escape from also closing the modal
+        closeLightbox();
+        break;
+      case 'ArrowRight':
+        showNextImage();
+        break;
+      case 'ArrowLeft':
+        showPrevImage();
+        break;
+    }
+  }
+  
+  // --- Swipe Functionality (Mobile) ---
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function handleSwipeGesture() {
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    const threshold = 50; // Minimum swipe distance
+    if (touchendX < touchstartX - threshold) { // Swiped left
+      showNextImage();
+    }
+    if (touchendX > touchstartX + threshold) { // Swiped right
+      showPrevImage();
+    }
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      handleSwipeGesture();
+    }, { passive: true });
+  }
+
+  // --- Mouse Wheel Navigation (Optional) ---
+  // Comments: Mouse wheel to navigate images. Can be sensitive, use with caution or make configurable.
+  let lastWheelTime = 0;
+  const wheelThrottle = 300; // ms
+  
+  function handleMouseWheel(event) {
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    
+    const currentTime = new Date().getTime();
+    if(currentTime - lastWheelTime < wheelThrottle) {
+        event.preventDefault(); // Prevent rapid scrolling if still within throttle
+        return;
+    }
+    lastWheelTime = currentTime;
+
+    if (event.deltaY > 0 || event.deltaX > 0) { // Scroll down or right
+        showNextImage();
+    } else if (event.deltaY < 0 || event.deltaX < 0) { // Scroll up or left
+        showPrevImage();
+    }
+    event.preventDefault(); // Prevent page scroll while lightbox is open
+  }
+
+  if (lightbox) {
+      // Consider adding this listener only when lightbox is active for performance
+      // For now, it's general but checks if lightbox is active internally.
+      // Use 'wheel' event. 'mousewheel' is deprecated.
+      lightbox.addEventListener('wheel', handleMouseWheel, { passive: false });
+  }
+
+
+  let lightboxJustClosed = false; // Flag to signal lightbox closure
+
+  // Global Escape key listener
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-      closeLightbox();
+    if (event.key === 'Escape') {
+      if (lightbox.classList.contains('active')) {
+        // This case should ideally be fully handled by handleLightboxKeydown,
+        // including stopPropagation. This is a fallback.
+        // handleLightboxKeydown will call closeLightbox, which sets lightboxJustClosed.
+        // No direct action here, rely on handleLightboxKeydown.
+      } else if (modalOverlay && modalOverlay.classList.contains('active')) {
+        if (lightboxJustClosed) {
+          // If lightbox was just closed by this Escape sequence, don't also close modal.
+          // Reset flag for next Escape press.
+          lightboxJustClosed = false;
+        } else {
+          closeModal();
+        }
+      }
     }
   });
+  
+  // Comments:
+  // - How to add/remove images: Modify the `data-modal-gallery` attribute in `index.html`.
+  //   It should be a JSON array of image URLs, e.g., `["img1.jpg", "img2.png"]`.
+  //   Or an array of objects: `[{"src": "img1.jpg", "alt": "Caption 1"}, ...]`
+  // - How to customize captions: Provide 'alt' text in the `data-modal-gallery` objects,
+  //   or ensure the dynamically created `<img>` tags in the small modal gallery have descriptive `alt` attributes.
+  //   The script currently uses the 'alt' attribute of the images in `currentLightboxImages`.
+  // - How to change image size: Image sizing is primarily controlled by CSS in `style.css` (e.g., `.lightbox-image` max-width/height).
+  // - How to change transitions: Transitions are CSS-based. See `.lightbox`, `.lightbox-image`, `.lightbox-caption` in `style.css`.
+  // - How to change dark/light style: Dark/light mode adaptations for controls are in `style.css` using CSS variables
+  //   (e.g., `--lightbox-controls-color-dark`, `--lightbox-controls-color-light`).
 
+  console.log("Modal and Lightbox scripts initialized.");
   // --- End of DOMContentLoaded ---
 });

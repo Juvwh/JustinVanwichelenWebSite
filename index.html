@@ -657,7 +657,15 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <!-- Lightbox for Gallery Images -->
   <div class="lightbox" id="gallery-lightbox">
     <span class="lightbox-close-btn" id="lightbox-close-btn">&times;</span>
-    <img src="" alt="Enlarged gallery image" class="lightbox-image" id="lightbox-img">
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged gallery image" class="lightbox-image" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <button class="lightbox-nav prev" id="lightbox-prev-btn" aria-label="Previous image">&#10094;</button>
+    <button class="lightbox-nav next" id="lightbox-next-btn" aria-label="Next image">&#10095;</button>
+    <!-- Clickable zones for navigation -->
+    <div class="lightbox-nav-zone left" id="lightbox-prev-zone"></div>
+    <div class="lightbox-nav-zone right" id="lightbox-next-zone"></div>
   </div>
 
 </body>

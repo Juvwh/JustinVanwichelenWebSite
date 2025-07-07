@@ -1244,54 +1244,238 @@ iframe {
 
 
 /* Lightbox Styles */
+/* Comments for customization:
+  - Overlay background: --lightbox-overlay-bg
+  - Fade-in animation: .lightbox.active, .lightbox-image, .lightbox-caption
+  - Arrow/Close icon colors (dark/light): .lightbox-nav, .lightbox-close-btn (and their :hover states)
+  - Image sizing: .lightbox-image (max-width, max-height)
+  - Caption styling: .lightbox-caption
+*/
+
+:root {
+  /* ... other root variables ... */
+  --lightbox-overlay-bg: rgba(0, 0, 0, 0.85);
+  --lightbox-controls-color-dark: #f1f1f1;
+  --lightbox-controls-hover-bg-dark: rgba(255, 255, 255, 0.2);
+  --lightbox-controls-color-light: #333;
+  --lightbox-controls-hover-bg-light: rgba(0, 0, 0, 0.1);
+  --lightbox-caption-text-color: #f1f1f1;
+  --lightbox-image-shadow: 0 5px 20px rgba(0,0,0,0.7);
+}
+
+.light-theme {
+  /* ... other light-theme variables ... */
+  --lightbox-controls-color-dark: #333; /* Ensure this is distinct for light theme if needed, currently uses dark var */
+  --lightbox-controls-hover-bg-dark: rgba(0, 0, 0, 0.1); /* Ensure this is distinct for light theme */
+  --lightbox-controls-color-light: #333;
+  --lightbox-controls-hover-bg-light: rgba(0, 0, 0, 0.1);
+  --lightbox-caption-text-color: #ddd; /* Lighter caption text for light theme's dark overlay */
+  --lightbox-image-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
 .lightbox {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* Darker overlay for lightbox */
-  display: none; /* Initially hidden */
+  background-color: var(--lightbox-overlay-bg);
+  display: none; /* Initially hidden, shown by JS */
   align-items: center;
   justify-content: center;
   z-index: 2001; /* Above modal overlay */
   opacity: 0;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.4s ease-in-out; /* Smooth fade-in/out for overlay */
+  -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on mobile */
 }
 
 .lightbox.active {
-  display: flex;
+  display: flex; /* Use flex for centering */
   opacity: 1;
 }
 
+.lightbox-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw; /* Max width of content area */
+  max-height: 90vh; /* Max height of content area */
+}
+
 .lightbox-image {
-  max-width: 90vw;
-  max-height: 85vh;
+  max-width: 100%; /* Relative to lightbox-content */
+  max-height: calc(100% - 40px); /* Adjust if caption is taller, leave space for caption */
   object-fit: contain;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  transform: scale(0.9);
-  transition: transform 0.3s ease-out;
+  border-radius: 0.25rem; /* Subtle rounding */
+  box-shadow: var(--lightbox-image-shadow);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s 0.1s ease-out, transform 0.3s 0.1s ease-out; /* Staggered animation after overlay fades in */
+  /* Clicks on image itself should not close lightbox by default, handled by overlay click */
 }
 
 .lightbox.active .lightbox-image {
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lightbox-caption {
+  color: var(--lightbox-caption-text-color);
+  text-align: center;
+  margin-top: 10px; /* Space between image and caption */
+  padding: 5px 15px;
+  font-size: 0.9em;
+  max-width: 70vw; /* Prevent caption from being too wide */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s 0.2s ease-out, transform 0.3s 0.2s ease-out; /* Staggered animation */
+  /* To customize caption, modify text via JS based on image alt or data attribute */
+}
+
+.lightbox.active .lightbox-caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .lightbox-close-btn {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 15px;
+  right: 25px;
   font-size: 2.5rem;
-  color: #fff;
+  background: none;
+  border: none;
   cursor: pointer;
   line-height: 1;
-  transition: transform 0.2s ease;
+  padding: 5px;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2002; /* Above image */
+  /* Color is theme-dependent */
 }
 
-.lightbox-close-btn:hover {
+.dark-theme .lightbox-close-btn {
+  color: var(--lightbox-controls-color-dark);
+}
+.light-theme .lightbox-close-btn {
+  color: var(--lightbox-controls-color-light); /* This should be light on dark overlay */
+}
+/* Override for light theme close button on dark overlay */
+.light-theme .lightbox-close-btn {
+    color: #f1f1f1; /* White/light gray for visibility */
+}
+.dark-theme .lightbox-close-btn:hover {
+  color: #fff; /* Brighter white on hover */
   transform: scale(1.1);
-  color: #eee;
+}
+.light-theme .lightbox-close-btn:hover {
+  color: #ccc; /* Slightly dimmer on hover for light theme */
+  transform: scale(1.1);
+}
+
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  z-index: 2002; /* Above image */
+  border-radius: 50%; /* Circular background on hover */
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Ensure icon is centered */
+}
+
+.dark-theme .lightbox-nav {
+  color: var(--lightbox-controls-color-dark);
+}
+.light-theme .lightbox-nav {
+  color: var(--lightbox-controls-color-light); /* This should be light on dark overlay */
+}
+/* Override for light theme nav arrows on dark overlay */
+.light-theme .lightbox-nav {
+    color: #f1f1f1; /* White/light gray for visibility */
+}
+
+
+.lightbox-nav.prev {
+  left: 15px;
+}
+
+.lightbox-nav.next {
+  right: 15px;
+}
+
+.dark-theme .lightbox-nav:hover {
+  background-color: var(--lightbox-controls-hover-bg-dark);
+  color: #fff;
+}
+.light-theme .lightbox-nav:hover {
+  background-color: var(--lightbox-controls-hover-bg-light);
+  color: #f0f0f0; /* Ensure arrows are visible on hover for light theme */
+}
+
+/* Clickable zones for navigation */
+.lightbox-nav-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 25%; /* Cover 25% of the screen on each side */
+    z-index: 2000; /* Below arrows but above image content for clicks */
+    cursor: pointer; /* Indicate clickable area */
+    /* background-color: rgba(255, 0, 0, 0.1); /* For debugging */
+}
+.lightbox-nav-zone.left {
+    left: 0;
+}
+.lightbox-nav-zone.right {
+    right: 0;
+}
+
+
+/* Responsive adjustments for lightbox */
+@media (max-width: 768px) {
+  .lightbox-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  .lightbox-image {
+    max-height: calc(100% - 60px); /* More space for caption/controls on mobile */
+  }
+  .lightbox-caption {
+    font-size: 0.8em;
+    max-width: 85vw;
+  }
+  .lightbox-close-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+  }
+  .lightbox-nav {
+    font-size: 2.2rem;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+  }
+  .lightbox-nav.prev {
+    left: 5px;
+  }
+  .lightbox-nav.next {
+    right: 5px;
+  }
+  /* For mobile, make clickable zones larger if arrows are smaller/harder to hit */
+  .lightbox-nav-zone {
+    width: 30%; /* Increase clickable area on mobile */
+  }
 }
 
 /* Ensure ADAM.CG PRO font is available (already in global styles) */
