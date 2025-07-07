@@ -824,11 +824,11 @@ iframe {
 /* Assuming Wavy_01_001.svg is dark and Wavy_24_V2.svg is light or adaptable */
 /* In a real scenario, you might need to adjust SVG colors or use different files */
 .dark-theme .gallery_wavy_background {
-  background-color: #0c1a3f
+  background-color: var(--body-bg-color); 
 }
 
 .light-theme .gallery_wavy_background {
-  background-color: white; /* Light background for light theme */
+  background-color: var(--body-bg-color);  /* Light background for light theme */
 }
 
 /* Wavy background for the entire timeline section top */
@@ -1582,7 +1582,7 @@ iframe {
 
 .footer-email a:hover {
   color: var(--accent-color); /* Highlight on hover */
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .footer-copyright {
@@ -1601,9 +1601,147 @@ iframe {
   }
 
   .footer-social-links,
-  .footer-cv-download,
+  .footer-cv-download .btn-cv {
+  text-decoration: none;
+}
   .footer-email {
     margin-bottom: 0; /* Remove bottom margin for horizontal layout */
   }
 }
 /* End Footer Styles */
+
+/* Invert specific white icons in light theme */
+.light-theme img[alt="Unreal Engine"],
+.light-theme img[alt="GDevelop"] {
+  filter: invert(1);
+}
+
+/* IT Projects Section - START */
+/*
+  To modify responsive layout breakpoints, update the @media queries below.
+  - Large screens: Default styles for .it-cards-container and .it-project-card
+  - Medium screens: @media (max-width: 1200px)
+  - Small screens: @media (max-width: 992px)
+  - Very small screens: @media (max-width: 767px)
+*/
+
+.it-projects-gallery {
+  padding: 0rem 1rem; /* Consistent with icon-gallery padding */
+  background-color: var(--body-bg-color);  /* Or a specific background if desired */
+  /* position: relative; /* If using pseudo-elements for background shapes like icon-gallery */
+  /* overflow: hidden; */
+}
+
+.it-projects-gallery .o_container_small {
+  max-width: 1600px; /* Adjusted to allow 6 cards comfortably on large screens */
+  margin: 0 auto;
+  padding: 1rem; /* Inner padding for the container */
+}
+
+.it-projects-section-title {
+  text-align: center;
+  font-family: 'AdamCGPro', sans-serif; /* Consistent with other titles */
+  font-size: 2rem; /* Consistent with .icon-gallery-title */
+  color: var(--header-text-color);
+  margin-bottom: 2.5rem; /* Consistent with .icon-gallery-title */
+}
+
+.it-cards-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next line */
+  justify-content: center; /* Center cards in the container */
+  gap: 1.5rem; /* Space between cards */
+}
+
+.it-project-card {
+  background-color: var(--card-bg-color);
+  color: var(--card-text-color);
+  border-radius: 1rem; /* Rounded corners */
+  padding: 1.5rem; /* Internal padding */
+  box-shadow: 0 5px 15px var(--card-shadow-color); /* Subtle shadow */
+  text-align: center; /* Center image, title, year */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: calc((100% / 6) - 1.5rem); /* For 6 cards in a row, accounting for gap. (1.5rem * 5 gaps) / 6 cards approx */
+  min-width: 220px; /* Minimum width before wrapping aggressively */
+  display: flex;
+  flex-direction: column;
+}
+
+.it-project-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px var(--card-shadow-color), 0 0 0 2px var(--accent-color); /* Enhanced shadow and accent border on hover */
+}
+
+.it-project-icon {
+  width: 125x; /* Adjust size as needed */
+  height: 125px;
+  object-fit: contain;
+  margin: 0 auto 1rem auto; /* Center image and add space below */
+  display: block;
+}
+
+.it-project-card h3 {
+  font-family: 'AdamCGPro', sans-serif;
+  font-size: 1.4rem;
+  color: var(--header-text-color); /* Or var(--card-text-color) if card bg is light */
+  margin: 0.5rem 0;
+}
+.light-theme .it-project-card h3 {
+  color: var(--card-text-color);
+}
+.dark-theme .it-project-card h3 {
+  color: var(--card-text-color); /* Assuming card-text-color is black for dark theme's white cards */
+}
+
+
+.it-project-year {
+  font-size: 0.9rem;
+  color: var(--accent-color); /* Use accent color for the year */
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.it-project-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align:left; /* Justify description text */
+  margin-top:0; /* Pushes description to bottom if card heights vary due to content */
+}
+
+/* Responsive Layout Breakpoints - can be modified here */
+
+/* Medium screens: 2 rows with 3 cards each */
+@media (max-width: 1200px) {
+  .it-project-card {
+    width: calc((100% / 3) - 1.5rem); /* 3 cards per row */
+  }
+  .it-projects-gallery .o_container_small {
+    max-width: 900px; /* Adjust container for 3 cards */
+   }
+}
+
+/* Small screens: 3 rows with 2 cards each */
+@media (max-width: 767px) { /* Adjusted from 992px to 767px to match user request more closely */
+  .it-project-card {
+    width: calc((100% / 2) - 1.5rem); /* 2 cards per row */
+  }
+   .it-projects-gallery .o_container_small {
+    max-width: 650px; /* Adjust container for 2 cards */
+   }
+}
+
+/* Very small screens: 6 rows with 1 card each (stacked vertically) */
+@media (max-width: 576px) { /* Adjusted from 767px to 576px for better single card stacking */
+  .it-project-card {
+    width: calc(100% - 1.5rem); /* 1 card per row, allow for a bit of side margin if container has padding */
+    /* Or simply width: 90%; if preferred */
+  }
+  .it-projects-gallery .o_container_small {
+    max-width: 400px; /* Adjust container for 1 card */
+   }
+  .it-projects-section-title {
+    font-size: 1.8rem; /* Slightly smaller title for very small screens */
+  }
+}
+
+/* IT Projects Section - END */
