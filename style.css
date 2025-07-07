@@ -1101,20 +1101,44 @@ iframe {
   color: #333; /* Darker title in light mode for readability on white card */
 }
 .dark-theme .modal-title {
-  color: #eee; /* Lighter title in dark mode for readability on dark card */
+  color: #333; /* Lighter title in dark mode for readability on dark card */
 }
 
-/* Ensure title and badges within modal-left are styled appropriately after HTML move */
+/*
+  Title and Badges are now in .modal-right.
+  .modal-right is display: flex; flex-direction: column;
+  So, children will stack vertically.
+  We need to ensure .modal-title and .modal-badges have appropriate styling
+  for being at the top of the .modal-right column.
+*/
+
+/* Remove or comment out old styles for these elements within .modal-left */
+/*
 .modal-left .modal-title {
-  margin-top: 1rem; /* Add some space above the title if it's after gallery */
-  text-align: center; /* Center the title if it's in a column */
+  margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 .modal-left .modal-badges {
-  justify-content: center; /* Center badges if they are in a flex container */
-  margin-top: 0.5rem; /* Space between title and badges */
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+}
+*/
+
+/* Styles for .modal-title and .modal-badges now generally apply,
+   but we can ensure their specific context in .modal-right is handled if needed.
+   The global .modal-title and .modal-badges styles should mostly cover it.
+   Let's ensure alignment and spacing within .modal-right. */
+
+.modal-right .modal-title {
+  text-align: left; /* Default, but good to be explicit */
+  margin-bottom: 0.75rem; /* Space between title and badges */
 }
 
+.modal-right .modal-badges {
+  justify-content: flex-start; /* Align badges to the left if they wrap */
+  margin-bottom: 1rem; /* Space between badges and description */
+}
 
 /* Modal Description: Text styling */
 .modal-description {
@@ -1745,3 +1769,161 @@ iframe {
 }
 
 /* IT Projects Section - END */
+
+/* All Games Section - START */
+/*
+  To customize "All Games" section appearance:
+  - Section title: Modify .games-section-title.
+  - Grid layout (cards per row, spacing): Modify .games-grid-container and its media queries.
+  - Card appearance (background, padding): Modify .game-card.
+  - Image styling (rounded corners, shadow): Modify .game-cover-image.
+  - Hover overlay (color, opacity): Modify .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after
+    and its theme-specific overrides (.light-theme, .dark-theme).
+*/
+
+.games-gallery {
+  padding: 2rem 1rem; /* Consistent padding */
+  background-color: var(--body-bg-color); /* Adapts to theme */
+  /* position: relative; /* For potential future ::before/::after decorations */
+}
+
+.games-gallery .o_container_small {
+  max-width: 1600px; /* Allows for up to 6 cards with decent spacing */
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.games-section-title {
+  text-align: center;
+  font-family: 'AdamCGPro', sans-serif;
+  font-size: 2rem; /* Matches .it-projects-section-title */
+  color: var(--header-text-color);
+  margin-bottom: 2.5rem; /* Matches .it-projects-section-title */
+}
+
+.games-grid-container {
+  display: grid;
+  /* Default to 1 column for very small screens, overridden by media queries */
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem; /* Space between cards */
+  justify-items: center; /* Center items in their grid cell if they don't fill it */
+}
+
+.game-card {
+  background-color: transparent; /* Adapts to theme - User request: No background */
+  color: var(--card-text-color); /* Adapts to theme */
+  border-radius: 0.75rem; /* Slightly less rounded than main cards for a different feel */
+  padding: 0; /* User request: No background, so padding might not be desired on the card itself */
+  box-shadow: none; /* User request: No background, so shadow on card itself might be odd. Shadow is on image. */
+  text-align: center;
+  transition: transform 0.3s ease; /* Removed box-shadow transition from card */
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Take full width of grid column */
+  cursor: pointer; /* Indicate clickable */
+}
+
+.game-card:hover .game-cover-image { /* Apply hover effects to image directly */
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 15px var(--card-shadow-color), 0 0 0 3px var(--accent-color);
+}
+.game-card:hover .game-title {
+  color: var(--accent-color); /* Highlight title on hover */
+}
+
+
+.game-cover-image {
+  width: 100%;
+  /* height: 200px; /* Or use aspect-ratio if supported widely enough, or padding-bottom trick for aspect ratio */
+  aspect-ratio: 4 / 3; /* Maintain a 4:3 aspect ratio, adjust as needed */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  border-radius: 0.5rem; /* Rounded corners for the image */
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 10px var(--card-shadow-color); /* Shadow primarily on image now */
+  position: relative; /* Needed for the ::after pseudo-element for hover effect */
+  z-index: 1; /* Ensure image is below overlay */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition here */
+}
+
+/* Hover Overlay Effect */
+/* The ::after pseudo-element will act as the overlay */
+.game-cover-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem; /* Match image rounding */
+  background-color: transparent; /* Default: no overlay */
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  z-index: 2; /* Overlay is above the image */
+  pointer-events: none; /* Allow clicks to pass through to the image/card */
+}
+
+/* When hovering over the grid, apply overlay to non-hovered cards' images */
+.games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
+  opacity: 1; /* Show the overlay */
+}
+
+/* Light theme overlay: White overlay to simulate brightness reduction */
+/* Customize this color and opacity for the desired fade effect */
+.light-theme .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
+  background-color: rgba(255, 255, 255, 0.6); /* White overlay, 60% opacity (100% - 40% brightness = 60% overlay) */
+}
+
+/* Dark theme overlay: Black overlay to simulate darkness */
+/* Customize this color and opacity for the desired fade effect */
+.dark-theme .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
+  background-color: rgba(0, 0, 0, 0.6); /* Black overlay, 60% opacity */
+}
+
+
+.game-title {
+  font-family: 'AdamCGPro', sans-serif; /* Consistent title font */
+  font-size: 1.2rem;
+  color: var(--body-text-color); /* Ensure title is visible against page background */
+  margin-top: auto; 
+  padding-top: 0.25rem; /* Reduced padding, as card has no padding now */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Add a subtle shadow for legibility */
+  transition: color 0.3s ease; /* For hover effect */
+}
+
+/* Theme-specific title color if needed, for direct contrast with body background */
+.light-theme .game-card .game-title {
+  color: var(--body-text-color); /* Usually dark gray/black on light page BG */
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.2); /* Lighter shadow for dark text */
+}
+.dark-theme .game-card .game-title {
+  color: var(--body-text-color); /* Usually white/light gray on dark page BG */
+   text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Darker shadow for light text */
+}
+
+
+/* Responsive Grid Layout for Game Cards */
+
+/* Very small screens (default): 1 card per row (already set by .games-grid-container default) */
+
+/* Small screens: 2 cards per row */
+@media (min-width: 576px) { /* Start adjusting from a slightly smaller breakpoint for 2 cards */
+  .games-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium screens: 4 cards per row */
+@media (min-width: 992px) {
+  .games-grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large screens: 6 cards per row */
+@media (min-width: 1400px) { /* Adjusted breakpoint for 6 cards to ensure they are not too cramped */
+  .games-grid-container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* All Games Section - END */

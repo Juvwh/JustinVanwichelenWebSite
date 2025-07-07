@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded and parsed. modal.js executing.");
 
   // --- MODAL ELEMENTS ---
-  const modalTriggerButtons = document.querySelectorAll('.section-projet-en-avant .btn, .project-modal-trigger');
+  const modalTriggerButtons = document.querySelectorAll('.section-projet-en-avant .btn, .project-modal-trigger, .game-card'); // Added .game-card
   const modalOverlay = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   
