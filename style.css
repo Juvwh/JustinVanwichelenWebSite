@@ -63,8 +63,8 @@
   --hero-section-bg-color: #FFFFFF; /* White */
   --hero-section-text-color: #333333; /* Dark gray */
   --hero-title-text-color: #000000; /* Black */
-  --hero-strong-text-color: #0056b3; /* Darker blue */
-  --navbar-bg-color-light: #0056b3; /* Couleur spécifique pour navbar en light mode */
+  --hero-strong-text-color: #002ab3; /* Darker blue */
+  --navbar-bg-color-light: #002ab3; /* Couleur spécifique pour navbar en light mode */
   --navbar-text-color-light: #ffffff; /* Texte blanc pour navbar en light mode */
   --navbar-outline-color-light: #DDDDDD; /* Outline plus clair pour navbar en light mode si besoin */
   --image-outline-color: #0034dd; /* Outline pour image en light mode */
@@ -258,6 +258,17 @@ iframe {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em; /* ajuste cet écart si besoin */
+}
+
+.badge img {
+  height: 1.1em;
+  display: block;
+}
+
 
 /*Moi*/
 .hero-section {
@@ -301,6 +312,7 @@ iframe {
 .hero-text strong {
   color: var(--hero-strong-text-color);
 }
+
 
 #theme-toggle-btn {
   position: fixed;
@@ -649,9 +661,9 @@ iframe {
 
 /* Light theme overrides for timeline */
 .light-theme .timeline {
-  --timeline-background: var(--timeline-background-light);
-  --timeline-accent: var(--timeline-accent-light);
-  --timeline-text: var(--timeline-text-light);
+  --timeline-background: #0056b3; /* Light blue background */
+  --timeline-accent: #efc631;
+  --timeline-text: white;
   --timeline-line: var(--timeline-line-light);
 }
 
@@ -790,7 +802,7 @@ iframe {
 /* Icon Gallery Section Styling */
 .icon-gallery {
   position: relative; /* For positioning the wavy background */
-  padding: 4rem 1rem; /* Vertical and horizontal padding */
+  padding: 1rem 1rem; /* Vertical and horizontal padding */
   background-color: var(--body-bg-color); /* Fallback, but wavy bg should cover */
   overflow: hidden; /* To contain the wavy shape if it extends outside */
 }
@@ -812,14 +824,11 @@ iframe {
 /* Assuming Wavy_01_001.svg is dark and Wavy_24_V2.svg is light or adaptable */
 /* In a real scenario, you might need to adjust SVG colors or use different files */
 .dark-theme .gallery_wavy_background {
-  background-image: url('./index_files/Wavy_24_V2.svg'); /* Using lighter waves for dark mode */
-  opacity: 1; /* Ensure full visibility */
-  /* background-color: #0c1a3f; Default dark bg color from original snippet */
+  background-color: #0c1a3f
 }
 
 .light-theme .gallery_wavy_background {
-  background-image: url('./index_files/Wavy_24_V2.svg'); /* Light blue waves - CHOSE V2 for potentially lighter look */
-  /* background-color: #e0e8f0; Example light bg color */
+  background-color: #e0e8f0; 
 }
 
 /* Wavy background for the entire timeline section top */
@@ -832,10 +841,9 @@ iframe {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-
+  transform: scaleY(-1); /* Flip vertically for reverse symmetry */
   z-index: 0; /* Below timeline content */
   pointer-events: none; /* Ensure it doesn't interfere with mouse events */
-
 }
 
 .dark-theme .timeline_section_wavy_background {
