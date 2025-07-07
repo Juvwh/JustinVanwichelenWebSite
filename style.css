@@ -993,7 +993,7 @@ iframe {
   border-radius: 1rem; /* Rounded corners */
   box-shadow: 0 10px 30px var(--card-shadow-color); /* Subtle shadow */
   width: 90%;
-  max-width: 1000px; /* Max width of the modal card */
+  max-width: 1200px; /* Increased max-width for larger modal */
   max-height: 90vh; /* Max height to prevent overflow on smaller screens */
   overflow-y: auto; /* Allow scrolling within the card if content is too tall */
   position: relative;
@@ -1131,6 +1131,19 @@ iframe {
 }
 .dark-theme .modal-description .highlight {
   color: #3498db; /* A slightly brighter blue for dark backgrounds if needed */
+}
+
+/* General text highlight style */
+.text-highlight {
+  background-color: #efc634; /* Using the existing accent color for dark theme */
+  padding: 0.2em 0.4em; /* Add some padding around the highlighted text */
+  border-radius: 0.2em; /* Slightly rounded corners for the highlight */
+  color: #0b1b3f; /* Ensuring text is dark enough for yellow background */
+}
+
+.light-theme .text-highlight {
+  background-color: #007AFF; /* Using the existing accent color for light theme */
+  color: #FFFFFF; /* White text for blue background */
 }
 
 
