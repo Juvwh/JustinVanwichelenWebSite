@@ -1819,7 +1819,7 @@ iframe {
 }
 
 .games-gallery .o_container_small {
-  max-width: 1600px; /* Allows for up to 6 cards with decent spacing */
+  max-width: 1200px; /* Allows for up to 6 cards with decent spacing */
   margin: 0 auto;
   padding: 1rem;
 }
@@ -1847,67 +1847,81 @@ iframe {
   padding: 0; /* User request: No background, so padding might not be desired on the card itself */
   box-shadow: none; /* User request: No background, so shadow on card itself might be odd. Shadow is on image. */
   text-align: center;
-  transition: transform 0.3s ease; /* Removed box-shadow transition from card */
+  /* transition: transform 0.3s ease; /* Transition will be on the wrapper or specific elements */
   display: flex;
   flex-direction: column;
   width: 100%; /* Take full width of grid column */
   cursor: pointer; /* Indicate clickable */
+  /* position: relative; /* .game-card does not need to be relative for this implementation if wrapper is used */
 }
 
-.game-card:hover .game-cover-image { /* Apply hover effects to image directly */
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 6px 15px var(--card-shadow-color), 0 0 0 3px var(--accent-color);
-}
-.game-card:hover .game-title {
-  color: var(--accent-color); /* Highlight title on hover */
-}
+/* .game-card::after styles removed - diagnostic complete */
 
+.game-image-wrapper {
+  position: relative; 
+  display: block; 
+  width: 100%;
+  aspect-ratio: 4 / 3; 
+  border-radius: 0.5rem; 
+  overflow: hidden; /* This is key to clip the image to the wrapper's border-radius */
+  margin-bottom: 0.75rem; 
+  box-shadow: 0 4px 10px var(--card-shadow-color); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
 
 .game-cover-image {
+  display: block; /* Ensure image behaves like a block element within the wrapper */
   width: 100%;
-  /* height: 200px; /* Or use aspect-ratio if supported widely enough, or padding-bottom trick for aspect ratio */
-  aspect-ratio: 4 / 3; /* Maintain a 4:3 aspect ratio, adjust as needed */
-  object-fit: cover; /* Cover the area, cropping if necessary */
-  border-radius: 0.5rem; /* Rounded corners for the image */
-  margin-bottom: 0.75rem;
-  box-shadow: 0 4px 10px var(--card-shadow-color); /* Shadow primarily on image now */
-  position: relative; /* Needed for the ::after pseudo-element for hover effect */
-  z-index: 1; /* Ensure image is below overlay */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition here */
+  height: 100%; 
+  object-fit: cover; 
+  z-index: 1; /* Image below the overlay */
+  /* Transitions, border-radius, margin, shadow, position are now on game-image-wrapper */
+  transition: none; /* Remove any old transitions specifically on the image if they conflict */
 }
 
-/* Hover Overlay Effect */
-/* The ::after pseudo-element will act as the overlay */
-.game-cover-image::after {
+/* Hover Overlay Effect on .game-image-wrapper using :has() */
+.game-image-wrapper::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 0.5rem; /* Match image rounding */
-  background-color: transparent; /* Default: no overlay */
+  /* border-radius is effectively applied by the wrapper's overflow:hidden */
+  background-color: transparent; 
   opacity: 0;
   transition: opacity 0.3s ease, background-color 0.3s ease;
-  z-index: 2; /* Overlay is above the image */
-  pointer-events: none; /* Allow clicks to pass through to the image/card */
+  z-index: 2; 
+  pointer-events: none; 
 }
 
-/* When hovering over the grid, apply overlay to non-hovered cards' images */
-.games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
-  opacity: 1; /* Show the overlay */
+/* When the grid container has a hovered game-card, 
+   then for any game-card that is NOT the one being hovered, apply the overlay */
+.games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
+  opacity: 1;
 }
 
-/* Light theme overlay: White overlay to simulate brightness reduction */
-/* Customize this color and opacity for the desired fade effect */
-.light-theme .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
-  background-color: rgba(255, 255, 255, 0.6); /* White overlay, 60% opacity (100% - 40% brightness = 60% overlay) */
+.light-theme .games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
+  background-color: rgba(255, 255, 255, 0.6); /* Light mode dim */
 }
 
-/* Dark theme overlay: Black overlay to simulate darkness */
-/* Customize this color and opacity for the desired fade effect */
-.dark-theme .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after {
-  background-color: rgba(0, 0, 0, 0.6); /* Black overlay, 60% opacity */
+.dark-theme .games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
+  background-color: rgba(0, 0, 0, 0.6); /* Dark mode dim */
+}
+
+/* Direct hover effect on the card: scales the wrapper, title color changes */
+.game-card:hover .game-image-wrapper { /* Target wrapper for transform */
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 15px var(--card-shadow-color), 0 0 0 3px var(--accent-color);
+}
+
+.game-card:hover .game-title {
+  color: var(--accent-color); /* Highlight title on hover */
+}
+
+/* Clean up old .game-card:hover .game-cover-image if it only did transform/shadow */
+.game-card:hover .game-cover-image {
+  /* transform and box-shadow are now on .game-image-wrapper. Clear if any conflicting styles remained. */
 }
 
 
@@ -1934,26 +1948,24 @@ iframe {
 
 /* Responsive Grid Layout for Game Cards */
 
-/* Very small screens (default): 1 card per row (already set by .games-grid-container default) */
+/* Default: 1 card per row (for very small screens, mobile-first) */
+/* .games-grid-container already defaults to grid-template-columns: repeat(1, 1fr); */
 
-/* Small screens: 2 cards per row */
-@media (min-width: 576px) { /* Start adjusting from a slightly smaller breakpoint for 2 cards */
+/* Medium screens: 2 cards per row */
+/* Adjust breakpoint as needed. 768px is a common tablet breakpoint. */
+@media (min-width: 768px) {
   .games-grid-container {
+    /* Show 2 cards per row */
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Medium screens: 4 cards per row */
-@media (min-width: 992px) {
+/* Large screens: 3 cards per row */
+/* Adjust breakpoint as needed. 1024px or 1200px are common desktop breakpoints. */
+@media (min-width: 1024px) {
   .games-grid-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Large screens: 6 cards per row */
-@media (min-width: 1400px) { /* Adjusted breakpoint for 6 cards to ensure they are not too cramped */
-  .games-grid-container {
-    grid-template-columns: repeat(6, 1fr);
+    /* Show 3 cards per row */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
