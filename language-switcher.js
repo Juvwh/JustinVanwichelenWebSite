@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedLang && supportedLanguages.includes(savedLang)) {
       return savedLang;
     }
-    // Fallback: browser language, then 'en'
     const browserLang = navigator.language.split('-')[0];
     if (supportedLanguages.includes(browserLang)) {
       return browserLang;
@@ -58,11 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-translate-key]').forEach(element => {
       const key = element.getAttribute('data-translate-key');
       const translation = translations[currentLanguage]?.[key];
-      if (translation !== undefined) { // Check for undefined to allow empty strings as valid translations
-        // If the translation string contains HTML, or if the element is expected to host HTML (e.g. a div for a description),
-        // use innerHTML. Otherwise, for simple text updates (like button text, link text), textContent might be
-        // preferred for security, but since translations might intentionally include HTML (e.g. for <strong> tags),
-        // innerHTML is a general approach. The key strategy is to ensure translations.js holds the correct HTML structure.
+      if (translation !== undefined) {
         element.innerHTML = translation;
       } else {
         console.warn(`Translation not found for key: ${key} in language: ${currentLanguage}`);
@@ -78,13 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn(`ARIA label translation not found for key: ${key} in language: ${currentLanguage}`);
       }
     });
-
-    // Update active button state
     updateLanguageButtonStates();
-
-    // If modals are already open or need re-rendering, this is where you'd trigger that.
-    // For now, we assume modal content is populated on open, and modal.js will use the new functions.
-    // If modal.js needs to be explicitly told to refresh, add that call here.
   }
 
   function updateLanguageButtonStates() {
@@ -104,10 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Language switcher buttons not found.');
   }
 
-  // Initial language setup
   setLanguage(currentLanguage);
 
-  // Expose getTranslationForKey to be used by modal.js or other scripts
   window.getTranslationForKey = (key, lang = currentLanguage) => {
     return translations[lang]?.[key] || `MissingKey: ${key}`;
   };

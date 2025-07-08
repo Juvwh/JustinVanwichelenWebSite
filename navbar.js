@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hamburger Menu Logic
   const hamburgerBtn = document.querySelector('.hamburger-menu');
   const navLinksGroup = document.querySelector('.navbar .nav-links-group');
 

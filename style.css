@@ -9,27 +9,26 @@
   --badge-bg-color: #dfe6f3;
   --badge-text-color: #2e3b66;
   --button-bg-color: #102750;
-  --button-text-color: white; /* Added for button text */
+  --button-text-color: white; 
   --arrow-bg-color: rgba(255, 255, 255, 0.1);
-  --arrow-text-color: #efc634; /* Same as accent, but specific for clarity */
+  --arrow-text-color: #efc634; 
   --video-overlay-shadow-color: rgba(182, 182, 182, 0.404);
-  --hero-section-bg-color: #0b1b3f; /* Same as body bg */
-  --hero-section-text-color: white; /* Same as body text */
-  --hero-title-text-color: #ffffff; /* Same as header text */
-  --hero-strong-text-color: #efc634; /* Same as accent */
-  --navbar-bg-color-dark: #0e1528; /* Nouvelle couleur pour la navbar en dark mode */
-  --navbar-outline-color-dark: white; /* Outline pour dark mode (inchangé) */
-  --image-outline-color: #efc634; /* Outline pour image en dark mode */
+  --hero-section-bg-color: #0b1b3f; 
+  --hero-section-text-color: white; 
+  --hero-title-text-color: #ffffff; 
+  --hero-strong-text-color: #efc634; 
+  --navbar-bg-color-dark: #0e1528; 
+  --navbar-outline-color-dark: white; 
+  --image-outline-color: #efc634; 
 }
-
 .dark-theme {
-  --body-bg-color: #0b1b3f; /* Gardé pour le fond général du body */
-  --navbar-bg-color-dark: #0e1528; /* Spécifique pour la navbar */
+  --body-bg-color: #0b1b3f; 
+  --navbar-bg-color-dark: #0e1528; 
   --navbar-outline-color-dark: white;
   --body-text-color: white;
   --header-text-color: #ffffff;
-  --card-bg-color: white; /* Default for general cards */
-  --card-text-color: black; /* Default for general cards */
+  --card-bg-color: white; 
+  --card-text-color: black; 
   --card-shadow-color: rgba(0,0,0,0.3);
   --accent-color: #efc634;
   --badge-bg-color: #dfe6f3;
@@ -43,44 +42,38 @@
   --hero-section-text-color: white;
   --hero-title-text-color: #ffffff;
   --hero-strong-text-color: #efc634;
-
-  /* Modal Card Dark Theme Variables */
-  --modal-card-bg-color-dark: #2c3e50; /* Dark Slate Blue/Gray */
-  --modal-card-text-color-dark: #ecf0f1; /* Light Gray/Almost White */
-  --modal-title-text-color-dark: #ffffff; /* White for modal titles */
+  --modal-card-bg-color-dark: #2c3e50; 
+  --modal-card-text-color-dark: #ecf0f1; 
+  --modal-title-text-color-dark: #ffffff; 
 }
-
 .light-theme {
-  --body-bg-color: #F0F2F5; /* Light gray */
-  --body-text-color: #333333; /* Dark gray */
-  --header-text-color: #000000; /* Black */
-  --card-bg-color: #FFFFFF; /* White */
-  --card-text-color: #333333; /* Dark gray */
-  --card-shadow-color: rgba(0,0,0,0.1); /* Lighter shadow */
-  --accent-color: #007AFF; /* Vibrant blue */
-  --badge-bg-color: #E9ECEF; /* Light gray */
-  --badge-text-color: #495057; /* Darker gray */
-  --button-bg-color: #007AFF; /* Vibrant blue */
-  --button-text-color: #FFFFFF; /* White */
-  --arrow-bg-color: rgba(0, 0, 0, 0.05); /* Light, dark-transparent */
-  --arrow-text-color: #007AFF; /* Vibrant blue */
-  --video-overlay-shadow-color: rgba(0,0,0,0.1); /* Lighter shadow */
-  --hero-section-bg-color: #FFFFFF; /* White */
-  --hero-section-text-color: #333333; /* Dark gray */
-  --hero-title-text-color: #000000; /* Black */
-  --hero-strong-text-color: #002ab3; /* Darker blue */
-  --navbar-bg-color-light: #002ab3; /* Couleur spécifique pour navbar en light mode */
-  --navbar-text-color-light: #ffffff; /* Texte blanc pour navbar en light mode */
-  --navbar-outline-color-light: #DDDDDD; /* Outline plus clair pour navbar en light mode si besoin */
-  --image-outline-color: #0034dd; /* Outline pour image en light mode */
-
-  /* Timeline Light Theme Variables */
-  --timeline-background-light: #FFFFFF; /* White background */
-  --timeline-accent-light: #007AFF; /* Vibrant blue accent */
-  --timeline-text-light: #333333; /* Dark gray text */
-  --timeline-line-light: #DDDDDD; /* Light gray line */
+  --body-bg-color: #F0F2F5; 
+  --body-text-color: #333333; 
+  --header-text-color: #000000; 
+  --card-bg-color: #FFFFFF; 
+  --card-text-color: #333333; 
+  --card-shadow-color: rgba(0,0,0,0.1); 
+  --accent-color: #007AFF; 
+  --badge-bg-color: #E9ECEF; 
+  --badge-text-color: #495057; 
+  --button-bg-color: #007AFF; 
+  --button-text-color: #FFFFFF; 
+  --arrow-bg-color: rgba(0, 0, 0, 0.05); 
+  --arrow-text-color: #007AFF; 
+  --video-overlay-shadow-color: rgba(0,0,0,0.1); 
+  --hero-section-bg-color: #FFFFFF; 
+  --hero-section-text-color: #333333; 
+  --hero-title-text-color: #000000; 
+  --hero-strong-text-color: #002ab3; 
+  --navbar-bg-color-light: #002ab3; 
+  --navbar-text-color-light: #ffffff; 
+  --navbar-outline-color-light: #DDDDDD; 
+  --image-outline-color: #0034dd; 
+  --timeline-background-light: #FFFFFF; 
+  --timeline-accent-light: #007AFF; 
+  --timeline-text-light: #333333; 
+  --timeline-line-light: #DDDDDD; 
 }
-
 * {
   box-sizing: border-box;
 }
@@ -110,18 +103,15 @@ body {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 2rem 1rem; /* Adjusted padding */
-  max-width: 1600px; /* Increased from 1400px to accommodate 3 cards + arrows + padding */
+  padding: 2rem 1rem; 
+  max-width: 1600px; 
   margin: auto;
-  display: flex; /* Added */
-  align-items: center; /* Added */
-  justify-content: center; /* Changed from space-between */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 .carousel-wrapper {
   overflow: hidden;
-  /* width will be set by JS */
-  /* flex-grow: 1; Removed */
-  /* min-width: 0; Removed */
 }
 .carousel-track {
   display: flex;
@@ -158,7 +148,6 @@ iframe {
   border: none;
   margin: 0;
   border-radius: 0.5rem;
-  /* pointer-events: none; */ /* Comment this out */
 }
 .card-content {
   padding: 1rem;
@@ -209,7 +198,6 @@ iframe {
   width: fit-content;
   align-self: center;
 }
-/* Removed .controls CSS rule */
 .arrow {
   background: var(--arrow-bg-color);
   border: none;
@@ -219,7 +207,7 @@ iframe {
   pointer-events: auto;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
-  margin: 0 10px; /* Added margin */
+  margin: 0 10px; 
 }
 .custom-section {
   position: relative;
@@ -269,21 +257,14 @@ iframe {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.3em; /* ajuste cet écart si besoin */
+  gap: 0.3em; 
 }
-
 .badge img {
   height: 1.1em;
   display: block;
 }
-
-
-/*Moi*/
 .hero-section {
-  padding-top: 80px; /* Ajout d'un padding-top pour décaler le contenu sous la navbar */
-  /* La valeur 80px est une estimation, à ajuster si la hauteur de la navbar change.
-     On pourrait aussi calculer la hauteur de la navbar avec JS et l'appliquer,
-     mais pour l'instant une valeur fixe devrait suffire. */
+  padding-top: 80px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,14 +273,11 @@ iframe {
   background-color: var(--hero-section-bg-color);
   color: var(--hero-section-text-color);
 }
-
 .hero-image {
   max-width: 300px;
   border-radius: 99px;
-  /* background: radial-gradient(circle at 30% 30%, #ffffff00 40%, #3195bd00 100%); /* Skipped theming this gradient */
   padding: 0rem;
 }
-
 .hero-text {
   max-width: 950px;
   font-size: 1rem;
@@ -307,7 +285,6 @@ iframe {
   font-family: 'Montserrat', sans-serif;
   text-align: left;
 }
-
 .hero-text h2 {
   font-size: 4.6rem;
   font-weight: bold;
@@ -316,37 +293,32 @@ iframe {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif;
 }
-
 .hero-text strong {
   color: var(--hero-strong-text-color);
 }
-
-/* Responsive adjustments for Hero Section */
 @media (max-width: 768px) {
   .hero-text h2 {
-    font-size: 2.8rem; /* Reduced font size for smaller screens */
+    font-size: 2.8rem; 
   }
   .hero-text {
-    text-align: center; /* Center align text when stacked */
-    padding: 0 1rem; /* Add some horizontal padding */
+    text-align: center; 
+    padding: 0 1rem; 
   }
   .hero-text p {
-    font-size: 0.95rem; /* Slightly reduce paragraph font size */
+    font-size: 0.95rem; 
   }
   .hero-image {
-    max-width: 200px; /* Optionally reduce image size further on small screens */
+    max-width: 200px; 
   }
 }
-
 @media (max-width: 480px) {
   .hero-text h2 {
-    font-size: 2.2rem; /* Further reduce font size for very small screens */
+    font-size: 2.2rem; 
   }
   .hero-text p {
-    font-size: 0.9rem; /* Further reduce paragraph font size */
+    font-size: 0.9rem; 
   }
 }
-
 #theme-toggle-btn {
   position: fixed;
   top: 20px;
@@ -357,92 +329,71 @@ iframe {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 10000; /* Ensure it's above other elements */
+  z-index: 10000; 
   font-weight: bold;
 }
-
 #theme-toggle-btn:hover {
   opacity: 0.8;
 }
-
-/* Hamburger Menu Styles */
 .hamburger-menu {
-  display: none; /* Hidden by default, shown in mobile media query */
+  display: none; 
   flex-direction: column;
   justify-content: space-around;
-  width: 2rem; /* Size of the hamburger icon */
+  width: 2rem; 
   height: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10; /* Ensure it's clickable */
+  z-index: 10; 
 }
-
 .hamburger-menu:focus {
   outline: none;
 }
-
 .hamburger-menu__line {
   display: block;
   width: 2rem;
-  height: 0.25rem; /* Thickness of the lines */
-  background: var(--header-text-color); /* Color of the lines, should adapt to theme */
+  height: 0.25rem; 
+  background: var(--header-text-color); 
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
   transform-origin: 1px;
 }
-
 .light-theme .hamburger-menu__line {
-  background: var(--navbar-text-color-light); /* Ensure visibility in light theme navbar */
+  background: var(--navbar-text-color-light); 
 }
-
-
-/* Navbar styles */
-/* Base styles for the navigation bar. Fixed at the top. */
 .navbar {
-  background-color: var(--navbar-bg-color-dark); /* Utilise la nouvelle variable pour dark mode */
+  background-color: var(--navbar-bg-color-dark); 
   padding: 1rem 0;
-  position: fixed; /* Fixe en haut */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Assure qu'elle est au-dessus des autres éléments */
-  border-bottom: 2px solid var(--navbar-outline-color-dark); /* Utilise la variable pour l'outline en dark mode */
-  transition: border-bottom-color 0.3s ease; /* Pour la disparition de la bordure */
+  z-index: 1000; 
+  border-bottom: 2px solid var(--navbar-outline-color-dark); 
+  transition: border-bottom-color 0.3s ease; 
 }
-
-/* Styles for the unordered list holding navigation items. Uses flexbox for layout. */
 .navbar ul {
   list-style: none;
   margin: 0;
-  padding: 0 2rem; /* Ajoute un peu de padding horizontal */
+  padding: 0 2rem; 
   display: flex;
-  justify-content: space-between; /* Modifié pour espacer les éléments */
-  align-items: center; /* Aligne verticalement les éléments au centre */
-  gap: 2rem; /* Espace entre les éléments de navigation principaux */
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 2rem; 
 }
-
 .navbar li {
   display: inline;
 }
-
-/* Styles pour les éléments de navigation principaux (liens) */
 .navbar li:not(.theme-toggle-item) {
-  /* Vous pouvez ajouter des styles spécifiques ici si nécessaire */
 }
-
-/* Conteneur pour les liens de navigation pour les garder groupés */
-/* Groups the main navigation links and centers them. */
 .navbar ul .nav-links-group {
   display: flex;
   gap: 2rem;
-  justify-content: center; /* Centre les liens de navigation */
-  flex-grow: 1; /* Permet au groupe de liens de prendre l'espace central */
+  justify-content: center; 
+  flex-grow: 1; 
 }
-
-
 .navbar a {
   color: white;
   text-decoration: none;
@@ -451,31 +402,25 @@ iframe {
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
-
 .navbar a:hover {
-  background-color: var(--accent-color); /* Couleur d'accentuation au survol */
-  color: var(--body-bg-color); /* Texte foncé sur fond clair pour le survol */
+  background-color: var(--accent-color); 
+  color: var(--body-bg-color); 
 }
-
-/* Language Switcher Styling */
 .language-switcher {
   display: flex;
   align-items: center;
-  /* margin-left: 15px; /* Pushed to the right by theme-toggle-item's margin-left: auto */
 }
-
 .language-switcher button {
   background: none;
   border: none;
-  color: white; /* Default color, will be overridden by theme if needed */
+  color: white; 
   cursor: pointer;
-  padding: 0.5rem 0.3rem; /* Consistent with navbar link padding */
-  font-size: 0.9rem; /* Consistent with theme toggle button */
+  padding: 0.5rem 0.3rem; 
+  font-size: 0.9rem; 
   font-weight: bold;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
-
 .language-switcher button:hover,
 .language-switcher button.active-lang {
   opacity: 1;
@@ -483,321 +428,244 @@ iframe {
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
-
 .language-switcher span {
-  color: white; /* Default, override in themes if needed */
+  color: white; 
   opacity: 0.7;
   margin: 0 1px;
   font-weight: bold;
 }
-
 .light-theme .language-switcher button,
 .light-theme .language-switcher span {
-  color: var(--navbar-text-color-light); /* White for light theme navbar */
+  color: var(--navbar-text-color-light); 
 }
-/* End Language Switcher Styling */
-
-/* Classe pour masquer la bordure au défilement */
 .navbar-scrolled {
-  border-bottom-color: transparent !important; /* Important pour s'assurer qu'il override le thème light */
+  border-bottom-color: transparent !important; 
 }
-
-/* Styles spécifiques pour la navbar en light theme */
 .light-theme .navbar {
   background-color: var(--navbar-bg-color-light);
-  border-bottom-color: var(--navbar-outline-color-light); /* Outline pour light mode */
+  border-bottom-color: var(--navbar-outline-color-light); 
 }
-
 .light-theme .navbar a {
   color: var(--navbar-text-color-light);
 }
-
 .light-theme .navbar a:hover {
-  background-color: var(--accent-color); /* Peut-être ajuster l'accent color pour light theme navbar hover */
-  color: var(--navbar-bg-color-light); /* Texte de la couleur du fond de la navbar light au survol */
+  background-color: var(--accent-color); 
+  color: var(--navbar-bg-color-light); 
 }
-
-/* S'assurer que le bouton de thème dans la navbar light a des couleurs appropriées */
 .light-theme #theme-toggle-btn {
-  background-color: var(--button-bg-color); /* Utilise le bouton bg du thème light */
-  color: var(--button-text-color); /* Utilise le bouton text color du thème light */
-  border: 1px solid var(--navbar-text-color-light); /* Petite bordure pour visibilité si besoin */
+  background-color: var(--button-bg-color); 
+  color: var(--button-text-color); 
+  border: 1px solid var(--navbar-text-color-light); 
 }
 .light-theme #theme-toggle-btn:hover {
   opacity: 0.9;
 }
-
-
-/* Ajustement pour le bouton de thème dans la navbar */
-/* Styles for the list item containing the theme toggle button. */
 .navbar .theme-toggle-item {
-  margin-left: auto; /* Pousse le bouton vers la droite */
+  margin-left: auto; 
 }
-
-/* Specific adjustments for the theme toggle button when inside the navbar. */
 #theme-toggle-btn {
-  /* Ajustements spécifiques si nécessaire pour le bouton dans la navbar */
-  /* Par exemple, si la taille/padding par défaut du bouton ne convient pas ici */
-  padding: 0.5rem 0.75rem; /* Léger ajustement du padding pour la navbar */
-  font-size: 0.9rem; /* Ajustement de la taille de la police */
-  position: static; /* Assure que les positionnements fixed/absolute précédents sont annulés */
+  padding: 0.5rem 0.75rem; 
+  font-size: 0.9rem; 
+  position: static; 
   top: auto;
   right: auto;
 }
-
-/* Custom Section Styles */
-/* Styles for the featured project sections. */
 .section-projet-en-avant {
   position: relative;
-  max-width: 1750px; /* Conservé de votre exemple */
-  margin: 4rem auto; /* Ajout de marge verticale pour espacement */
+  max-width: 1750px; 
+  margin: 4rem auto; 
   padding: 1rem;
-  color: var(--body-text-color); /* Utilisation de la variable de thème pour la couleur du texte */
+  color: var(--body-text-color); 
 }
-
 .custom-image {
   width: 100%;
   border-radius: 1rem;
   display: block;
-  box-shadow: 0 10px 25px var(--card-shadow-color); /* Ombre cohérente avec les cartes */
-  outline: 0px solid var(--image-outline-color); /* Outline de l'image à 0px */
+  box-shadow: 0 10px 25px var(--card-shadow-color); 
+  outline: 0px solid var(--image-outline-color); 
 }
-
 .overlay-container {
   position: relative;
-  margin-bottom: 100px; /* Espace pour que la vidéo en superposition ne soit pas coupée et pour le texte en dessous */
-                       /* Ajustez cette valeur si la vidéo est plus haute ou si plus d'espace est nécessaire */
+  margin-bottom: 100px; 
 }
-
 .video-overlay {
   position: absolute;
-  bottom: 0; /* Aligné en bas de .overlay-container */
-  left: 80px; /* Légèrement décalé vers la gauche */
-  transform: translateY(50%); /* Décale la vidéo vers le bas pour qu'elle chevauche l'image et sorte en dessous */
+  bottom: 0; 
+  left: 80px; 
+  transform: translateY(50%); 
   width: 550px; 
-  border-radius: 1rem; /* Cohérent avec .custom-image */
+  border-radius: 1rem; 
   overflow: hidden;
-  box-shadow: 0 8px 16px var(--video-overlay-shadow-color); /* Utilisation de la variable existante */
-  z-index: 2; /* Au-dessus de l'image mais en dessous du texte si le texte doit passer par dessus */
+  box-shadow: 0 8px 16px var(--video-overlay-shadow-color); 
+  z-index: 2; 
 }
-
 .video-overlay iframe {
   width: 100%;
-  height: 300px; /* Conservé */
+  height: 300px; 
   margin: 0;
-  display: block; /* Évite les espaces indésirables sous l'iframe */
-  border: none; /* Supprime la bordure par défaut de l'iframe */
+  display: block; 
+  border: none; 
 }
-
 .text-beside-video {
-  /* Initialement, j'avais margin-left: 800px. Cela suppose une largeur fixe pour la vidéo et l'image.
-     Pour plus de flexibilité, nous pourrions utiliser Flexbox ou Grid pour le parent .custom-section
-     si la mise en page doit être plus dynamique. Pour l'instant, je garde votre approche
-     mais notez que cela peut nécessiter des ajustements pour différentes tailles d'écran avant le breakpoint mobile. */
-  margin-left: 650px; /* Ajusté pour commencer un peu plus à gauche */
-  margin-right: 50px; /* Ajout d'une marge à droite pour limiter l'extension */
-  max-width: 900px; /* Limite explicite de la largeur du bloc de texte */
-  margin-top: -190px; /* Ajusté à -190px selon la demande */
-                      /* Cette valeur dépendra fortement de la hauteur de la vidéo et de l'image */
-  z-index: 1; /* S'assure qu'il est au-dessus de l'image si .video-overlay a un z-index plus élevé */
-  position: relative; /* Nécessaire pour z-index */
-  padding: 0.2rem 1.5rem 1.5rem 8rem; /* Augmentation du padding à gauche pour décaler le texte */
-  background-color: var(--card-bg-color); /* Pour que le texte soit lisible s'il chevauche l'image de fond */
+  margin-left: 650px; 
+  margin-right: 50px; 
+  max-width: 900px; 
+  margin-top: -190px; 
+  z-index: 1; 
+  position: relative; 
+  padding: 0.2rem 1.5rem 1.5rem 8rem; 
+  background-color: var(--card-bg-color); 
   color: var(--card-text-color);
   border-radius: 0.5rem;
   box-shadow: 0 5px 15px var(--card-shadow-color);
 }
-
 .text-beside-video h2 {
-  font-size: 1.7rem; /* Légèrement plus grand */
+  font-size: 1.7rem; 
   margin-bottom: 0.75rem;
-  font-family: 'AdamCGPro', sans-serif; /* Cohérence avec .carousel-header */
-  color: var(--header-text-color); /* Si sur fond de carte, sinon var(--body-text-color) */
+  font-family: 'AdamCGPro', sans-serif; 
+  color: var(--header-text-color); 
 }
-
 .light-theme .text-beside-video h2 {
-  color: var(--header-text-color); /* Le header-text-color du thème light est noir */
+  color: var(--header-text-color); 
 }
 .dark-theme .text-beside-video h2 {
-  color: #000000; /* Forcé en noir pour le thème sombre car le fond de la carte est blanc */
+  color: #000000; 
 }
-
-
 .text-beside-video p {
   font-size: 1rem;
-  margin-bottom: 1.5rem; /* Plus d'espace avant le bouton */
+  margin-bottom: 1.5rem; 
   line-height: 1.6;
 }
-
-/* Le bouton .btn est déjà stylé globalement, il devrait hériter de ces styles.
-   Pas besoin de redéfinir ici sauf si un style spécifique est nécessaire. */
-
-/* Styles for the reversed layout variant */
 .section-projet-en-avant--reversed .video-overlay {
-  left: auto; /* Remove the original left positioning */
-  right: 200px; /* Position on the right */
+  left: auto; 
+  right: 200px; 
 }
-
 .section-projet-en-avant--reversed .text-beside-video {
-  margin-left: 150px; /* Adjust margin to position text on the left */
-  margin-right: 650px; /* Add margin on the right to make space for the video */
-  /* The negative margin-top: -190px; should still apply if the vertical alignment is to be maintained. */
-  /* We might need to adjust padding if the text content feels too close to the edge */
-  padding-left: 1.5rem; /* Reset padding left */
-  padding-right: 8rem; /* Add padding to the right, similar to original left padding for text */
+  margin-left: 150px; 
+  margin-right: 650px; 
+  padding-left: 1.5rem; 
+  padding-right: 8rem; 
 }
-
-
-@media (max-width: 1200px) { /* Un breakpoint intermédiaire pour ajuster le texte à côté de la vidéo */
+@media (max-width: 1200px) { 
   .text-beside-video {
-    margin-left: 550px; /* Réduire la marge quand l'écran se rétrécit un peu */
-    margin-top: -130px; /* Ajusté proportionnellement, de -100px */
+    margin-left: 550px; 
+    margin-top: -130px; 
   }
   .video-overlay {
-    left: 50px; /* Réduire un peu le décalage gauche de la vidéo */
-    width: 500px; /* Réduire un peu la largeur de la vidéo */
+    left: 50px; 
+    width: 500px; 
   }
 }
-
-@media (max-width: 992px) { /* Un autre breakpoint pour une meilleure transition vers le mobile */
+@media (max-width: 992px) { 
   .text-beside-video {
-    margin-left: 0; /* Le texte prend toute la largeur disponible sous l'image/vidéo */
-    margin-top: 2rem; /* Espacement standard après la vidéo */
-    text-align: center; /* Centrer le texte */
+    margin-left: 0; 
+    margin-top: 2rem; 
+    text-align: center; 
   }
   .overlay-container {
-    margin-bottom: 2rem; /* Réduire la marge si la vidéo n'est plus en translateY(50%) */
+    margin-bottom: 2rem; 
   }
   .video-overlay {
-    position: relative; /* Change de absolute à relative pour s'empiler normalement */
-    transform: translateY(0); /* Annuler le décalage vertical */
-    width: 90%; /* Prendre une plus grande partie de la largeur */
-    max-width: 550px; /* Garder une largeur max raisonnable */
-    margin: 1rem auto 0; /* Centrer la vidéo */
-    left: auto; /* Annuler le décalage gauche */
+    position: relative; 
+    transform: translateY(0); 
+    width: 90%; 
+    max-width: 550px; 
+    margin: 1rem auto 0; 
+    left: auto; 
   }
   .section-projet-en-avant {
-    padding: 1rem; /* S'assurer que le padding est cohérent */
+    padding: 1rem; 
   }
-  .overlay-container { /* Define stacking context for mobile */
+  .overlay-container { 
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem; /* Adjust spacing */
+    margin-bottom: 1rem; 
   }
-  .video-overlay { /* Stacking video for mobile */
+  .video-overlay { 
     position: relative;
-    transform: translateY(0); /* Or transform: none; */
+    transform: translateY(0); 
     width: 90%; 
     max-width: 550px; 
     margin: 1rem auto 0; 
     left: auto;
     bottom: auto;
   }
-  .text-beside-video { /* Stacking text for mobile */
+  .text-beside-video { 
     margin: 2rem auto 0;
-    position: static; /* Ensure normal flow */
+    position: static; 
     text-align: center;
-    width: 95%; /* Take most of the width */
-    padding-left: 1.5rem; /* Reset padding from desktop version */
-    padding-right: 1.5rem; /* Reset padding from desktop version */
+    width: 95%; 
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem; 
   }
-  /* For reversed section, ensure text stacking is also centered */
   .section-projet-en-avant--reversed .text-beside-video {
-    margin: 2rem auto 0; /* Consistent stacking margin */
+    margin: 2rem auto 0; 
   }
-  /* Ensure reversed video overlay is also centered on mobile */
   .section-projet-en-avant--reversed .video-overlay {
-    right: auto; /* Override desktop positioning */
-    left: auto; /* Ensure margin auto can center it */
-    /* It already inherits margin: 1rem auto 0; from .video-overlay in this media query */
+    right: auto; 
+    left: auto; 
   }
 }
-
-
 @media (max-width: 768px) {
-  /* Specific adjustments for 768px and below, if different from 992px */
-
-  .hero-section { /* Ensure padding-top is adjusted if navbar height changes on mobile */
-    /* Navbar height on mobile will be smaller with hamburger menu */
-    /* Approx: navbar padding (1rem*2) + theme button height + hamburger height (if on same line) */
-    /* Let's estimate navbar height around 60-70px when menu is collapsed */
-    padding-top: 70px; /* Adjusted for collapsed hamburger menu navbar */
+  .hero-section { 
+    padding-top: 70px; 
   }
-
-  /* Responsive adjustments for navbar UL at 768px and below */
   .navbar ul {
-    flex-direction: row; /* Hamburger and theme toggle on the same line */
-    justify-content: space-between; /* Pushes hamburger left, theme toggle right */
+    flex-direction: row; 
+    justify-content: space-between; 
     align-items: center;
-    padding: 0 1rem; /* Standard padding */
-    position: relative; /* For positioning the expanded menu */
+    padding: 0 1rem; 
+    position: relative; 
   }
-
   .hamburger-menu {
-    display: flex; /* Show hamburger menu on mobile */
-    order: 1; /* Hamburger on the left */
+    display: flex; 
+    order: 1; 
   }
-
   .navbar .theme-toggle-item {
-    margin-left: 0; /* Reset margin */
-    order: 2; /* Theme toggle button on the right */
-    /* width, display, justify-content, padding-bottom are removed as it's now inline */
+    margin-left: 0; 
+    order: 2; 
   }
-  
-  /* Hide nav links by default on mobile */
-  /* Increased specificity to override desktop .navbar ul .nav-links-group */
   .navbar ul .nav-links-group {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 100%; /* Position below the navbar */
+    top: 100%; 
     left: 0;
     width: 100%;
-    background-color: var(--navbar-bg-color-dark); /* Match navbar background */
+    background-color: var(--navbar-bg-color-dark); 
     padding: 1rem 0;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 999; /* Below navbar (1000) but above other content */
+    z-index: 999; 
     border-top: 1px solid var(--navbar-outline-color-dark);
   }
-  .light-theme .navbar ul .nav-links-group { /* Increased specificity */
+  .light-theme .navbar ul .nav-links-group { 
     background-color: var(--navbar-bg-color-light);
     border-top: 1px solid var(--navbar-outline-color-light);
   }
-
-  /* Styles for when the mobile menu is open */
-  /* Increased specificity */
   .navbar ul .nav-links-group.mobile-menu-open {
     display: flex;
   }
-
-  .navbar ul .nav-links-group li { /* Specificity increased for consistency */
+  .navbar ul .nav-links-group li { 
     width: 100%;
     text-align: center;
   }
-
-  .navbar ul .nav-links-group li a { /* Specificity increased for consistency */
+  .navbar ul .nav-links-group li a { 
     display: block;
-    padding: 1rem; /* Generous padding for touch targets */
-    color: white; /* Ensure text color is white for dark navbar */
+    padding: 1rem; 
+    color: white; 
     transition: background-color 0.2s ease;
   }
-  .light-theme .navbar ul .nav-links-group li a { /* Specificity increased */
+  .light-theme .navbar ul .nav-links-group li a { 
     color: var(--navbar-text-color-light);
   }
-
-  .navbar ul .nav-links-group li a:hover { /* Specificity increased */
+  .navbar ul .nav-links-group li a:hover { 
     background-color: var(--accent-color);
-    color: var(--body-bg-color); /* Text color on hover for dark theme */
+    color: var(--body-bg-color); 
   }
-  
-  .light-theme .navbar ul .nav-links-group li a:hover { /* Specificity increased */
-    color: var(--navbar-bg-color-light); /* Text color on hover for light theme */
+  .light-theme .navbar ul .nav-links-group li a:hover { 
+    color: var(--navbar-bg-color-light); 
   }
-
-
-  /* Hamburger animation to "X" when menu is open */
-  /* This assumes a class 'open' is added to .hamburger-menu by JS */
   .hamburger-menu.open .hamburger-menu__line:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
@@ -807,81 +675,51 @@ iframe {
   .hamburger-menu.open .hamburger-menu__line:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -6px);
   }
-
-  /* .video-overlay, .text-beside-video, .overlay-container styles
-     are now primarily handled by the max-width: 992px breakpoint.
-     Only add overrides here if further changes are needed for 768px vs 992px.
-     For example, if text or video width needs to be even wider: */
   .video-overlay {
-    width: 95%; /* Example: Make video slightly wider than at 992px */
+    width: 95%; 
   }
-  /* .text-beside-video already has width: 95% from 992px if not overridden */
-
-
   .carousel-container {
-    /* Removed flex-direction: column; to keep carousel horizontal */
-    /* Arrows will now naturally stay on sides or wrap if space is insufficient */
-    padding: 1rem 0.5rem; /* Adjust padding for smaller screens */
+    padding: 1rem 0.5rem; 
   }
   .carousel-wrapper {
-    /* width is set by JS based on cardWidth and currentNumVisibleCards */
-    /* order: 1; */ /* No longer needed if not using flex-direction: column */
-    margin: 0 auto; /* Center the wrapper if arrows are outside */
+    margin: 0 auto; 
   }
   .arrow {
-    /* order: 2; */ /* No longer needed */
-    margin: 0 5px; /* Reduce arrow margin slightly for smaller screens */
-    font-size: 1.5rem; /* Slightly smaller arrows */
+    margin: 0 5px; 
+    font-size: 1.5rem; 
     padding: 0.5rem;
   }
   .card {
-    /* On smaller screens, card width should be relative to viewport or a large percentage of the wrapper */
-    width: 90vw; /* Card takes 90% of viewport width */
-    max-width: 400px; /* But not more than 400px to avoid being too wide on medium-small screens */
-    height: auto; /* Height adjusts to content */
-    margin: 0 10px; /* Keep some horizontal margin between cards if ever multiple are shown by mistake or for cloning */
+    width: 90vw; 
+    max-width: 400px; 
+    height: auto; 
+    margin: 0 10px; 
   }
-  /*
-  .controls { // This rule is orphaned as .controls div was removed from HTML
-    position: static;
-    margin-top: 1rem;
-    width: 100%;
-    justify-content: center;
-    gap: 2rem;
-  }
-  */
 }
-
-my-journey { /* This ID is now on the wrapper div for the timeline */
-  scroll-margin-top: -1rem; /* Standard offset, applied to the wrapper */
+my-journey { 
+  scroll-margin-top: -1rem; 
 }
 .timeline {
-  /* Default to dark theme variables */
   --timeline-background: #0E1528;
   --timeline-accent: #efc631;
   --timeline-text: white;
   --timeline-line: #c4c4c4;
-
   background: var(--timeline-background);
   color: var(--timeline-text);
   padding: 30px;
-  position: relative; /* Ensure the timeline itself is a positioning context */
-  overflow: hidden; /* Contain the wave background if it exceeds height */
+  position: relative; 
+  overflow: hidden; 
 }
-
-/* Light theme overrides for timeline */
 .light-theme .timeline {
-  --timeline-background: var(--navbar-bg-color-light  ); /* Light blue background */
+  --timeline-background: var(--navbar-bg-color-light  ); 
   --timeline-accent: #efc631;
   --timeline-text: white;
   --timeline-line: var(--timeline-line-light);
 }
-
 .timeline h1 {
   border-left: 4px solid var(--timeline-accent);
   padding: 10px 12px 10px;
 }
-
 .timeline ul {
   list-style: none;
   position: relative;
@@ -893,7 +731,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
-
 .timeline ul:before {
   content: '';
   position: absolute;
@@ -902,7 +739,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   border-top: 3px solid var(--timeline-text);
   left: 11px;
 }
-
 .timeline ul:after {
   content: "\f04b";
   font-family: 'Font Awesome 5 Free';
@@ -915,7 +751,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   font-size: 25px;
   color: var(--timeline-accent);
 }
-
 .timeline ul li {
   --circle-size: 15px;
   grid-column: var(--index);
@@ -923,7 +758,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   position: relative;
   height: calc(100% + var(--circle-size) * 0.5);
 }
-
 .timeline ul li:after {
   content: '';
   width: var(--circle-size);
@@ -936,12 +770,10 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   transform: translateX(-50%);
   z-index: 1;
 }
-
 .timeline ul li:nth-child(even):after {
   bottom: auto;
   top: 0;
 }
-
 .timeline ul li:nth-child(even) {
   grid-row: 2;
   display: flex;
@@ -950,7 +782,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   padding-top: 40px;
   margin-top: calc(var(--circle-size) * -0.45);
 }
-
 .timeline ul li:nth-child(odd) p:after,
 .timeline ul li:nth-child(even) h3:before {
   content: "";
@@ -961,16 +792,13 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   position: absolute;
   left: calc(var(--circle-size) - 1px);
 }
-
 .timeline ul li:nth-child(even) h3:before {
   bottom: 100%;
   margin-bottom: 5px;
 }
-
 .timeline ul li>* {
   padding-left: calc(var(--circle-size) * 0.4);
 }
-
 .timeline ul li h3 {
   color: var(--timeline-accent);
   margin: 0;
@@ -978,173 +806,134 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   font-size: 1.6em;
   position: relative;
 }
-
 .timeline ul li p {
   margin: 0;
   position: relative;
   text-wrap: pretty;
 }
-
-/* Responsive Timeline Styles for Mobile */
 @media (max-width: 568px) {
   .timeline ul {
     display: flex;
     flex-direction: column;
-    position: relative; /* For positioning the vertical line */
-    /* Remove grid properties that are not applicable to flex layout */
+    position: relative; 
     grid-template-columns: unset;
     grid-template-rows: unset;
     grid-column-gap: unset;
     grid-row-gap: unset;
-    padding-left: 20px; /* Give some space for the timeline elements */
-    /* Ensure the main horizontal line from desktop is hidden */
+    padding-left: 20px; 
     border-top: none; 
   }
-
-  /* The main vertical line for mobile timeline */
   .timeline ul:before {
     content: '';
     position: absolute;
-    left: calc(var(--circle-size) / 2 + 10px); /* Position based on circle size and desired offset */
-    top: 20px; /* Start below the first item's potential top margin/padding */
-    bottom: 20px; /* End above the last item's potential bottom margin/padding */
-    width: 3px; /* This was duplicated, ensuring it's set once */
+    left: calc(var(--circle-size) / 2 + 10px); 
+    top: 20px; 
+    bottom: 20px; 
+    width: 3px; 
     background: var(--timeline-line);
-    display: block; /* Ensure it's displayed */
-    z-index: 0; /* Behind list items' content and circles */
-    border-top: none; /* Explicitly remove border if inherited */
-    /* left: 11px; /* This was from desktop, ensure mobile positioning is correct */
+    display: block; 
+    z-index: 0; 
+    border-top: none; 
   }
-
-  .timeline ul:after { /* The end marker (play icon) */
-    display: none; /* Hide for vertical mobile layout */
+  .timeline ul:after { 
+    display: none; 
   }
-
   .timeline ul li {
-    /* Remove grid-specific properties */
     grid-column: unset !important; 
     grid-row: unset !important;    
-    height: auto; /* Content dictates height */
-    padding-bottom: 25px; /* Space between items */
+    height: auto; 
+    padding-bottom: 25px; 
     padding-top: 5px;
-    padding-left: calc(var(--circle-size) + 20px); /* Space for the line and circle relative to li */
+    padding-left: calc(var(--circle-size) + 20px); 
     position: relative;
-    margin-top: 0; /* Reset any desktop margins */
-    display: block; /* Ensure li is treated as a block for proper layout in flex column */
-    overflow: visible; /* Ensure content like images isn't clipped if slightly larger */
-    display: flex; /* Make li a flex container */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
+    margin-top: 0; 
+    display: block; 
+    overflow: visible; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
   }
-
-  /* Reposition the circle for each list item onto the new vertical line */
   .timeline ul li:after {
     content: '';
     width: var(--circle-size);
     height: var(--circle-size);
-    background: var(--timeline-accent); /* Use accent color for better visibility */
-    border: 2px solid var(--timeline-background); /* Optional: make it pop from the line */
+    background: var(--timeline-accent); 
+    border: 2px solid var(--timeline-background); 
     position: absolute;
     left: calc(-1 * (var(--circle-size) / 2 + 10px) ); 
-    top: 15px; /* Adjust to vertically align with text or icon as preferred */
-    transform: none; /* Reset transform from desktop view */
-    bottom: auto; /* Reset from desktop view */
-    z-index: 1; /* Above the main vertical line */
-    border-radius: 50%; /* Ensure it's a circle */
+    top: 15px; 
+    transform: none; 
+    bottom: auto; 
+    z-index: 1; 
+    border-radius: 50%; 
   }
-  
-  .timeline ul li:nth-child(even) {
-    /* Reset styles specific to the even items in grid layout */
-    padding-top: 5px; /* Consistent padding for all items */
-    margin-top: 0; /* Reset margin for all items */
-    /* display: block; already set on all li */
-    /* flex-direction, align-items were for the li itself being a flex container, not needed now */
+  .timeline ul li:nth-child(even) {  
+    padding-top: 5px; 
+    margin-top: 0; 
     flex-direction: unset; 
-    align-items: unset;
-    /* padding-top: 40px; /* Reset from desktop even item */
+    align-items: unset; 
   }
-  
-  /* Hide the old vertical dashed lines from desktop view */
   .timeline ul li:nth-child(odd) p:after,
   .timeline ul li:nth-child(even) h3:before {
     display: none;
   }
-
   .timeline ul li > * {
-    /* Reset padding if it was based on old circle position */
     padding-left: 0; 
   }
-
   .timeline ul li h3 {
     font-size: 1.2em; 
     margin-bottom: 8px;
   }
-
   .timeline ul li p {
     font-size: 0.85em; 
     line-height: 1.5;
   }
-
-  /* Ensure timeline image wrapper and icon are styled for mobile within the media query */
-  .timeline .timeline-image-wrapper { /* Specificity to override desktop if needed */
+  .timeline .timeline-image-wrapper { 
     margin-top: 8px;
-    text-align: left; /* Align images to the left in vertical layout */
+    text-align: left; 
     margin-bottom: 8px;
   }
-
-  .timeline .timeline-icon { /* Specificity to override desktop if needed */
+  .timeline .timeline-icon { 
     width: 60px; 
     height: 60px;
     object-fit: contain;
   }
-
-  /* Explicitly order the children of li for mobile */
   .timeline ul li h3 {
-    order: 1; /* Date first */
-    text-align: center; /* Center the date text */
-    margin-bottom: 8px; /* Space below the date */
-    width: 100%; /* Ensure full width to prevent side-by-side flow */
+    order: 1; 
+    text-align: center; 
+    margin-bottom: 8px; 
+    width: 100%; 
   }
-  .timeline ul li p:first-of-type { /* Targets the description paragraph */
-    order: 2; /* Description second */
-    text-align: center; /* Center description text */
-    margin-bottom: 10px; /* Add some space below description */
-    width: 100%; /* Ensure full width */
+  .timeline ul li p:first-of-type { 
+    order: 2; 
+    text-align: center; 
+    margin-bottom: 10px; 
+    width: 100%; 
   }
   .timeline ul li .timeline-image-wrapper {
-    order: 3; /* Icon third */
-    margin-bottom: 10px; /* Add some space below icon */
+    order: 3; 
+    margin-bottom: 10px; 
   }
-  /* Handle the potentially empty second 'p' tag if it exists */
   .timeline ul li p:nth-of-type(2) {
-    order: 4; /* Empty paragraph last */
-    display: none; /* Hide it if it's not needed and empty */
+    order: 4; 
+    display: none; 
   }
 }
-/* END of Responsive Timeline Styles for Mobile */
-
-/* Styles for timeline-image-wrapper and timeline-icon OUTSIDE the media query (Desktop defaults) */
-/* These are general styles and should apply unless overridden by media query */
 .timeline-image-wrapper {
   margin-top: 10px;
   text-align: center;
 }
-
 .timeline-icon {
   width: 75px;
   height: 75px;
   object-fit: contain;
 }
-
-/* Icon Gallery Section Styling */
-/* Container for the icon gallery, includes a decorative wavy background. */
 .icon-gallery {
-  position: relative; /* For positioning the wavy background */
-  padding: 1rem 1rem; /* Vertical and horizontal padding */
-  background-color: var(--body-bg-color); /* Fallback, but wavy bg should cover */
-  overflow: hidden; /* To contain the wavy shape if it extends outside */
+  position: relative; 
+  padding: 1rem 1rem; 
+  background-color: var(--body-bg-color); 
+  overflow: hidden; 
 }
-
 .gallery_wavy_background {
   position: absolute;
   top: 0;
@@ -1155,53 +944,42 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   background-position: bottom center;
   background-size: cover;
   z-index: 0;
-  opacity: 0.7; /* Adjust opacity as needed */
+  opacity: 0.7; 
 }
-
-/* Theme-dependent wavy backgrounds */
-/* Assuming Wavy_01_001.svg is dark and Wavy_24_V2.svg is light or adaptable */
-/* In a real scenario, you might need to adjust SVG colors or use different files */
 .dark-theme .gallery_wavy_background {
   background-color: var(--body-bg-color); 
 }
-
 .light-theme .gallery_wavy_background {
-  background-color: var(--body-bg-color);  /* Light background for light theme */
+  background-color: var(--body-bg-color);  
 }
-
-/* Wavy background for the entire timeline section top */
 .timeline_section_wavy_background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 150px; /* Adjust height as needed for the transition effect */
+  height: 150px; 
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-  transform: scaleY(-1); /* Flip vertically for reverse symmetry */
-  z-index: 0; /* Below timeline content */
-  pointer-events: none; /* Ensure it doesn't interfere with mouse events */
+  transform: scaleY(-1); 
+  z-index: 0; 
+  pointer-events: none; 
 }
-
 .dark-theme .timeline_section_wavy_background {
   background-image: url('./index_files/Wavy_24_V2.svg');
   opacity: 0.8;
 }
-
 .light-theme .timeline_section_wavy_background {
   background-image: url('./index_files/Wavy_24_V2.svg');
   opacity: 0.7;
 }
 .icon-gallery .o_container_small {
-  position: relative; /* To ensure content is above the background */
+  position: relative; 
   z-index: 1;
-  max-width: 1200px; /* Or your preferred container width */
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 1rem;
 }
-
-/* Title for the icon gallery. */
 .icon-gallery-title {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif;
@@ -1209,17 +987,14 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   color: var(--header-text-color);
   margin-bottom: 2.5rem;
 }
-
-/* Grid container for the icons. Number of columns adapts to screen size. */
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Six columns */
-  grid-template-rows: auto auto; /* Two rows, height determined by content */
-  gap: 1.5rem; /* Space between icons */
-  justify-items: center; /* Center items horizontally in their grid cell */
-  align-items: center; /* Center items vertically in their grid cell */
+  grid-template-columns: repeat(6, 1fr); 
+  grid-template-rows: auto auto; 
+  gap: 1.5rem; 
+  justify-items: center; 
+  align-items: center; 
 }
-
 .icon-item {
   display: flex;
   justify-content: center;
@@ -1227,27 +1002,22 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   padding: 0.5rem;
   transition: transform 0.3s ease-in-out;
 }
-
 .icon-item img {
-  max-width: 80px; /* Adjust max-width as needed for icon size */
-  max-height: 80px; /* Adjust max-height as needed */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 80px; 
+  max-height: 80px; 
+  height: auto; 
   display: block;
 }
-
 .icon-item:hover {
-  transform: scale(1.15); /* Enlarge icon on hover */
+  transform: scale(1.15); 
 }
-
-/* Responsive adjustments for the icon gallery */
-/* Adjusts icon grid and title for medium screens. */
 @media (max-width: 992px) {
   .icon-gallery-title {
     font-size: 1.8rem;
     margin-bottom: 2rem;
   }
   .icon-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 1rem;
   }
   .icon-item img {
@@ -1255,8 +1025,6 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
     max-height: 70px;
   }
 }
-
-/* Adjusts icon grid for small screens (tablets). */
 @media (max-width: 768px) {
   .icon-gallery {
     padding: 3rem 1rem;
@@ -1266,18 +1034,16 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
     margin-bottom: 1.5rem;
   }
   .icon-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+    grid-template-columns: repeat(3, 1fr); 
   }
   .icon-item img {
     max-width: 60px;
     max-height: 60px;
   }
 }
-
-/* Adjusts icon grid for very small screens (phones). */
 @media (max-width: 480px) {
   .icon-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 0.75rem;
   }
   .icon-item img {
@@ -1285,124 +1051,84 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
     max-height: 50px;
   }
 }
-
-/* Smooth transition with adjacent sections */
-/* The timeline section has padding: 30px.
-   The icon-gallery has padding: 4rem 1rem.
-   This should provide decent spacing. If more specific transitions are needed,
-   we might need to use negative margins with the wavy shape or ::before/::after pseudo-elements.
-   For now, the wavy background itself should help soften the edge.
-*/
-
-/* Ensure body background variables are set for the gallery if not already covered */
 .dark-theme .icon-gallery {
-    /* background-color: var(--body-bg-color); */ /* Already set by .icon-gallery */
 }
-
 .light-theme .icon-gallery {
-    /* background-color: var(--body-bg-color); */ /* Already set by .icon-gallery */
 }
-
-/* Modal Styles */
-/* General styles for the modal, which is used to display project details.
-   To customize modal appearance, edit the variables and rules below.
-   Responsiveness is handled by media queries at the end of this section. */
-
-/* General Modal Overlay: Covers the screen, initially hidden. */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-  display: none; /* Initially hidden */
+  background-color: rgba(0, 0, 0, 0.7); 
+  display: none; 
   align-items: center;
   justify-content: center;
-  z-index: 2000; /* Ensure it's above other content like navbar (z-index 1000) */
+  z-index: 2000; 
   opacity: 0;
-  transition: opacity 0.3s ease-out; /* Animation for fade-in/out */
+  transition: opacity 0.3s ease-out; 
 }
-
 .modal-overlay.active {
-  display: flex; /* Use flex for centering the card */
+  display: flex; 
   opacity: 1;
 }
-
-/* Modal Card: The main content box within the overlay. */
 .modal-card {
-  background-color: var(--card-bg-color); /* Default, overridden by dark theme */
-  color: var(--card-text-color); /* Default, overridden by dark theme */
+  background-color: var(--card-bg-color); 
+  color: var(--card-text-color); 
   padding: 2rem;
-  border-radius: 1rem; /* Rounded corners */
-  box-shadow: 0 10px 30px var(--card-shadow-color); /* Subtle shadow */
+  border-radius: 1rem; 
+  box-shadow: 0 10px 30px var(--card-shadow-color); 
   width: 90%;
-  max-width: 1200px; /* Increased max-width for larger modal */
-  max-height: 90vh; /* Max height to prevent overflow on smaller screens */
-  overflow-y: auto; /* Allow scrolling within the card if content is too tall */
+  max-width: 1200px; 
+  max-height: 90vh; 
+  overflow-y: auto; 
   position: relative;
-  transform: scale(0.95) translateY(20px); /* Initial state for animation */
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Animation for slide/zoom */
-  opacity: 0; /* Start hidden for animation */
+  transform: scale(0.95) translateY(20px); 
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out; 
+  opacity: 0; 
 }
-
 .modal-overlay.active .modal-card {
-  transform: scale(1) translateY(0); /* Final state for animation */
+  transform: scale(1) translateY(0); 
   opacity: 1;
 }
-
-/* Modal Close Button: Positioned at the top-right of the card */
 .modal-close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 2rem;
-  color: var(--card-text-color); /* Adapts to light/dark theme */
+  color: var(--card-text-color); 
   cursor: pointer;
   line-height: 1;
   padding: 0.25rem 0.5rem;
   transition: color 0.2s ease;
 }
-
 .modal-close-btn:hover {
-  color: var(--accent-color); /* Use accent color on hover */
+  color: var(--accent-color); 
 }
-
-/* Wrapper for modal content, arranges left (video/gallery) and right (text) sections. */
 .modal-content-wrapper {
   display: flex;
-  gap: 2rem; /* Space between left (video/gallery) and right (text) sections */
+  gap: 2rem; 
 }
-
-/* Left side of the modal: Video and Gallery */
 .modal-left {
-  flex: 1; /* Takes up available space, good for video aspect ratio */
-  min-width: 300px; /* Minimum width to prevent over-squishing */
+  flex: 1; 
+  min-width: 300px; 
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
-/* Video Container: For responsive YouTube embed */
-/* Style for the container that holds both the video and the hover image */
 .modal-video-hover-container {
-  position: relative; /* Establishes a positioning context for the absolute positioned hover image */
-  /* This container will inherently take the size of its content, 
-     which is the modal-video-container by default.
-     The hover image will be positioned over this. */
+  position: relative; 
 }
-
 .modal-video-container {
-  position: relative; /* This might not be strictly necessary if .modal-video-hover-container is relative, but doesn't harm */
-  padding-bottom: 56.25%; /* 16:9 aspect ratio. This is key for maintaining height. */
+  position: relative; 
+  padding-bottom: 56.25%; 
   height: 0;
   overflow: hidden;
-  border-radius: 0.5rem; /* Rounded corners for the video */
+  border-radius: 0.5rem; 
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: opacity 0.3s ease-in-out; /* Added for smooth video fade */
-  /* pointer-events: auto; /* Default, will be toggled by JS */
+  transition: opacity 0.3s ease-in-out; 
 }
-
 .modal-video-container iframe {
   position: absolute;
   top: 0;
@@ -1411,258 +1137,163 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   height: 100%;
   border: none;
 }
-
-/* Styles for the hover image that replaces the video */
 .modal-hover-image-style {
-  position: absolute; /* Positioned relative to modal-video-hover-container */
+  position: absolute; 
   top: 0;
   left: 0;
-  width: 100%; /* Ensure the hover image covers the same area as the video */
-  height: 100%; /* Ensure the hover image covers the same area as the video */
-  object-fit: contain; /* Displays the entire image, letterboxed if aspect ratios differ */
-  background-color: #000; /* Optional: background for letterboxing if image is transparent or aspect ratio differs */
-  display: none; /* Initially hide the hover image. JS will change to 'block' when active. */
-  opacity: 0; /* Initially transparent */
-  pointer-events: none; /* Initially not interactive */
-  transition: opacity 0.3s ease-in-out; /* Smooth transition for appearing/disappearing */
-  z-index: 10; /* Ensure it's above the video iframe */
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+  background-color: #000; 
+  display: none; 
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.3s ease-in-out; 
+  z-index: 10; 
 }
-
-/* Image Gallery: Small thumbnails below the video */
 .modal-gallery {
   display: flex;
-  gap: 0.5rem; /* Space between gallery images */
-  flex-wrap: wrap; /* Allow images to wrap if many */
+  gap: 0.5rem; 
+  flex-wrap: wrap; 
 }
-
 .modal-gallery-img {
-  width: 100px; /* Thumbnail size */
-  height: 75px;  /* Thumbnail size */
-  object-fit: cover; /* Crop images to fit, maintaining aspect ratio */
-  border-radius: 0.25rem; /* Slightly rounded corners for thumbnails */
+  width: 100px; 
+  height: 75px;  
+  object-fit: cover; 
+  border-radius: 0.25rem; 
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 2px solid transparent;
 }
-
 .modal-gallery-img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 0 2px var(--accent-color); /* Highlight with accent color on hover */
+  box-shadow: 0 0 0 2px var(--accent-color); 
 }
-
-/* Right side of the modal: Title, Description, Badges, Button */
 .modal-right {
-  flex: 1; /* Takes up available space */
-  min-width: 300px; /* Minimum width */
+  flex: 1; 
+  min-width: 300px; 
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Space between elements in the right column */
+  gap: 1rem; 
 }
-
-/* Modal Title: Uses ADAM.CG PRO font */
 .modal-title {
-  font-family: 'AdamCGPro', sans-serif; /* Ensure this font is loaded */
-  font-size: 2rem; /* Title size */
-  color: var(--header-text-color); /* Adapts, but typically distinct */
+  font-family: 'AdamCGPro', sans-serif; 
+  font-size: 2rem; 
+  color: var(--header-text-color); 
   margin: 0 0 0.5rem 0;
 }
-/* Specific theme adjustments for modal title if needed */
 .light-theme .modal-title {
-  color: #333; /* Darker title in light mode for readability on white card */
+  color: #333; 
 }
 .dark-theme .modal-title {
-  color: var(--modal-title-text-color-dark); /* Use variable for light title in dark mode */
+  color: var(--modal-title-text-color-dark); 
 }
-
-/*
-  Title and Badges are now in .modal-right.
-  .modal-right is display: flex; flex-direction: column;
-  So, children will stack vertically.
-  We need to ensure .modal-title and .modal-badges have appropriate styling
-  for being at the top of the .modal-right column.
-*/
-
-/* Remove or comment out old styles for these elements within .modal-left */
-/*
-.modal-left .modal-title {
-  margin-bottom: 0.5rem;
-  text-align: left;
-}
-
-.modal-left .modal-badges {
-  margin-bottom: 1rem;
-  justify-content: flex-start;
-}
-*/
-
-/* Styles for .modal-title and .modal-badges now generally apply,
-   but we can ensure their specific context in .modal-right is handled if needed.
-   The global .modal-title and .modal-badges styles should mostly cover it.
-   Let's ensure alignment and spacing within .modal-right. */
-
 .modal-right .modal-title {
-  text-align: left; /* Default, but good to be explicit */
-  margin-bottom: 0.75rem; /* Space between title and badges */
+  text-align: left; 
+  margin-bottom: 0.75rem; 
 }
-
 .modal-right .modal-badges {
-  justify-content: flex-start; /* Align badges to the left if they wrap */
-  margin-bottom: -1.5rem; /* Space between badges and description */
+  justify-content: flex-start; 
+  margin-bottom: -1.5rem; 
 }
-
-/* Modal Description: Text styling */
 .modal-description {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 0.5rem;
 }
-
 .modal-description strong {
-  font-weight: bold; /* Ensure strong tag is bold */
+  font-weight: bold; 
 }
-
 .modal-description a {
-  color: var(--accent-color); /* Links use accent color */
+  color: var(--accent-color); 
   text-decoration: none;
 }
-
 .modal-description a:hover {
   text-decoration: underline;
 }
-
 .modal-description .highlight {
-  color: #007AFF; /* Blue highlight color, adjust as needed */
-  /* In light theme, this is --accent-color. In dark theme, it's a distinct blue. */
+  color: #007AFF; 
 }
 .dark-theme .modal-description .highlight {
-  color: #3498db; /* A slightly brighter blue for dark backgrounds if needed */
+  color: #3498db; 
 }
-
-/* General text highlight style */
 .text-highlight {
-  background-color: #efc634; /* Using the existing accent color for dark theme */
-  padding: 0.2em 0.4em; /* Add some padding around the highlighted text */
-  border-radius: 0.2em; /* Slightly rounded corners for the highlight */
-  color: #0b1b3f; /* Ensuring text is dark enough for yellow background */
+  background-color: #efc634; 
+  padding: 0.2em 0.4em; 
+  border-radius: 0.2em; 
+  color: #0b1b3f; 
 }
-
 .light-theme .text-highlight {
-  background-color: #007AFF; /* Using the existing accent color for light theme */
-  color: #FFFFFF; /* White text for blue background */
+  background-color: #007AFF; 
+  color: #FFFFFF; 
 }
-
-
-/* Modal Badges: Styling for informational badges */
 .modal-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem; /* Space between badges */
+  gap: 0.75rem; 
   margin-bottom: 0.5rem;
 }
-/* .badge class is already styled globally, so it should apply here.
-   If specific modal badge styling is needed, uncomment and modify:
-.modal-badges .badge {
-  background-color: var(--badge-bg-color);
-  color: var(--badge-text-color);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-}
-*/
-
-/* Modal Play Button: Attention-grabbing style */
 .modal-play-btn {
-  /* .btn class is already styled globally. We can add more specific styles here if needed. */
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: var(--accent-color); /* Make it stand out with accent color */
-  color: var(--body-bg-color); /* Text color that contrasts with accent */
-  /* Ensure high contrast for text on accent background */
+  background-color: var(--accent-color); 
+  color: var(--body-bg-color); 
   font-weight: bold;
   border: none;
-  border-radius: 999px; /* Pill shape */
+  border-radius: 999px; 
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  align-self: flex-start; /* Align to the start of the flex container (left) */
+  align-self: flex-start; 
 }
 .light-theme .modal-play-btn {
-    color: #FFFFFF; /* White text on blue accent for light theme */
+    color: #FFFFFF; 
 }
 .dark-theme .modal-play-btn {
-    color: #0b1b3f; /* Dark text on yellow accent for dark theme */
+    color: #0b1b3f; 
 }
-
 .modal-play-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-
-/* Dark Mode adjustments for Modal Card */
 .dark-theme .modal-card {
   background-color: var(--modal-card-bg-color-dark);
   color: var(--modal-card-text-color-dark);
 }
-
-/* Body class when modal is open to prevent background scrolling */
 .modal-open {
   overflow: hidden;
 }
-
-/* Responsive adjustments for the modal at 768px and below. */
 @media (max-width: 768px) {
   .modal-card {
     padding: 1.5rem;
     width: 95%;
     max-height: 95vh;
   }
-
   .modal-content-wrapper {
-    flex-direction: column; /* Stack left and right sections on mobile */
+    flex-direction: column; 
     gap: 1.5rem;
   }
-
   .modal-left, .modal-right {
-    min-width: auto; /* Remove min-width on mobile */
+    min-width: auto; 
     width: 100%;
   }
-
   .modal-title {
     font-size: 1.5rem;
   }
-
   .modal-description {
     font-size: 0.9rem;
   }
-
   .modal-gallery-img {
-    width: 80px; /* Slightly smaller thumbnails on mobile */
+    width: 80px; 
     height: 60px;
   }
-
   .modal-play-btn {
-    align-self: center; /* Center button on mobile */
+    align-self: center; 
     width: 100%;
     max-width: 300px;
   }
 }
-
-
-/* Lightbox Styles */
-/* Styles for the image lightbox, allowing users to view gallery images larger.
-   Activated from the modal gallery. JS handles image loading and navigation.
-   Responsive rules are at the end of this section.
-  Comments for customization:
-    - Overlay background: --lightbox-overlay-bg
-    - Fade-in animation: .lightbox.active, .lightbox-image, .lightbox-caption
-    - Arrow/Close icon colors (dark/light): .lightbox-nav, .lightbox-close-btn (and their :hover states)
-    - Image sizing: .lightbox-image (max-width, max-height)
-    - Caption styling: .lightbox-caption
-*/
-
-/* Root variables specific to Lightbox theming. */
 :root {
-  /* ... other root variables ... */
   --lightbox-overlay-bg: rgba(0, 0, 0, 0.85);
   --lightbox-controls-color-dark: #f1f1f1;
   --lightbox-controls-hover-bg-dark: rgba(255, 255, 255, 0.2);
@@ -1671,19 +1302,14 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   --lightbox-caption-text-color: #f1f1f1;
   --lightbox-image-shadow: 0 5px 20px rgba(0,0,0,0.7);
 }
-
 .light-theme {
-  /* ... other light-theme variables ... */
-  --lightbox-controls-color-dark: #333; /* Ensure this is distinct for light theme if needed, currently uses dark var */
-  --lightbox-controls-hover-bg-dark: rgba(0, 0, 0, 0.1); /* Ensure this is distinct for light theme */
+  --lightbox-controls-color-dark: #333; 
+  --lightbox-controls-hover-bg-dark: rgba(0, 0, 0, 0.1); 
   --lightbox-controls-color-light: #333;
   --lightbox-controls-hover-bg-light: rgba(0, 0, 0, 0.1);
-  --lightbox-caption-text-color: #ddd; /* Lighter caption text for light theme's dark overlay */
+  --lightbox-caption-text-color: #ddd; 
   --lightbox-image-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
-
-/* Main lightbox overlay: fixed position, covers screen, initially hidden. */
 .lightbox {
   position: fixed;
   top: 0;
@@ -1691,69 +1317,56 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   width: 100%;
   height: 100%;
   background-color: var(--lightbox-overlay-bg);
-  display: none; /* Initially hidden, shown by JS */
+  display: none; 
   align-items: center;
   justify-content: center;
-  z-index: 2001; /* Above modal overlay */
+  z-index: 2001; 
   opacity: 0;
-  transition: opacity 0.4s ease-in-out; /* Smooth fade-in/out for overlay */
-  -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on mobile */
+  transition: opacity 0.4s ease-in-out; 
+  -webkit-tap-highlight-color: transparent; 
 }
-
 .lightbox.active {
-  display: flex; /* Use flex for centering */
+  display: flex; 
   opacity: 1;
 }
-
-/* Container for the image and caption within the lightbox. */
 .lightbox-content {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 90vw; /* Max width of content area */
-  max-height: 90vh; /* Max height of content area */
+  max-width: 90vw; 
+  max-height: 90vh; 
 }
-
-/* The main image displayed in the lightbox. Handles scaling and transitions. */
 .lightbox-image {
-  max-width: 100%; /* Relative to lightbox-content */
-  max-height: calc(100% - 40px); /* Adjust if caption is taller, leave space for caption */
+  max-width: 100%; 
+  max-height: calc(100% - 40px); 
   object-fit: contain;
-  border-radius: 0.25rem; /* Subtle rounding */
+  border-radius: 0.25rem; 
   box-shadow: var(--lightbox-image-shadow);
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.3s 0.1s ease-out, transform 0.3s 0.1s ease-out; /* Staggered animation after overlay fades in */
-  /* Clicks on image itself should not close lightbox by default, handled by overlay click */
+  transition: opacity 0.3s 0.1s ease-out, transform 0.3s 0.1s ease-out; 
 }
-
 .lightbox.active .lightbox-image {
   opacity: 1;
   transform: scale(1);
 }
-
-/* Caption text displayed below the lightbox image. */
 .lightbox-caption {
   color: var(--lightbox-caption-text-color);
   text-align: center;
-  margin-top: 10px; /* Space between image and caption */
+  margin-top: 10px; 
   padding: 5px 15px;
   font-size: 0.9em;
-  max-width: 70vw; /* Prevent caption from being too wide */
+  max-width: 70vw; 
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.3s 0.2s ease-out, transform 0.3s 0.2s ease-out; /* Staggered animation */
-  /* To customize caption, modify text via JS based on image alt or data attribute */
+  transition: opacity 0.3s 0.2s ease-out, transform 0.3s 0.2s ease-out; 
 }
-
 .lightbox.active .lightbox-caption {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Close button for the lightbox. */
 .lightbox-close-btn {
   position: absolute;
   top: 15px;
@@ -1765,31 +1378,25 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   line-height: 1;
   padding: 5px;
   transition: color 0.2s ease, transform 0.2s ease;
-  z-index: 2002; /* Above image */
-  /* Color is theme-dependent */
+  z-index: 2002; 
 }
-
 .dark-theme .lightbox-close-btn {
   color: var(--lightbox-controls-color-dark);
 }
 .light-theme .lightbox-close-btn {
-  color: var(--lightbox-controls-color-light); /* This should be light on dark overlay */
+  color: var(--lightbox-controls-color-light); 
 }
-/* Override for light theme close button on dark overlay */
 .light-theme .lightbox-close-btn {
-    color: #f1f1f1; /* White/light gray for visibility */
+    color: #f1f1f1; 
 }
 .dark-theme .lightbox-close-btn:hover {
-  color: #fff; /* Brighter white on hover */
+  color: #fff; 
   transform: scale(1.1);
 }
 .light-theme .lightbox-close-btn:hover {
-  color: #ccc; /* Slightly dimmer on hover for light theme */
+  color: #ccc; 
   transform: scale(1.1);
 }
-
-
-/* Navigation arrows (previous/next) for the lightbox gallery. */
 .lightbox-nav {
   position: absolute;
   top: 50%;
@@ -1800,54 +1407,45 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   cursor: pointer;
   padding: 10px;
   transition: background-color 0.2s ease, color 0.2s ease;
-  z-index: 2002; /* Above image */
-  border-radius: 50%; /* Circular background on hover */
-  width: 50px; /* Fixed width */
-  height: 50px; /* Fixed height */
+  z-index: 2002; 
+  border-radius: 50%; 
+  width: 50px; 
+  height: 50px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1; /* Ensure icon is centered */
+  line-height: 1; 
 }
-
 .dark-theme .lightbox-nav {
   color: var(--lightbox-controls-color-dark);
 }
 .light-theme .lightbox-nav {
-  color: var(--lightbox-controls-color-light); /* This should be light on dark overlay */
+  color: var(--lightbox-controls-color-light); 
 }
-/* Override for light theme nav arrows on dark overlay */
 .light-theme .lightbox-nav {
-    color: #f1f1f1; /* White/light gray for visibility */
+    color: #f1f1f1; 
 }
-
-
 .lightbox-nav.prev {
   left: 15px;
 }
-
 .lightbox-nav.next {
   right: 15px;
 }
-
 .dark-theme .lightbox-nav:hover {
   background-color: var(--lightbox-controls-hover-bg-dark);
   color: #fff;
 }
 .light-theme .lightbox-nav:hover {
   background-color: var(--lightbox-controls-hover-bg-light);
-  color: #f0f0f0; /* Ensure arrows are visible on hover for light theme */
+  color: #f0f0f0; 
 }
-
-/* Clickable zones for easier navigation on touch/desktop, covering larger areas. */
 .lightbox-nav-zone {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 25%; /* Cover 25% of the screen on each side */
-    z-index: 2000; /* Below arrows but above image content for clicks */
-    cursor: pointer; /* Indicate clickable area */
-    /* background-color: rgba(255, 0, 0, 0.1); /* For debugging */
+    width: 25%; 
+    z-index: 2000; 
+    cursor: pointer; 
 }
 .lightbox-nav-zone.left {
     left: 0;
@@ -1855,16 +1453,13 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
 .lightbox-nav-zone.right {
     right: 0;
 }
-
-
-/* Responsive adjustments for lightbox */
 @media (max-width: 768px) {
   .lightbox-content {
     max-width: 95vw;
     max-height: 95vh;
   }
   .lightbox-image {
-    max-height: calc(100% - 60px); /* More space for caption/controls on mobile */
+    max-height: calc(100% - 60px); 
   }
   .lightbox-caption {
     font-size: 0.8em;
@@ -1887,365 +1482,260 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   .lightbox-nav.next {
     right: 5px;
   }
-  /* For mobile, make clickable zones larger if arrows are smaller/harder to hit */
   .lightbox-nav-zone {
-    width: 30%; /* Increase clickable area on mobile */
+    width: 30%; 
   }
 }
-
-/* Ensure ADAM.CG PRO font is available (already in global styles) */
-/* @font-face {
-  font-family: 'AdamCGPro';
-  src: url('./font/adam.otf') format('truetype');
-} */
-
-/* Footer Styles */
-/* Comments for customization:
-  - Footer background/text colors: use theme variables like var(--body-bg-color), var(--body-text-color) or define specific footer variables.
-  - Social icon colors: var(--accent-color) or specific icon colors.
-  - CV button: styled with .btn-cv, can use var(--accent-color).
-  - Email link: styled to match site links.
-  - Responsive breakpoints: adjust min-width in media query as needed.
-*/
 .site-footer {
-  background-color: var(--navbar-bg-color-dark); /* Using navbar color for consistency in dark mode */
+  background-color: var(--navbar-bg-color-dark); 
   color: var(--body-text-color);
   padding: 2rem 1rem;
   text-align: center;
-  border-top: 1px solid var(--navbar-outline-color-dark); /* Subtle top border */
+  border-top: 1px solid var(--navbar-outline-color-dark); 
 }
-
 .light-theme .site-footer {
-  background-color: var(--navbar-bg-color-light); /* Using navbar color for consistency in light mode */
+  background-color: var(--navbar-bg-color-light); 
   color: var(--navbar-text-color-light);
   border-top: 1px solid var(--navbar-outline-color-light);
 }
-
 .footer-content {
   display: flex;
-  flex-direction: column; /* Stack vertically by default */
+  flex-direction: column; 
   align-items: center;
-  gap: 1.5rem; /* Space between footer sections */
+  gap: 1.5rem; 
   margin-bottom: 1rem;
 }
-
 .footer-social-links a {
-  color: var(--body-text-color); /* Default icon color */
-  font-size: 1.8rem; /* Icon size */
+  color: var(--body-text-color); 
+  font-size: 1.8rem; 
   margin: 0 0.75rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
-
 .light-theme .footer-social-links a {
   color: var(--navbar-text-color-light);
 }
-
 .footer-social-links a:hover {
-  color: var(--accent-color); /* Highlight color on hover */
+  color: var(--accent-color); 
   transform: scale(1.1);
 }
-
 .footer-cv-download .btn-cv {
-  /* Inherits .btn styles, add specific overrides or enhancements here */
   background-color: var(--accent-color);
-  color: var(--body-bg-color); /* Text color for dark theme button */
+  color: var(--body-bg-color); 
   padding: 0.75rem 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   border: 2px solid transparent;
 }
-
 .light-theme .footer-cv-download .btn-cv {
-  color: var(--button-text-color); /* Text color for light theme button (usually white) */
-  background-color: var(--accent-color); /* Ensure accent color is used */
+  color: var(--button-text-color); 
+  background-color: var(--accent-color); 
 }
-
 .footer-cv-download .btn-cv:hover {
-  background-color: var(--body-text-color); /* Invert colors on hover */
+  background-color: var(--body-text-color); 
   color: var(--accent-color);
   border-color: var(--accent-color);
 }
-
 .light-theme .footer-cv-download .btn-cv:hover {
-  background-color: var(--button-text-color); /* Invert for light theme */
+  background-color: var(--button-text-color); 
   color: var(--accent-color);
 }
-
-
 .footer-email a {
-  color: var(--body-text-color); /* Default email link color */
+  color: var(--body-text-color); 
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
-
 .light-theme .footer-email a {
   color: var(--navbar-text-color-light);
 }
-
 .footer-email a:hover {
-  color: var(--accent-color); /* Highlight on hover */
+  color: var(--accent-color); 
   text-decoration: none;
 }
-
 .footer-copyright {
   font-size: 0.85rem;
   opacity: 0.7;
   margin-top: 1rem;
 }
-
-/* Responsive layout for footer */
-@media (min-width: 768px) { /* Adjust breakpoint as needed */
+@media (min-width: 768px) { 
   .footer-content {
-    flex-direction: row; /* Horizontal layout on larger screens */
-    justify-content: center; /* Center items instead of spreading them out */
-    align-items: center; /* Align items vertically */
-    gap: 3rem; /* Add space between the centered items */
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 3rem; 
   }
-
   .footer-social-links,
   .footer-cv-download .btn-cv {
   text-decoration: none;
 }
   .footer-email {
-    margin-bottom: 0; /* Remove bottom margin for horizontal layout */
+    margin-bottom: 0; 
   }
 }
-/* End Footer Styles */
-
-/* Invert specific white icons in light theme */
 .light-theme img[alt="Unreal Engine"],
 .light-theme img[alt="GDevelop"] {
   filter: invert(1);
 }
-
-/* IT Projects Section - START */
-/* Styles for the IT Projects gallery section.
-   Uses flexbox to display project cards, adjusting columns with screen size.
-   To modify responsive layout breakpoints, update the @media queries below.
-  - Large screens: Default styles for .it-cards-container and .it-project-card (target 6 cards)
-  - Medium screens: @media (max-width: 1200px) (target 3 cards)
-  - Small screens: @media (max-width: 767px) (target 2 cards)
-  - Very small screens: @media (max-width: 576px) (target 1 card)
-*/
-
-#it-projects-section { /* ID for scroll-margin-top and navigation. */
-  scroll-margin-top: 5rem; /* Adjust this value based on navbar height */
+#it-projects-section { 
+  scroll-margin-top: 5rem; 
 }
-/* Main container for the IT projects gallery. */
 .it-projects-gallery {
-  padding: 0rem 1rem; /* Consistent with icon-gallery padding */
-  background-color: var(--body-bg-color);  /* Or a specific background if desired */
-  /* position: relative; /* If using pseudo-elements for background shapes like icon-gallery */
-  /* overflow: hidden; */
+  padding: 0rem 1rem; 
+  background-color: var(--body-bg-color);  
 }
-
 .it-projects-gallery .o_container_small {
-  max-width: 1600px; /* Adjusted to allow 6 cards comfortably on large screens */
+  max-width: 1600px; 
   margin: 0 auto;
-  padding: 1rem; /* Inner padding for the container */
+  padding: 1rem; 
 }
-
-/* Title for the IT Projects section. */
 .it-projects-section-title {
   text-align: center;
-  font-family: 'AdamCGPro', sans-serif; /* Consistent with other titles */
-  font-size: 2rem; /* Consistent with .icon-gallery-title */
+  font-family: 'AdamCGPro', sans-serif; 
+  font-size: 2rem; 
   color: var(--header-text-color);
-  margin-bottom: 2.5rem; /* Consistent with .icon-gallery-title */
+  margin-bottom: 2.5rem; 
 }
-
-/* Flex container for the IT project cards. */
 .it-cards-container {
   display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap to the next line */
-  justify-content: center; /* Center cards in the container */
-  gap: 1.5rem; /* Space between cards */
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 1.5rem; 
 }
-
-/* Styling for individual IT project cards. */
 .it-project-card {
   background-color: var(--card-bg-color);
   color: var(--card-text-color);
-  border-radius: 1rem; /* Rounded corners */
-  padding: 1.5rem; /* Internal padding */
-  box-shadow: 0 5px 15px var(--card-shadow-color); /* Subtle shadow */
-  text-align: center; /* Center image, title, year */
+  border-radius: 1rem; 
+  padding: 1.5rem; 
+  box-shadow: 0 5px 15px var(--card-shadow-color); 
+  text-align: center; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: calc((100% / 6) - 1.5rem); /* For 6 cards in a row, accounting for gap. (1.5rem * 5 gaps) / 6 cards approx */
-  min-width: 220px; /* Minimum width before wrapping aggressively */
+  width: calc((100% / 6) - 1.5rem); 
+  min-width: 220px; 
   display: flex;
   flex-direction: column;
 }
-
 .it-project-card:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 8px 20px var(--card-shadow-color), 0 0 0 2px var(--accent-color); /* Enhanced shadow and accent border on hover */
+  box-shadow: 0 8px 20px var(--card-shadow-color), 0 0 0 2px var(--accent-color); 
 }
-
 .it-project-icon {
-  width: 125x; /* Adjust size as needed */
+  width: 125x; 
   height: 125px;
   object-fit: contain;
-  margin: 0 auto 1rem auto; /* Center image and add space below */
+  margin: 0 auto 1rem auto; 
   display: block;
 }
-
 .it-project-card h3 {
   font-family: 'AdamCGPro', sans-serif;
   font-size: 1.4rem;
-  color: var(--header-text-color); /* Or var(--card-text-color) if card bg is light */
+  color: var(--header-text-color); 
   margin: 0.5rem 0;
 }
 .light-theme .it-project-card h3 {
   color: var(--card-text-color);
 }
 .dark-theme .it-project-card h3 {
-  color: var(--card-text-color); /* Assuming card-text-color is black for dark theme's white cards */
+  color: var(--card-text-color); 
 }
-
-
 .it-project-year {
   font-size: 0.9rem;
-  color: var(--accent-color); /* Use accent color for the year */
+  color: var(--accent-color); 
   margin-bottom: 1rem;
   font-weight: bold;
 }
-
 .it-project-description {
   font-size: 0.95rem;
   line-height: 1.5;
-  text-align:left; /* Justify description text */
-  margin-top:0; /* Pushes description to bottom if card heights vary due to content */
+  text-align:left; 
+  margin-top:0; 
 }
-
-/* Responsive Layout Breakpoints - can be modified here */
-/* IT Projects: Medium screens (e.g., tablets in landscape) - 3 cards per row. */
 @media (max-width: 1200px) {
   .it-project-card {
-    width: calc((100% / 3) - 1.5rem); /* 3 cards per row */
+    width: calc((100% / 3) - 1.5rem); 
   }
   .it-projects-gallery .o_container_small {
-    max-width: 900px; /* Adjust container for 3 cards */
+    max-width: 900px; 
    }
 }
-
-/* IT Projects: Small screens (e.g., tablets in portrait) - 2 cards per row. */
-@media (max-width: 767px) { /* Adjusted from 992px to 767px to match user request more closely */
+@media (max-width: 767px) { 
   .it-project-card {
-    width: calc((100% / 2) - 1.5rem); /* 2 cards per row */
+    width: calc((100% / 2) - 1.5rem); 
   }
    .it-projects-gallery .o_container_small {
-    max-width: 650px; /* Adjust container for 2 cards */
+    max-width: 650px; 
    }
 }
-
-/* IT Projects: Very small screens (e.g., phones) - 1 card per row. */
-@media (max-width: 576px) { /* Adjusted from 767px to 576px for better single card stacking */
+@media (max-width: 576px) { 
   .it-project-card {
-    width: calc(100% - 1.5rem); /* 1 card per row, allow for a bit of side margin if container has padding */
-    /* Or simply width: 90%; if preferred */
+    width: calc(100% - 1.5rem); 
   }
   .it-projects-gallery .o_container_small {
-    max-width: 400px; /* Adjust container for 1 card */
+    max-width: 400px; 
    }
   .it-projects-section-title {
-    font-size: 1.8rem; /* Slightly smaller title for very small screens */
+    font-size: 1.8rem; 
   }
   .it-project-card h3 {
-    font-size: 1.2rem; /* Adjust card title font size for very small screens */
+    font-size: 1.2rem; 
   }
   .it-project-description {
-    font-size: 0.9rem; /* Adjust card description font size */
+    font-size: 0.9rem; 
   }
 }
-
-/* IT Projects Section - END */
-
-/* All Games Section - START */
-/* Styles for the "All Games" gallery section.
-   Uses CSS Grid to display game cards. Responsive by default (mobile-first).
-   To customize "All Games" section appearance:
-  - Section title: Modify .games-section-title.
-  - Grid layout (cards per row, spacing): Modify .games-grid-container and its media queries.
-  - Card appearance: Modify .game-card (currently transparent background).
-  - Image styling: Modify .game-image-wrapper and .game-cover-image.
-  - Hover overlay: Modify .games-grid-container:has(.game-card:hover) ...
-*/
-
-/* Main container for the "All Games" gallery. */
 .games-gallery {
-  padding: 2rem 1rem; /* Consistent padding */
-  background-color: var(--body-bg-color); /* Adapts to theme */
-  /* position: relative; /* For potential future ::before/::after decorations */
+  padding: 2rem 1rem; 
+  background-color: var(--body-bg-color); 
 }
-
 .games-gallery .o_container_small {
-  max-width: 1200px; /* Allows for up to 6 cards with decent spacing */
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 1rem;
 }
-
-/* Title for the "All Games" section. */
 .games-section-title {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif;
-  font-size: 2rem; /* Matches .it-projects-section-title */
+  font-size: 2rem; 
   color: var(--header-text-color);
-  margin-bottom: 2.5rem; /* Matches .it-projects-section-title */
+  margin-bottom: 2.5rem; 
 }
-
-/* Grid container for game cards. Adapts columns based on screen size. */
 .games-grid-container {
   display: grid;
-  /* Default to 1 column for very small screens, overridden by media queries */
   grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem; /* Space between cards */
-  justify-items: center; /* Center items in their grid cell if they don't fill it */
+  gap: 1.5rem; 
+  justify-items: center; 
 }
-
-/* Individual game card styling. Transparent background, relies on image for visuals. */
 .game-card {
-  background-color: transparent; /* Adapts to theme - User request: No background */
-  color: var(--card-text-color); /* Adapts to theme */
-  border-radius: 0.75rem; /* Slightly less rounded than main cards for a different feel */
-  padding: 0; /* User request: No background, so padding might not be desired on the card itself */
-  box-shadow: none; /* User request: No background, so shadow on card itself might be odd. Shadow is on image. */
+  background-color: transparent; 
+  color: var(--card-text-color); 
+  border-radius: 0.75rem; 
+  padding: 0; 
+  box-shadow: none; 
   text-align: center;
-  /* transition: transform 0.3s ease; /* Transition will be on the wrapper or specific elements */
   display: flex;
   flex-direction: column;
-  width: 100%; /* Take full width of grid column */
-  cursor: pointer; /* Indicate clickable */
-  /* position: relative; /* .game-card does not need to be relative for this implementation if wrapper is used */
+  width: 100%; 
+  cursor: pointer; 
 }
-
-/* .game-card::after styles removed - diagnostic complete */
-
 .game-image-wrapper {
   position: relative; 
   display: block; 
   width: 100%;
   aspect-ratio: 4 / 3; 
   border-radius: 0.5rem; 
-  overflow: hidden; /* This is key to clip the image to the wrapper's border-radius */
+  overflow: hidden; 
   margin-bottom: 0.75rem; 
   box-shadow: 0 4px 10px var(--card-shadow-color); 
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
-
 .game-cover-image {
-  display: block; /* Ensure image behaves like a block element within the wrapper */
+  display: block; 
   width: 100%;
   height: 100%; 
   object-fit: cover; 
-  z-index: 1; /* Image below the overlay */
-  /* Transitions, border-radius, margin, shadow, position are now on game-image-wrapper */
-  transition: none; /* Remove any old transitions specifically on the image if they conflict */
+  z-index: 1; 
+  transition: none; 
 }
-
-/* Hover Overlay Effect on .game-image-wrapper using :has() */
 .game-image-wrapper::after {
   content: '';
   position: absolute;
@@ -2253,93 +1743,59 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
   left: 0;
   width: 100%;
   height: 100%;
-  /* border-radius is effectively applied by the wrapper's overflow:hidden */
   background-color: transparent; 
   opacity: 0;
   transition: opacity 0.3s ease, background-color 0.3s ease;
   z-index: 2; 
   pointer-events: none; 
 }
-
-/* When the grid container has a hovered game-card, 
-   then for any game-card that is NOT the one being hovered, apply the overlay */
 .games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
   opacity: 1;
 }
-
 .light-theme .games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
-  background-color: rgba(255, 255, 255, 0.6); /* Light mode dim */
+  background-color: rgba(255, 255, 255, 0.6); 
 }
-
 .dark-theme .games-grid-container:has(.game-card:hover) .game-card:not(:hover) .game-image-wrapper::after {
-  background-color: rgba(0, 0, 0, 0.6); /* Dark mode dim */
+  background-color: rgba(0, 0, 0, 0.6); 
 }
-
-/* Direct hover effect on the card: scales the wrapper, title color changes */
-.game-card:hover .game-image-wrapper { /* Target wrapper for transform */
+.game-card:hover .game-image-wrapper { 
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 6px 15px var(--card-shadow-color), 0 0 0 3px var(--accent-color);
 }
-
 .game-card:hover .game-title {
-  color: var(--accent-color); /* Highlight title on hover */
+  color: var(--accent-color); 
 }
-
-/* Clean up old .game-card:hover .game-cover-image if it only did transform/shadow */
 .game-card:hover .game-cover-image {
-  /* transform and box-shadow are now on .game-image-wrapper. Clear if any conflicting styles remained. */
 }
-
-
 .game-title {
-  font-family: 'AdamCGPro', sans-serif; /* Consistent title font */
+  font-family: 'AdamCGPro', sans-serif; 
   font-size: 1.2rem;
-  color: var(--body-text-color); /* Ensure title is visible against page background */
+  color: var(--body-text-color); 
   margin-top: auto; 
-  padding-top: 0.25rem; /* Reduced padding, as card has no padding now */
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Add a subtle shadow for legibility */
-  transition: color 0.3s ease; /* For hover effect */
+  padding-top: 0.25rem; 
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+  transition: color 0.3s ease; 
 }
-
-/* Theme-specific title color if needed, for direct contrast with body background */
 .light-theme .game-card .game-title {
-  color: var(--body-text-color); /* Usually dark gray/black on light page BG */
-  text-shadow: 1px 1px 2px rgba(255,255,255,0.2); /* Lighter shadow for dark text */
+  color: var(--body-text-color); 
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.2); 
 }
 .dark-theme .game-card .game-title {
-  color: var(--body-text-color); /* Usually white/light gray on dark page BG */
-   text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Darker shadow for light text */
+  color: var(--body-text-color); 
+   text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
 }
-
-
-/* Responsive Grid Layout for Game Cards */
-
-/* Default: 1 card per row (for very small screens, mobile-first) */
-/* .games-grid-container already defaults to grid-template-columns: repeat(1, 1fr); */
-
-/* All Games: Very small screens - Adjust title font size */
 @media (max-width: 480px) {
   .game-title {
-    font-size: 1rem; /* Slightly smaller title for very small screens */
+    font-size: 1rem; 
   }
 }
-
-/* All Games: Medium screens (e.g., tablets) - 2 cards per row. */
-/* Adjust breakpoint as needed. 768px is a common tablet breakpoint. */
 @media (min-width: 768px) {
   .games-grid-container {
-    /* Show 2 cards per row */
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* All Games: Large screens (e.g., desktops) - 3 cards per row. */
-/* Adjust breakpoint as needed. 1024px or 1200px are common desktop breakpoints. */
 @media (min-width: 1024px) {
   .games-grid-container {
-    /* Show 3 cards per row */
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* All Games Section - END */
