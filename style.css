@@ -365,6 +365,40 @@ iframe {
   opacity: 0.8;
 }
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  display: none; /* Hidden by default, shown in mobile media query */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem; /* Size of the hamburger icon */
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10; /* Ensure it's clickable */
+}
+
+.hamburger-menu:focus {
+  outline: none;
+}
+
+.hamburger-menu__line {
+  display: block;
+  width: 2rem;
+  height: 0.25rem; /* Thickness of the lines */
+  background: var(--header-text-color); /* Color of the lines, should adapt to theme */
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.light-theme .hamburger-menu__line {
+  background: var(--navbar-text-color-light); /* Ensure visibility in light theme navbar */
+}
+
+
 /* Navbar styles */
 /* Base styles for the navigation bar. Fixed at the top. */
 .navbar {
@@ -639,27 +673,93 @@ iframe {
   /* Specific adjustments for 768px and below, if different from 992px */
 
   .hero-section { /* Ensure padding-top is adjusted if navbar height changes on mobile */
-    padding-top: 70px; /* Example, adjust if mobile navbar height differs */
+    /* Navbar height on mobile will be smaller with hamburger menu */
+    /* Approx: navbar padding (1rem*2) + theme button height + hamburger height (if on same line) */
+    /* Let's estimate navbar height around 60-70px when menu is collapsed */
+    padding-top: 70px; /* Adjusted for collapsed hamburger menu navbar */
   }
 
   /* Responsive adjustments for navbar UL at 768px and below */
   .navbar ul {
-    padding: 0 1rem; /* Moins de padding sur mobile */
-    gap: 0.5rem; /* Moins d'espace entre les éléments */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si besoin */
-    justify-content: center;
+    flex-direction: row; /* Hamburger and theme toggle on the same line */
+    justify-content: space-between; /* Pushes hamburger left, theme toggle right */
+    align-items: center;
+    padding: 0 1rem; /* Standard padding */
+    position: relative; /* For positioning the expanded menu */
   }
-  /* Responsive adjustments for navbar links group at 768px and below */
-  .navbar .nav-links-group {
-    gap: 0.5rem;
-    flex-basis: 100%; /* Prend toute la largeur pour centrer les liens */
-    justify-content: center;
-    order: 2; /* Mettre les liens après le bouton de thème si ça wrap */
+
+  .hamburger-menu {
+    display: flex; /* Show hamburger menu on mobile */
+    order: 1; /* Hamburger on the left */
   }
-  /* Responsive adjustments for navbar theme toggle item at 768px and below */
+
   .navbar .theme-toggle-item {
-    margin-left: 0; /* Plus de marge auto sur mobile */
-    order: 1; /* Mettre le bouton en premier s'ils wrappent */
+    margin-left: 0; /* Reset margin */
+    order: 2; /* Theme toggle button on the right */
+    /* width, display, justify-content, padding-bottom are removed as it's now inline */
+  }
+  
+  /* Hide nav links by default on mobile */
+  /* Increased specificity to override desktop .navbar ul .nav-links-group */
+  .navbar ul .nav-links-group {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Position below the navbar */
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg-color-dark); /* Match navbar background */
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 999; /* Below navbar (1000) but above other content */
+    border-top: 1px solid var(--navbar-outline-color-dark);
+  }
+  .light-theme .navbar ul .nav-links-group { /* Increased specificity */
+    background-color: var(--navbar-bg-color-light);
+    border-top: 1px solid var(--navbar-outline-color-light);
+  }
+
+  /* Styles for when the mobile menu is open */
+  /* Increased specificity */
+  .navbar ul .nav-links-group.mobile-menu-open {
+    display: flex;
+  }
+
+  .navbar ul .nav-links-group li { /* Specificity increased for consistency */
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar ul .nav-links-group li a { /* Specificity increased for consistency */
+    display: block;
+    padding: 1rem; /* Generous padding for touch targets */
+    color: white; /* Ensure text color is white for dark navbar */
+    transition: background-color 0.2s ease;
+  }
+  .light-theme .navbar ul .nav-links-group li a { /* Specificity increased */
+    color: var(--navbar-text-color-light);
+  }
+
+  .navbar ul .nav-links-group li a:hover { /* Specificity increased */
+    background-color: var(--accent-color);
+    color: var(--body-bg-color); /* Text color on hover for dark theme */
+  }
+  
+  .light-theme .navbar ul .nav-links-group li a:hover { /* Specificity increased */
+    color: var(--navbar-bg-color-light); /* Text color on hover for light theme */
+  }
+
+
+  /* Hamburger animation to "X" when menu is open */
+  /* This assumes a class 'open' is added to .hamburger-menu by JS */
+  .hamburger-menu.open .hamburger-menu__line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger-menu.open .hamburger-menu__line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-menu.open .hamburger-menu__line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
   }
 
   /* .video-overlay, .text-beside-video, .overlay-container styles
