@@ -1168,7 +1168,7 @@ iframe {
 
 .modal-right .modal-badges {
   justify-content: flex-start; /* Align badges to the left if they wrap */
-  margin-bottom: 1rem; /* Space between badges and description */
+  margin-bottom: -1.5rem; /* Space between badges and description */
 }
 
 /* Modal Description: Text styling */
@@ -1218,7 +1218,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem; /* Space between badges */
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 /* .badge class is already styled globally, so it should apply here.
    If specific modal badge styling is needed, uncomment and modify:
