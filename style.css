@@ -813,7 +813,7 @@ iframe {
 }
 
 my-journey { /* This ID is now on the wrapper div for the timeline */
-  scroll-margin-top: 5rem; /* Standard offset, applied to the wrapper */
+  scroll-margin-top: -1rem; /* Standard offset, applied to the wrapper */
 }
 .timeline {
   /* Default to dark theme variables */
