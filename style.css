@@ -457,6 +457,46 @@ iframe {
   color: var(--body-bg-color); /* Texte foncé sur fond clair pour le survol */
 }
 
+/* Language Switcher Styling */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  /* margin-left: 15px; /* Pushed to the right by theme-toggle-item's margin-left: auto */
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  color: white; /* Default color, will be overridden by theme if needed */
+  cursor: pointer;
+  padding: 0.5rem 0.3rem; /* Consistent with navbar link padding */
+  font-size: 0.9rem; /* Consistent with theme toggle button */
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.language-switcher button:hover,
+.language-switcher button.active-lang {
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.language-switcher span {
+  color: white; /* Default, override in themes if needed */
+  opacity: 0.7;
+  margin: 0 1px;
+  font-weight: bold;
+}
+
+.light-theme .language-switcher button,
+.light-theme .language-switcher span {
+  color: var(--navbar-text-color-light); /* White for light theme navbar */
+}
+/* End Language Switcher Styling */
+
 /* Classe pour masquer la bordure au défilement */
 .navbar-scrolled {
   border-bottom-color: transparent !important; /* Important pour s'assurer qu'il override le thème light */

@@ -63,13 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Set modal title
-    if (modalTitleElement) {
-      modalTitleElement.textContent = data.title || "Project Title";
+    if (modalTitleElement && data.titleKey) {
+      modalTitleElement.innerHTML = window.getTranslationForKey(data.titleKey) || "Project Title";
+    } else if (modalTitleElement) {
+      modalTitleElement.textContent = "Project Title"; // Fallback if no key
     }
 
     // Set modal description (supports HTML content)
-    if (modalDescriptionElement) {
-      modalDescriptionElement.innerHTML = data.description ? data.description.replace(/\n/g, '<br>') : "Description not available.";
+    if (modalDescriptionElement && data.descriptionKey) {
+      const translatedDescription = window.getTranslationForKey(data.descriptionKey) || "Description not available.";
+      modalDescriptionElement.innerHTML = translatedDescription.replace(/\n/g, '<br>');
+    } else if (modalDescriptionElement) {
+      modalDescriptionElement.textContent = "Description not available."; // Fallback
     }
 
     // Set modal video URL
@@ -90,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   // Creates an <i> element for Font Awesome icons (or similar)
                   iconHTML = `<i class="${badgeData.icon}"></i> `;
                 }
-                badgeEl.innerHTML = `${iconHTML}${badgeData.text || ''}`;
+                const badgeText = badgeData.textKey ? (window.getTranslationForKey(badgeData.textKey) || '') : (badgeData.text || ''); // Fallback to .text if .textKey not present
+                badgeEl.innerHTML = `${iconHTML}${badgeText}`;
                 modalBadgesContainer.appendChild(badgeEl);
             });
         }
