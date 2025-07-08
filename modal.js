@@ -2,7 +2,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM fully loaded and parsed. modal.js executing.");
 
+  // --- MODAL DATA STORE ---
+  // This is where all modal content is stored in a structured way.
+  // It's fetched from a <script type="application/json"> tag in the HTML.
+  let allModalData = {};
+  try {
+    const modalDataElement = document.getElementById('modalDataStore');
+    if (modalDataElement) {
+      allModalData = JSON.parse(modalDataElement.textContent);
+      console.log("Modal data loaded successfully:", allModalData);
+    } else {
+      console.warn('Modal data store element #modalDataStore not found. Modals relying on it may not work.');
+    }
+  } catch (error) {
+    console.error('Error parsing modal data from #modalDataStore:', error);
+  }
+
   // --- MODAL ELEMENTS ---
+  // References to various parts of the modal structure in the HTML.
   const modalTriggerButtons = document.querySelectorAll('.section-projet-en-avant .btn, .project-modal-trigger, .game-card'); // Added .game-card
   const modalOverlay = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -10,13 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalTitleElement = modalOverlay ? modalOverlay.querySelector('.modal-title') : null;
   const modalDescriptionElement = modalOverlay ? modalOverlay.querySelector('.modal-description') : null;
   const modalVideoIframe = modalOverlay ? modalOverlay.querySelector('.modal-video-container iframe') : null;
-  const modalVideoContainer = modalOverlay ? modalOverlay.querySelector('.modal-video-container') : null; // MODIFICATION: Get the video container itself
-  const modalHoverImageElement = modalOverlay ? modalOverlay.querySelector('#modal-hover-image') : null; // MODIFICATION: Get reference to the hover image display element
+  const modalVideoContainer = modalOverlay ? modalOverlay.querySelector('.modal-video-container') : null; 
+  const modalHoverImageElement = modalOverlay ? modalOverlay.querySelector('#modal-hover-image') : null; 
   const modalGalleryElement = modalOverlay ? modalOverlay.querySelector('.modal-gallery') : null;
   const modalBadgesContainer = modalOverlay ? modalOverlay.querySelector('.modal-badges') : null;
   const modalPlayButton = modalOverlay ? modalOverlay.querySelector('.modal-play-btn') : null;
 
   // --- ENHANCED LIGHTBOX ELEMENTS ---
+  // References to elements used by the image lightbox feature.
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
@@ -31,147 +49,201 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- MODAL FUNCTIONALITY ---
 
+  /**
+   * Populates the modal with content.
+   * This function takes a data object and updates the modal's title, description,
+   * video, badges, gallery, and play button.
+   * @param {object} data - The data object for the modal.
+   * Expected properties: title, description, videoUrl, badges (array), gallery (array), playUrl.
+   */
   function populateModal(data) {
-    if (!modalOverlay) return;
-
-    if (modalTitleElement) modalTitleElement.textContent = data.title || "Project Title";
-    if (modalDescriptionElement) {
-        modalDescriptionElement.innerHTML = data.description ? data.description.replace(/\n/g, '<br>') : "Description not available.";
+    if (!modalOverlay) {
+      console.error("Modal overlay element not found. Cannot populate modal.");
+      return;
     }
-    if (modalVideoIframe) modalVideoIframe.src = data.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ"; // Placeholder
+
+    // Set modal title
+    if (modalTitleElement) {
+      modalTitleElement.textContent = data.title || "Project Title";
+    }
+
+    // Set modal description (supports HTML content)
+    if (modalDescriptionElement) {
+      modalDescriptionElement.innerHTML = data.description ? data.description.replace(/\n/g, '<br>') : "Description not available.";
+    }
+
+    // Set modal video URL
+    if (modalVideoIframe) {
+      // Default to a placeholder if no video URL is provided
+      modalVideoIframe.src = data.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ"; 
+    }
     
+    // Populate badges
     if (modalBadgesContainer) {
-        modalBadgesContainer.innerHTML = ''; 
+        modalBadgesContainer.innerHTML = ''; // Clear existing badges
         if (data.badges && Array.isArray(data.badges)) {
             data.badges.forEach(badgeData => {
                 const badgeEl = document.createElement('span');
-                badgeEl.className = 'badge';
+                badgeEl.className = 'badge'; // Assuming 'badge' is your CSS class for badges
                 let iconHTML = '';
-                if (badgeData.icon) iconHTML = `<i class="${badgeData.icon}"></i> `;
+                if (badgeData.icon) {
+                  // Creates an <i> element for Font Awesome icons (or similar)
+                  iconHTML = `<i class="${badgeData.icon}"></i> `;
+                }
                 badgeEl.innerHTML = `${iconHTML}${badgeData.text || ''}`;
                 modalBadgesContainer.appendChild(badgeEl);
             });
         }
     }
 
+    // Populate gallery images and set up hover/click listeners
     if (modalGalleryElement) {
-        modalGalleryElement.innerHTML = ''; 
-        currentLightboxImages = []; // Reset for current modal
+        modalGalleryElement.innerHTML = ''; // Clear existing gallery images
+        currentLightboxImages = []; // Reset images for the lightbox for this specific modal
+        
         if (data.gallery && Array.isArray(data.gallery)) {
             data.gallery.forEach((imgSrc, index) => {
                 const imgEl = document.createElement('img');
                 imgEl.src = imgSrc;
-                // For caption: use a default or encourage data-caption on source `<a>` or in gallery array
-                // For now, using a placeholder alt based on index for the thumbnail
-                const altText = `Gallery image ${index + 1}${data.galleryCaptions && data.galleryCaptions[index] ? `: ${data.galleryCaptions[index]}` : ''}`;
+                // Construct alt text: use caption from data if available, otherwise default.
+                // This assumes `data.galleryCaptions` might be passed or derived.
+                // For simplicity, if `data.gallery` items are strings, alt text will be basic.
+                // If `data.gallery` items are objects like {src: "...", alt: "..."}, then use item.alt.
+                let altText = `Gallery image ${index + 1}`;
+                if (typeof imgSrc === 'object' && imgSrc.alt) {
+                    altText = imgSrc.alt;
+                    imgEl.src = imgSrc.src; // Adjust if gallery items are objects
+                } else if (data.galleryCaptions && data.galleryCaptions[index]) {
+                    altText = data.galleryCaptions[index];
+                }
                 imgEl.alt = altText; 
-                imgEl.className = 'modal-gallery-img';
+                imgEl.className = 'modal-gallery-img'; // CSS class for gallery thumbnails
                 
-                // Store for lightbox
-                currentLightboxImages.push({ src: imgSrc, alt: altText });
+                // Store image info for the lightbox
+                currentLightboxImages.push({ src: (typeof imgSrc === 'object' ? imgSrc.src : imgSrc), alt: altText });
 
+                // Event listener to open the lightbox when a gallery thumbnail is clicked
                 imgEl.addEventListener('click', () => {
-                    openLightbox(index); // Open lightbox with the clicked image's index
+                    openLightbox(index); 
                 });
 
-                // MODIFICATION START: Add hover effect for gallery images to show in video area
+                // Hover effect for gallery images (shows image in main video area)
                 if (modalHoverImageElement && modalVideoContainer) {
                   imgEl.addEventListener('mouseover', () => {
-                    // Show hovered image, hide video
-                    modalHoverImageElement.src = imgSrc;
+                    modalHoverImageElement.src = (typeof imgSrc === 'object' ? imgSrc.src : imgSrc);
                     modalHoverImageElement.style.display = 'block';
-                    // Show hovered image, hide video
-                    // Use visibility and opacity for video container to prevent layout shift
                     modalVideoContainer.style.visibility = 'hidden';
                     modalVideoContainer.style.opacity = '0';
-                    modalVideoContainer.style.pointerEvents = 'none'; // Prevent interaction with hidden video
-
-                    modalHoverImageElement.src = imgSrc;
-                    modalHoverImageElement.style.display = 'block'; // Make it visible in layout
-                    requestAnimationFrame(() => { // Ensure display block is applied before opacity transition
+                    modalVideoContainer.style.pointerEvents = 'none'; 
+                    requestAnimationFrame(() => { 
                         modalHoverImageElement.style.opacity = '1';
                         modalHoverImageElement.style.pointerEvents = 'auto';
                     });
                   });
 
                   imgEl.addEventListener('mouseout', () => {
-                    // Show video, hide hovered image
                     modalHoverImageElement.style.opacity = '0';
                     modalHoverImageElement.style.pointerEvents = 'none';
-                    // Can set modalHoverImageElement.style.display = 'none' after transition if needed,
-                    // but opacity 0 and pointer-events none should suffice for an absolutely positioned element.
-                    // For simplicity, we'll rely on opacity and pointer-events for now.
-                    // If performance becomes an issue with many transparent items, display:none could be added on transitionend.
-
                     modalVideoContainer.style.visibility = 'visible';
                     modalVideoContainer.style.opacity = '1';
-                    modalVideoContainer.style.pointerEvents = 'auto'; // Make video interactive again
+                    modalVideoContainer.style.pointerEvents = 'auto'; 
                   });
                 }
-                // MODIFICATION END: Gallery image hover effect
-
                 modalGalleryElement.appendChild(imgEl);
             });
         }
     }
     
+    // Configure the "Play Demo" button
     if (modalPlayButton) {
         if (data.playUrl) {
-            modalPlayButton.style.display = '';
+            modalPlayButton.style.display = ''; // Show the button
+            // Set the action for the play button (navigate or open link)
             modalPlayButton.onclick = () => {
-                if (data.playUrl.startsWith('#')) {
+                if (data.playUrl.startsWith('#')) { // Internal link
                     window.location.hash = data.playUrl;
-                } else {
+                } else { // External link
                     window.open(data.playUrl, '_blank');
                 }
+                closeModal(); // Optionally close modal after clicking play
             };
         } else {
-            modalPlayButton.style.display = 'none';
+            modalPlayButton.style.display = 'none'; // Hide if no play URL
         }
     }
   }
 
+  /**
+   * Opens the modal and populates it with data based on the trigger button.
+   * It first tries to get data from the centralized JSON store using `data-modal-id`.
+   * If that fails, it falls back to reading individual `data-modal-*` attributes from the button.
+   * @param {HTMLElement} triggerButton - The button that triggered the modal.
+   */
   function openModal(triggerButton) {
-    if (!modalOverlay) return;
-
-    // Extract gallery data. If `data-modal-gallery` contains objects with src and alt:
-    let galleryItems = [];
-    let galleryCaptions = []; // Optional, if captions are separate
-    try {
-        const rawGalleryData = JSON.parse(triggerButton.dataset.modalGallery || '[]');
-        if (rawGalleryData.length > 0 && typeof rawGalleryData[0] === 'object') {
-            galleryItems = rawGalleryData.map(item => item.src);
-            // Assuming 'alt' or 'caption' field in the object for captions
-            galleryCaptions = rawGalleryData.map(item => item.alt || item.caption || `Image ${galleryItems.indexOf(item.src) + 1}`);
-        } else {
-            galleryItems = rawGalleryData; // Assumes array of strings
-            // Default captions if not objects
-            galleryCaptions = galleryItems.map((_, idx) => `Image ${idx + 1}`);
-        }
-    } catch (e) {
-        console.error("Error parsing modal gallery data:", e);
-        galleryItems = [];
-        galleryCaptions = [];
+    if (!modalOverlay) {
+      console.error("Modal overlay element not found. Cannot open modal.");
+      return;
     }
 
-    const modalData = {
-        title: triggerButton.dataset.modalTitle,
-        description: triggerButton.dataset.modalDescription,
-        videoUrl: triggerButton.dataset.modalVideoUrl,
-        badges: JSON.parse(triggerButton.dataset.modalBadges || '[]'),
-        gallery: galleryItems,
-        galleryCaptions: galleryCaptions, // Pass captions to populateModal
-        playUrl: triggerButton.dataset.modalPlayUrl
-    };
-    
-    populateModal(modalData);
+    let modalDataToDisplay = null;
+    const modalId = triggerButton.dataset.modalId;
 
-    modalOverlay.classList.add('active');
-    document.body.classList.add('modal-open');
+    // --- Primary Method: Fetch data from JSON store using modalId ---
+    if (modalId && allModalData[modalId]) {
+      console.log(`Fetching data for modalId: ${modalId}`);
+      modalDataToDisplay = allModalData[modalId];
+    } 
+    // --- Fallback Method: Read data directly from button attributes ---
+    // This is useful for modals not yet migrated to the JSON store or for simpler one-offs.
+    else {
+      console.warn(`Modal ID "${modalId}" not found in data store, or no modalId provided. Falling back to data attributes.`);
+      try {
+        // Gallery data parsing from attribute
+        let galleryItems = [];
+        let galleryCaptions = [];
+        const rawGalleryDataAttr = triggerButton.dataset.modalGallery;
+        if (rawGalleryDataAttr) {
+          const parsedGalleryData = JSON.parse(rawGalleryDataAttr);
+          if (parsedGalleryData.length > 0 && typeof parsedGalleryData[0] === 'object') {
+            galleryItems = parsedGalleryData.map(item => item.src);
+            galleryCaptions = parsedGalleryData.map(item => item.alt || item.caption || `Image ${galleryItems.indexOf(item.src) + 1}`);
+          } else {
+            galleryItems = parsedGalleryData;
+            galleryCaptions = galleryItems.map((_, idx) => `Image ${idx + 1}`);
+          }
+        }
+        
+        modalDataToDisplay = {
+            title: triggerButton.dataset.modalTitle,
+            description: triggerButton.dataset.modalDescription,
+            videoUrl: triggerButton.dataset.modalVideoUrl,
+            badges: JSON.parse(triggerButton.dataset.modalBadges || '[]'),
+            gallery: galleryItems,
+            galleryCaptions: galleryCaptions,
+            playUrl: triggerButton.dataset.modalPlayUrl
+        };
+      } catch (e) {
+        console.error("Error parsing modal data from button attributes:", e);
+        // Provide default/empty data to prevent errors in populateModal
+        modalDataToDisplay = { title: "Error", description: "Could not load modal content." };
+      }
+    }
+    
+    if (modalDataToDisplay) {
+      populateModal(modalDataToDisplay);
+      modalOverlay.classList.add('active'); // Make the modal visible
+      document.body.classList.add('modal-open'); // Prevent background scrolling
+    } else {
+      console.error("No data available to populate the modal for button:", triggerButton);
+    }
   }
 
+  /**
+   * Closes the modal.
+   * It also stops any playing YouTube videos in the modal if an iframe is present.
+   */
   function closeModal() {
-    if (!modalOverlay || !modalOverlay.classList.contains('active')) return;
+    if (!modalOverlay || !modalOverlay.classList.contains('active')) return; // Do nothing if modal isn't active
     modalOverlay.classList.remove('active');
     document.body.classList.remove('modal-open');
     if (modalVideoIframe) {
