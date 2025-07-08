@@ -321,6 +321,31 @@ iframe {
   color: var(--hero-strong-text-color);
 }
 
+/* Responsive adjustments for Hero Section */
+@media (max-width: 768px) {
+  .hero-text h2 {
+    font-size: 2.8rem; /* Reduced font size for smaller screens */
+  }
+  .hero-text {
+    text-align: center; /* Center align text when stacked */
+    padding: 0 1rem; /* Add some horizontal padding */
+  }
+  .hero-text p {
+    font-size: 0.95rem; /* Slightly reduce paragraph font size */
+  }
+  .hero-image {
+    max-width: 200px; /* Optionally reduce image size further on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h2 {
+    font-size: 2.2rem; /* Further reduce font size for very small screens */
+  }
+  .hero-text p {
+    font-size: 0.9rem; /* Further reduce paragraph font size */
+  }
+}
 
 #theme-toggle-btn {
   position: fixed;
@@ -341,6 +366,7 @@ iframe {
 }
 
 /* Navbar styles */
+/* Base styles for the navigation bar. Fixed at the top. */
 .navbar {
   background-color: var(--navbar-bg-color-dark); /* Utilise la nouvelle variable pour dark mode */
   padding: 1rem 0;
@@ -353,6 +379,7 @@ iframe {
   transition: border-bottom-color 0.3s ease; /* Pour la disparition de la bordure */
 }
 
+/* Styles for the unordered list holding navigation items. Uses flexbox for layout. */
 .navbar ul {
   list-style: none;
   margin: 0;
@@ -373,6 +400,7 @@ iframe {
 }
 
 /* Conteneur pour les liens de navigation pour les garder groupés */
+/* Groups the main navigation links and centers them. */
 .navbar ul .nav-links-group {
   display: flex;
   gap: 2rem;
@@ -427,10 +455,12 @@ iframe {
 
 
 /* Ajustement pour le bouton de thème dans la navbar */
+/* Styles for the list item containing the theme toggle button. */
 .navbar .theme-toggle-item {
   margin-left: auto; /* Pousse le bouton vers la droite */
 }
 
+/* Specific adjustments for the theme toggle button when inside the navbar. */
 #theme-toggle-btn {
   /* Ajustements spécifiques si nécessaire pour le bouton dans la navbar */
   /* Par exemple, si la taille/padding par défaut du bouton ne convient pas ici */
@@ -442,6 +472,7 @@ iframe {
 }
 
 /* Custom Section Styles */
+/* Styles for the featured project sections. */
 .section-projet-en-avant {
   position: relative;
   max-width: 1750px; /* Conservé de votre exemple */
@@ -574,72 +605,95 @@ iframe {
   .section-projet-en-avant {
     padding: 1rem; /* S'assurer que le padding est cohérent */
   }
+  .overlay-container { /* Define stacking context for mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem; /* Adjust spacing */
+  }
+  .video-overlay { /* Stacking video for mobile */
+    position: relative;
+    transform: translateY(0); /* Or transform: none; */
+    width: 90%; 
+    max-width: 550px; 
+    margin: 1rem auto 0; 
+    left: auto;
+    bottom: auto;
+  }
+  .text-beside-video { /* Stacking text for mobile */
+    margin: 2rem auto 0;
+    position: static; /* Ensure normal flow */
+    text-align: center;
+    width: 95%; /* Take most of the width */
+    padding-left: 1.5rem; /* Reset padding from desktop version */
+    padding-right: 1.5rem; /* Reset padding from desktop version */
+  }
+  /* For reversed section, ensure text stacking is also centered */
+  .section-projet-en-avant--reversed .text-beside-video {
+    margin: 2rem auto 0; /* Consistent stacking margin */
+  }
 }
 
 
 @media (max-width: 768px) {
-  /* Les styles pour .video-overlay et .text-beside-video de votre exemple original sont bons pour cette taille.
-     Je vais les vérifier et les intégrer/ajuster si nécessaire. */
+  /* Specific adjustments for 768px and below, if different from 992px */
 
-  .hero-section { /* S'assurer que le padding-top est ajusté si la navbar change de hauteur en mobile */
-    padding-top: 70px; /* Exemple, à ajuster si la navbar mobile est moins haute */
+  .hero-section { /* Ensure padding-top is adjusted if navbar height changes on mobile */
+    padding-top: 70px; /* Example, adjust if mobile navbar height differs */
   }
 
+  /* Responsive adjustments for navbar UL at 768px and below */
   .navbar ul {
     padding: 0 1rem; /* Moins de padding sur mobile */
     gap: 0.5rem; /* Moins d'espace entre les éléments */
     flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si besoin */
     justify-content: center;
   }
+  /* Responsive adjustments for navbar links group at 768px and below */
   .navbar .nav-links-group {
     gap: 0.5rem;
     flex-basis: 100%; /* Prend toute la largeur pour centrer les liens */
     justify-content: center;
     order: 2; /* Mettre les liens après le bouton de thème si ça wrap */
   }
+  /* Responsive adjustments for navbar theme toggle item at 768px and below */
   .navbar .theme-toggle-item {
     margin-left: 0; /* Plus de marge auto sur mobile */
     order: 1; /* Mettre le bouton en premier s'ils wrappent */
   }
 
+  /* .video-overlay, .text-beside-video, .overlay-container styles
+     are now primarily handled by the max-width: 992px breakpoint.
+     Only add overrides here if further changes are needed for 768px vs 992px.
+     For example, if text or video width needs to be even wider: */
+  .video-overlay {
+    width: 95%; /* Example: Make video slightly wider than at 992px */
+  }
+  /* .text-beside-video already has width: 95% from 992px if not overridden */
 
-  .video-overlay { /* Styles déjà fournis, confirmés et légèrement ajustés */
-    position: relative; /* Doit être relatif pour s'empiler */
-    transform: none; /* Annuler le transform */
-    margin: 1rem auto 0; /* Centrer et espacer */
-    width: 95%; /* Plus large sur mobile */
-    max-width: 500px;
-    left: auto;
-    bottom: auto;
-  }
-  .text-beside-video { /* Styles déjà fournis, confirmés */
-    margin: 2rem auto 0;
-    position: static; /* Annuler le positionnement absolu/relatif spécifique au desktop */
-    text-align: center;
-    width: 95%; /* Prendre la largeur */
-  }
-  .overlay-container { /* Styles déjà fournis, confirmés */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem; /* Ajuster l'espacement */
-  }
-  .carousel-container { /* Added for mobile responsiveness */
-    flex-direction: column;
-    align-items: center;
+
+  .carousel-container {
+    /* Removed flex-direction: column; to keep carousel horizontal */
+    /* Arrows will now naturally stay on sides or wrap if space is insufficient */
+    padding: 1rem 0.5rem; /* Adjust padding for smaller screens */
   }
   .carousel-wrapper {
-    /* flex-direction: column; */ /* This was likely an error, removing/commenting out */
-    width: 100%; /* Ensure wrapper takes full width in column layout */
-    order: 1; /* Cards first */
+    /* width is set by JS based on cardWidth and currentNumVisibleCards */
+    /* order: 1; */ /* No longer needed if not using flex-direction: column */
+    margin: 0 auto; /* Center the wrapper if arrows are outside */
   }
-  .arrow { /* Added for mobile responsiveness */
-    order: 2; /* Arrows after cards */
-    margin: 1rem 0.5rem; /* Adjust margin for stacked layout */
+  .arrow {
+    /* order: 2; */ /* No longer needed */
+    margin: 0 5px; /* Reduce arrow margin slightly for smaller screens */
+    font-size: 1.5rem; /* Slightly smaller arrows */
+    padding: 0.5rem;
   }
   .card {
-    width: 90%; /* This should be fine, cards take 90% of the wrapper width */
-    height: auto;
+    /* On smaller screens, card width should be relative to viewport or a large percentage of the wrapper */
+    width: 90vw; /* Card takes 90% of viewport width */
+    max-width: 400px; /* But not more than 400px to avoid being too wide on medium-small screens */
+    height: auto; /* Height adjusts to content */
+    margin: 0 10px; /* Keep some horizontal margin between cards if ever multiple are shown by mistake or for cloning */
   }
   /*
   .controls { // This rule is orphaned as .controls div was removed from HTML
@@ -652,8 +706,7 @@ iframe {
   */
 }
 
-/* Timeline Styles */
-#my-journey { /* This ID is now on the wrapper div for the timeline */
+my-journey { /* This ID is now on the wrapper div for the timeline */
   scroll-margin-top: 5rem; /* Standard offset, applied to the wrapper */
 }
 .timeline {
@@ -786,19 +839,120 @@ iframe {
   text-wrap: pretty;
 }
 
+/* Responsive Timeline Styles for Mobile */
 @media (max-width: 568px) {
   .timeline ul {
     display: flex;
     flex-direction: column;
+    position: relative; /* For positioning the vertical line */
+    /* Remove grid properties that are not applicable to flex layout */
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+    grid-column-gap: unset;
+    grid-row-gap: unset;
+    padding-left: 20px; /* Give some space for the timeline elements */
+    /* Ensure the main horizontal line from desktop is hidden */
+    border-top: none; 
   }
+
+  /* The main vertical line for mobile timeline */
+  .timeline ul:before {
+    content: '';
+    position: absolute;
+    left: calc(var(--circle-size) / 2 + 10px); /* Position based on circle size and desired offset */
+    top: 20px; /* Start below the first item's potential top margin/padding */
+    bottom: 20px; /* End above the last item's potential bottom margin/padding */
+    width: 3px; /* This was duplicated, ensuring it's set once */
+    background: var(--timeline-line);
+    display: block; /* Ensure it's displayed */
+    z-index: 0; /* Behind list items' content and circles */
+    border-top: none; /* Explicitly remove border if inherited */
+    /* left: 11px; /* This was from desktop, ensure mobile positioning is correct */
+  }
+
+  .timeline ul:after { /* The end marker (play icon) */
+    display: none; /* Hide for vertical mobile layout */
+  }
+
   .timeline ul li {
-    grid-column: 1 !important;
-    grid-row: var(--index) !important;
-    height: 100%;
-    padding-bottom: 30px;
-    padding-top: 10px;
+    /* Remove grid-specific properties */
+    grid-column: unset !important; 
+    grid-row: unset !important;    
+    height: auto; /* Content dictates height */
+    padding-bottom: 25px; /* Space between items */
+    padding-top: 5px;
+    padding-left: calc(var(--circle-size) + 20px); /* Space for the line and circle relative to li */
+    position: relative;
+    margin-top: 0; /* Reset any desktop margins */
+    display: block; /* Ensure li is treated as a block for proper layout in flex column */
+    overflow: visible; /* Ensure content like images isn't clipped if slightly larger */
+  }
+
+  /* Reposition the circle for each list item onto the new vertical line */
+  .timeline ul li:after {
+    content: '';
+    width: var(--circle-size);
+    height: var(--circle-size);
+    background: var(--timeline-accent); /* Use accent color for better visibility */
+    border: 2px solid var(--timeline-background); /* Optional: make it pop from the line */
+    position: absolute;
+    left: calc(-1 * (var(--circle-size) / 2 + 10px) ); 
+    top: 15px; /* Adjust to vertically align with text or icon as preferred */
+    transform: none; /* Reset transform from desktop view */
+    bottom: auto; /* Reset from desktop view */
+    z-index: 1; /* Above the main vertical line */
+    border-radius: 50%; /* Ensure it's a circle */
+  }
+  
+  .timeline ul li:nth-child(even) {
+    /* Reset styles specific to the even items in grid layout */
+    padding-top: 5px; /* Consistent padding for all items */
+    margin-top: 0; /* Reset margin for all items */
+    /* display: block; already set on all li */
+    /* flex-direction, align-items were for the li itself being a flex container, not needed now */
+    flex-direction: unset; 
+    align-items: unset;
+    /* padding-top: 40px; /* Reset from desktop even item */
+  }
+  
+  /* Hide the old vertical dashed lines from desktop view */
+  .timeline ul li:nth-child(odd) p:after,
+  .timeline ul li:nth-child(even) h3:before {
+    display: none;
+  }
+
+  .timeline ul li > * {
+    /* Reset padding if it was based on old circle position */
+    padding-left: 0; 
+  }
+
+  .timeline ul li h3 {
+    font-size: 1.2em; 
+    margin-bottom: 8px;
+  }
+
+  .timeline ul li p {
+    font-size: 0.85em; 
+    line-height: 1.5;
+  }
+
+  /* Ensure timeline image wrapper and icon are styled for mobile within the media query */
+  .timeline .timeline-image-wrapper { /* Specificity to override desktop if needed */
+    margin-top: 8px;
+    text-align: left; /* Align images to the left in vertical layout */
+    margin-bottom: 8px;
+  }
+
+  .timeline .timeline-icon { /* Specificity to override desktop if needed */
+    width: 60px; 
+    height: 60px;
+    object-fit: contain;
   }
 }
+/* END of Responsive Timeline Styles for Mobile */
+
+/* Styles for timeline-image-wrapper and timeline-icon OUTSIDE the media query (Desktop defaults) */
+/* These are general styles and should apply unless overridden by media query */
 .timeline-image-wrapper {
   margin-top: 10px;
   text-align: center;
@@ -811,6 +965,7 @@ iframe {
 }
 
 /* Icon Gallery Section Styling */
+/* Container for the icon gallery, includes a decorative wavy background. */
 .icon-gallery {
   position: relative; /* For positioning the wavy background */
   padding: 1rem 1rem; /* Vertical and horizontal padding */
@@ -866,7 +1021,6 @@ iframe {
   background-image: url('./index_files/Wavy_24_V2.svg');
   opacity: 0.7;
 }
-
 .icon-gallery .o_container_small {
   position: relative; /* To ensure content is above the background */
   z-index: 1;
@@ -875,6 +1029,7 @@ iframe {
   padding: 1rem;
 }
 
+/* Title for the icon gallery. */
 .icon-gallery-title {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif;
@@ -883,6 +1038,7 @@ iframe {
   margin-bottom: 2.5rem;
 }
 
+/* Grid container for the icons. Number of columns adapts to screen size. */
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* Six columns */
@@ -912,6 +1068,7 @@ iframe {
 }
 
 /* Responsive adjustments for the icon gallery */
+/* Adjusts icon grid and title for medium screens. */
 @media (max-width: 992px) {
   .icon-gallery-title {
     font-size: 1.8rem;
@@ -927,6 +1084,7 @@ iframe {
   }
 }
 
+/* Adjusts icon grid for small screens (tablets). */
 @media (max-width: 768px) {
   .icon-gallery {
     padding: 3rem 1rem;
@@ -944,6 +1102,7 @@ iframe {
   }
 }
 
+/* Adjusts icon grid for very small screens (phones). */
 @media (max-width: 480px) {
   .icon-grid {
     grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
@@ -973,9 +1132,11 @@ iframe {
 }
 
 /* Modal Styles */
-/* To customize modal appearance, edit the variables and rules below */
+/* General styles for the modal, which is used to display project details.
+   To customize modal appearance, edit the variables and rules below.
+   Responsiveness is handled by media queries at the end of this section. */
 
-/* General Modal Overlay: Covers the screen */
+/* General Modal Overlay: Covers the screen, initially hidden. */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -996,7 +1157,7 @@ iframe {
   opacity: 1;
 }
 
-/* Modal Card: The main content box */
+/* Modal Card: The main content box within the overlay. */
 .modal-card {
   background-color: var(--card-bg-color); /* Default, overridden by dark theme */
   color: var(--card-text-color); /* Default, overridden by dark theme */
@@ -1035,7 +1196,7 @@ iframe {
   color: var(--accent-color); /* Use accent color on hover */
 }
 
-/* Wrapper for modal content (left and right sections) */
+/* Wrapper for modal content, arranges left (video/gallery) and right (text) sections. */
 .modal-content-wrapper {
   display: flex;
   gap: 2rem; /* Space between left (video/gallery) and right (text) sections */
@@ -1276,7 +1437,7 @@ iframe {
   overflow: hidden;
 }
 
-/* Responsive adjustments for the modal */
+/* Responsive adjustments for the modal at 768px and below. */
 @media (max-width: 768px) {
   .modal-card {
     padding: 1.5rem;
@@ -1316,14 +1477,18 @@ iframe {
 
 
 /* Lightbox Styles */
-/* Comments for customization:
-  - Overlay background: --lightbox-overlay-bg
-  - Fade-in animation: .lightbox.active, .lightbox-image, .lightbox-caption
-  - Arrow/Close icon colors (dark/light): .lightbox-nav, .lightbox-close-btn (and their :hover states)
-  - Image sizing: .lightbox-image (max-width, max-height)
-  - Caption styling: .lightbox-caption
+/* Styles for the image lightbox, allowing users to view gallery images larger.
+   Activated from the modal gallery. JS handles image loading and navigation.
+   Responsive rules are at the end of this section.
+  Comments for customization:
+    - Overlay background: --lightbox-overlay-bg
+    - Fade-in animation: .lightbox.active, .lightbox-image, .lightbox-caption
+    - Arrow/Close icon colors (dark/light): .lightbox-nav, .lightbox-close-btn (and their :hover states)
+    - Image sizing: .lightbox-image (max-width, max-height)
+    - Caption styling: .lightbox-caption
 */
 
+/* Root variables specific to Lightbox theming. */
 :root {
   /* ... other root variables ... */
   --lightbox-overlay-bg: rgba(0, 0, 0, 0.85);
@@ -1346,6 +1511,7 @@ iframe {
 }
 
 
+/* Main lightbox overlay: fixed position, covers screen, initially hidden. */
 .lightbox {
   position: fixed;
   top: 0;
@@ -1367,6 +1533,7 @@ iframe {
   opacity: 1;
 }
 
+/* Container for the image and caption within the lightbox. */
 .lightbox-content {
   position: relative;
   display: flex;
@@ -1377,6 +1544,7 @@ iframe {
   max-height: 90vh; /* Max height of content area */
 }
 
+/* The main image displayed in the lightbox. Handles scaling and transitions. */
 .lightbox-image {
   max-width: 100%; /* Relative to lightbox-content */
   max-height: calc(100% - 40px); /* Adjust if caption is taller, leave space for caption */
@@ -1394,6 +1562,7 @@ iframe {
   transform: scale(1);
 }
 
+/* Caption text displayed below the lightbox image. */
 .lightbox-caption {
   color: var(--lightbox-caption-text-color);
   text-align: center;
@@ -1412,6 +1581,7 @@ iframe {
   transform: translateY(0);
 }
 
+/* Close button for the lightbox. */
 .lightbox-close-btn {
   position: absolute;
   top: 15px;
@@ -1447,6 +1617,7 @@ iframe {
 }
 
 
+/* Navigation arrows (previous/next) for the lightbox gallery. */
 .lightbox-nav {
   position: absolute;
   top: 50%;
@@ -1496,7 +1667,7 @@ iframe {
   color: #f0f0f0; /* Ensure arrows are visible on hover for light theme */
 }
 
-/* Clickable zones for navigation */
+/* Clickable zones for easier navigation on touch/desktop, covering larger areas. */
 .lightbox-nav-zone {
     position: absolute;
     top: 0;
@@ -1678,17 +1849,19 @@ iframe {
 }
 
 /* IT Projects Section - START */
-/*
-  To modify responsive layout breakpoints, update the @media queries below.
-  - Large screens: Default styles for .it-cards-container and .it-project-card
-  - Medium screens: @media (max-width: 1200px)
-  - Small screens: @media (max-width: 992px)
-  - Very small screens: @media (max-width: 767px)
+/* Styles for the IT Projects gallery section.
+   Uses flexbox to display project cards, adjusting columns with screen size.
+   To modify responsive layout breakpoints, update the @media queries below.
+  - Large screens: Default styles for .it-cards-container and .it-project-card (target 6 cards)
+  - Medium screens: @media (max-width: 1200px) (target 3 cards)
+  - Small screens: @media (max-width: 767px) (target 2 cards)
+  - Very small screens: @media (max-width: 576px) (target 1 card)
 */
 
-#it-projects-section { /* Added ID for scroll-margin-top */
+#it-projects-section { /* ID for scroll-margin-top and navigation. */
   scroll-margin-top: 5rem; /* Adjust this value based on navbar height */
 }
+/* Main container for the IT projects gallery. */
 .it-projects-gallery {
   padding: 0rem 1rem; /* Consistent with icon-gallery padding */
   background-color: var(--body-bg-color);  /* Or a specific background if desired */
@@ -1702,6 +1875,7 @@ iframe {
   padding: 1rem; /* Inner padding for the container */
 }
 
+/* Title for the IT Projects section. */
 .it-projects-section-title {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif; /* Consistent with other titles */
@@ -1710,6 +1884,7 @@ iframe {
   margin-bottom: 2.5rem; /* Consistent with .icon-gallery-title */
 }
 
+/* Flex container for the IT project cards. */
 .it-cards-container {
   display: flex;
   flex-wrap: wrap; /* Allows cards to wrap to the next line */
@@ -1717,6 +1892,7 @@ iframe {
   gap: 1.5rem; /* Space between cards */
 }
 
+/* Styling for individual IT project cards. */
 .it-project-card {
   background-color: var(--card-bg-color);
   color: var(--card-text-color);
@@ -1773,8 +1949,7 @@ iframe {
 }
 
 /* Responsive Layout Breakpoints - can be modified here */
-
-/* Medium screens: 2 rows with 3 cards each */
+/* IT Projects: Medium screens (e.g., tablets in landscape) - 3 cards per row. */
 @media (max-width: 1200px) {
   .it-project-card {
     width: calc((100% / 3) - 1.5rem); /* 3 cards per row */
@@ -1784,7 +1959,7 @@ iframe {
    }
 }
 
-/* Small screens: 3 rows with 2 cards each */
+/* IT Projects: Small screens (e.g., tablets in portrait) - 2 cards per row. */
 @media (max-width: 767px) { /* Adjusted from 992px to 767px to match user request more closely */
   .it-project-card {
     width: calc((100% / 2) - 1.5rem); /* 2 cards per row */
@@ -1794,7 +1969,7 @@ iframe {
    }
 }
 
-/* Very small screens: 6 rows with 1 card each (stacked vertically) */
+/* IT Projects: Very small screens (e.g., phones) - 1 card per row. */
 @media (max-width: 576px) { /* Adjusted from 767px to 576px for better single card stacking */
   .it-project-card {
     width: calc(100% - 1.5rem); /* 1 card per row, allow for a bit of side margin if container has padding */
@@ -1806,21 +1981,28 @@ iframe {
   .it-projects-section-title {
     font-size: 1.8rem; /* Slightly smaller title for very small screens */
   }
+  .it-project-card h3 {
+    font-size: 1.2rem; /* Adjust card title font size for very small screens */
+  }
+  .it-project-description {
+    font-size: 0.9rem; /* Adjust card description font size */
+  }
 }
 
 /* IT Projects Section - END */
 
 /* All Games Section - START */
-/*
-  To customize "All Games" section appearance:
+/* Styles for the "All Games" gallery section.
+   Uses CSS Grid to display game cards. Responsive by default (mobile-first).
+   To customize "All Games" section appearance:
   - Section title: Modify .games-section-title.
   - Grid layout (cards per row, spacing): Modify .games-grid-container and its media queries.
-  - Card appearance (background, padding): Modify .game-card.
-  - Image styling (rounded corners, shadow): Modify .game-cover-image.
-  - Hover overlay (color, opacity): Modify .games-grid-container:hover .game-card:not(:hover) .game-cover-image::after
-    and its theme-specific overrides (.light-theme, .dark-theme).
+  - Card appearance: Modify .game-card (currently transparent background).
+  - Image styling: Modify .game-image-wrapper and .game-cover-image.
+  - Hover overlay: Modify .games-grid-container:has(.game-card:hover) ...
 */
 
+/* Main container for the "All Games" gallery. */
 .games-gallery {
   padding: 2rem 1rem; /* Consistent padding */
   background-color: var(--body-bg-color); /* Adapts to theme */
@@ -1833,6 +2015,7 @@ iframe {
   padding: 1rem;
 }
 
+/* Title for the "All Games" section. */
 .games-section-title {
   text-align: center;
   font-family: 'AdamCGPro', sans-serif;
@@ -1841,6 +2024,7 @@ iframe {
   margin-bottom: 2.5rem; /* Matches .it-projects-section-title */
 }
 
+/* Grid container for game cards. Adapts columns based on screen size. */
 .games-grid-container {
   display: grid;
   /* Default to 1 column for very small screens, overridden by media queries */
@@ -1849,6 +2033,7 @@ iframe {
   justify-items: center; /* Center items in their grid cell if they don't fill it */
 }
 
+/* Individual game card styling. Transparent background, relies on image for visuals. */
 .game-card {
   background-color: transparent; /* Adapts to theme - User request: No background */
   color: var(--card-text-color); /* Adapts to theme */
@@ -1960,7 +2145,14 @@ iframe {
 /* Default: 1 card per row (for very small screens, mobile-first) */
 /* .games-grid-container already defaults to grid-template-columns: repeat(1, 1fr); */
 
-/* Medium screens: 2 cards per row */
+/* All Games: Very small screens - Adjust title font size */
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 1rem; /* Slightly smaller title for very small screens */
+  }
+}
+
+/* All Games: Medium screens (e.g., tablets) - 2 cards per row. */
 /* Adjust breakpoint as needed. 768px is a common tablet breakpoint. */
 @media (min-width: 768px) {
   .games-grid-container {
@@ -1969,7 +2161,7 @@ iframe {
   }
 }
 
-/* Large screens: 3 cards per row */
+/* All Games: Large screens (e.g., desktops) - 3 cards per row. */
 /* Adjust breakpoint as needed. 1024px or 1200px are common desktop breakpoints. */
 @media (min-width: 1024px) {
   .games-grid-container {
