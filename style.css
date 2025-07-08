@@ -84,6 +84,9 @@
 * {
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 @font-face {
   font-family: 'AdamCGPro';
   src: url('./font/adam.otf') format('truetype');
@@ -650,6 +653,9 @@ iframe {
 }
 
 /* Timeline Styles */
+#my-journey { /* This ID is now on the wrapper div for the timeline */
+  scroll-margin-top: 5rem; /* Standard offset, applied to the wrapper */
+}
 .timeline {
   /* Default to dark theme variables */
   --timeline-background: #0E1528;
@@ -1680,6 +1686,9 @@ iframe {
   - Very small screens: @media (max-width: 767px)
 */
 
+#it-projects-section { /* Added ID for scroll-margin-top */
+  scroll-margin-top: 5rem; /* Adjust this value based on navbar height */
+}
 .it-projects-gallery {
   padding: 0rem 1rem; /* Consistent with icon-gallery padding */
   background-color: var(--body-bg-color);  /* Or a specific background if desired */
