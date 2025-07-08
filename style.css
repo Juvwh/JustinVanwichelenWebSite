@@ -886,6 +886,9 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
     margin-top: 0; /* Reset any desktop margins */
     display: block; /* Ensure li is treated as a block for proper layout in flex column */
     overflow: visible; /* Ensure content like images isn't clipped if slightly larger */
+    display: flex; /* Make li a flex container */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
   }
 
   /* Reposition the circle for each list item onto the new vertical line */
@@ -947,6 +950,29 @@ my-journey { /* This ID is now on the wrapper div for the timeline */
     width: 60px; 
     height: 60px;
     object-fit: contain;
+  }
+
+  /* Explicitly order the children of li for mobile */
+  .timeline ul li h3 {
+    order: 1; /* Date first */
+    text-align: center; /* Center the date text */
+    margin-bottom: 8px; /* Space below the date */
+    width: 100%; /* Ensure full width to prevent side-by-side flow */
+  }
+  .timeline ul li p:first-of-type { /* Targets the description paragraph */
+    order: 2; /* Description second */
+    text-align: center; /* Center description text */
+    margin-bottom: 10px; /* Add some space below description */
+    width: 100%; /* Ensure full width */
+  }
+  .timeline ul li .timeline-image-wrapper {
+    order: 3; /* Icon third */
+    margin-bottom: 10px; /* Add some space below icon */
+  }
+  /* Handle the potentially empty second 'p' tag if it exists */
+  .timeline ul li p:nth-of-type(2) {
+    order: 4; /* Empty paragraph last */
+    display: none; /* Hide it if it's not needed and empty */
   }
 }
 /* END of Responsive Timeline Styles for Mobile */
