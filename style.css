@@ -666,6 +666,12 @@ iframe {
   .section-projet-en-avant--reversed .text-beside-video {
     margin: 2rem auto 0; /* Consistent stacking margin */
   }
+  /* Ensure reversed video overlay is also centered on mobile */
+  .section-projet-en-avant--reversed .video-overlay {
+    right: auto; /* Override desktop positioning */
+    left: auto; /* Ensure margin auto can center it */
+    /* It already inherits margin: 1rem auto 0; from .video-overlay in this media query */
+  }
 }
 
 
