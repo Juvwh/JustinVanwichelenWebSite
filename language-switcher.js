@@ -74,6 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     updateLanguageButtonStates();
+
+    if (typeof window.updateThemeButtonAppearance === 'function') {
+      window.updateThemeButtonAppearance();
+    }
   }
 
   function updateLanguageButtonStates() {

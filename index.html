@@ -55,7 +55,7 @@
         <!-- CV link opens in a new tab and downloads the resume -->
         <li><a href="./index_files/JustinVanwichelen_Resume.pdf" target="_blank" download data-translate-key="navCv">CV</a></li>
       </div>
-      <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="themeToggle">Light/Dark</button></li>
+      <li class="theme-toggle-item"><button id="theme-toggle-btn" data-translate-key="themeToggle">Switch to Light Mode</button></li>
       <li class="language-switcher">
         <button id="lang-en" data-lang="en">EN</button>
         <span>/</span>
@@ -66,14 +66,14 @@
   <header>
     <!-- Hero Section  -->
     <div class="hero-section">
-      <img src="src_index/cv_photo2.svg" alt="Your Name" class="hero-image">
+      <img src="index_files/cv_photo2.svg" alt="Your Name" class="hero-image">
       <div class="hero-text">
         <h2 data-translate-key="heroGreeting">HI ALL, I'M <STRong>JUSTIN 👋</STRong></h2>
-        <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and currently pursuing a <strong>Master’s degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
+        <p data-translate-key="heroP1">With a background as a <strong>Technical Artist</strong> and a <strong>Master's degree in Computer Science</strong> with a specialization in <strong>Artificial Intelligence</strong>, I focus on <strong>gameplay programming</strong> and interactive systems development. My strong creative instincts, paired with my technical skills, allow me to design <strong>immersive and intelligent experiences</strong>.</p>
 
 <p data-translate-key="heroP2">I enjoy <strong>blending logic with aesthetics</strong>. I'm proficient in <strong>Photoshop</strong> and love crafting detailed visual assets, especially during prototyping and early design phases.</p>
 
-<p data-translate-key="heroP3">My Master’s thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I’ve also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
+<p data-translate-key="heroP3">My Master's thesis explores how AI, particularly <strong>Large Language Models (LLMs)</strong>, can enhance interactivity and narrative depth in role-playing games. I've also applied AI in healthcare through a health informatics course, broadening my perspective on its cross-industry impact.</p>
       </div>
     </div>
   </header>
@@ -100,7 +100,7 @@
             </div>
             <p class="description" data-translate-key="humanVariableDescriptionCarousel">You're the only human among four androids...
               Each round, answer a deep question and vote for who seems too human.
-              The twist? The androids are real AIs. And they’re trying to find you.</p>
+              The twist? The androids are real AIs. And they're trying to find you.</p>
               <button class="btn project-modal-trigger"
                 data-modal-id="the-human-variable"
                 data-translate-key="humanVariableBtnLearnMore"
@@ -182,7 +182,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
         <iframe src="https://www.youtube.com/embed/Pxlf2Nk--HQ" allowfullscreen></iframe>
       </div>
     </div>
-    <div class="text-beside-video" id="my-journey">
+    <div class="text-beside-video">
       <h2 data-translate-key="rpgLLMSectionTitle">Where every game tells a new story</h2>
       <p data-translate-key="rpgLLMSectionP">Immerse yourself in a real-time AI-generated RPG, where each adventure is unique, immersive and shaped by your choices. Discover how AI become a true game master.</p>
       <button class="btn project-modal-trigger"
@@ -191,13 +191,29 @@ Blend in. Speak like an AI… or be eliminated.</p>
       >Learn more</button>
     </div>
   </div>
+    <div class="section-projet-en-avant">
+    <div class="overlay-container">
+      <img src="./index_files/img_WhoIsLying_Header.webp" alt="Coming Soon" class="custom-image" />
+      <div class="video-overlay">
+      <img src="./index_files/img_miniatureWhoIsLying_ComingSoon.webp" alt="Coming Soon" class="custom-image" />
+      </div>
+    </div>
+    <div class="text-beside-video" id="my-journey">
+      <h2 data-translate-key="whoIsLyingSectionTitle">They know how to lie. Will you be able to doubt them?</h2>
+      <p data-translate-key="whoIsLyingSectionP">Who is Lying is a narrative investigation game where each suspect is embodied by an AI capable of lying, contradicting itself, or revealing its secrets based on your questions. Analyze, interrogate, confront... and discover who is lying.</p>
+      <button class="btn project-modal-trigger"
+              data-modal-id="who-is-lying"
+              data-translate-key="whoIsLyingSectionBtn"
+      >I want to see more</button>
+    </div>
+  </div>
   <!-- My Journey Section -->
   <div>
     <div class="timeline" style="--items: 7;">
         <ul>
          <li style="--index: 1">
           <h3>
-           Nov 2019 - today
+           Nov 2019 - Jun 2025
           </h3>
           <p data-translate-key="timelineJobSucrerie">
            Starts working as a student at &lsquo;La Sucrerie&rsquo;. In contact with customers.
@@ -398,35 +414,42 @@ Blend in. Speak like an AI… or be eliminated.</p>
   <div class="o_container_small"> 
     <h2 class="games-section-title" data-translate-key="allGamesSectionTitle">All Games</h2> 
     <div class="games-grid-container">
-      <!-- Placeholder Game Card 1 -->
+      <!-- The Human Variable -->
       <div class="game-card" data-modal-id="the-human-variable">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureHumanVariable.webp" alt="The Human Variable" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameHumanVariableTitle">The Human Variable</h3>
       </div>
-      <!-- Placeholder Game Card 2 -->
+      <!-- RPG with LLM -->
       <div class="game-card" data-modal-id="rpg-with-llm">
         <div class="game-image-wrapper">
           <img src="./index_files/img_RpgWithLLM.webp" alt="RPG with LLM" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameRpgLLMTitle">RPG with LLM</h3>
       </div>
-      <!-- Placeholder Game Card 3 -->
+      <!-- Loki-->
       <div class="game-card" data-modal-id="loki">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureLoki.webp" alt="Loki" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameLokiTitle">Loki</h3>
       </div>
-      <!-- Placeholder Game Card 4 -->
+      <!-- Who is Lying -->
+      <div class="game-card" data-modal-id="who-is-lying">
+        <div class="game-image-wrapper">
+          <img src="./index_files/img_miniatureWhoIsLying.webp" alt="Who is Lying" class="game-cover-image">
+        </div>
+        <h3 class="game-title" data-translate-key="gameWhoIsLyingTitle">Who is Lying</h3>
+      </div>
+      <!-- Diablo Cyberpunk -->
       <div class="game-card" data-modal-id="diablo-cyberpunk">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureDiabloCyberpunk.webp" alt="Diablo cyberpunk" class="game-cover-image">
         </div>
         <h3 class="game-title" data-translate-key="gameDiabloCyberpunkTitle">Diablo Cyberpunk</h3>
       </div>
-      <!-- Placeholder Game Card 5 -->
+      <!-- Stalk and Ruin -->
       <div class="game-card" data-modal-id="stalk-and-ruin">
         <div class="game-image-wrapper">
           <img src="./index_files/img_miniatureStalkAndRuin.webp" alt="Stalk and Ruin" class="game-cover-image">
@@ -682,7 +705,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
 
     });
   </script>
-  <script src="translations.js"></script>
+  <script src="translations.js?v=4"></script>
   <script src="language-switcher.js" defer></script>
   <script src="theme-switcher.js" defer></script>
   <script src="navbar.js" defer></script>
@@ -753,14 +776,18 @@ Blend in. Speak like an AI… or be eliminated.</p>
         {"icon": "fa-solid fa-code", "textKey": "modal_rpgLLM_badge_language"}
       ],
       "gallery": [
-        "./index_files/img_RPGwithLLM_Show_01.webp",
-        "./index_files/img_RPGwithLLM_Show_00.webp",
-        "./index_files/img_RPGwithLLM_Show_02.webp",
-        "./index_files/img_RPGwithLLM_Show_03.webp",
-        "./index_files/img_RPGwithLLM_Show_04.webp",
-        "./index_files/img_RPGwithLLM_Show_05.webp"
+        "./index_files/img_RpgWithLLM_Show_01.webp",
+        "./index_files/img_RpgWithLLM_Show_00.webp",
+        "./index_files/img_RpgWithLLM_Show_02.webp",
+        "./index_files/img_RpgWithLLM_Show_03.webp",
+        "./index_files/img_RpgWithLLM_Show_04.webp",
+        "./index_files/img_RpgWithLLM_Show_05.webp"
       ],
-      "playUrl": "https://rpgwithllm.z28.web.core.windows.net/"
+      "playUrl": "https://rpgwithllm.z28.web.core.windows.net/",
+      "reportUrl": "https://github.com/Juvwh/RPGWithLLM",
+      "reportBtnKey": "modal_rpgLLM_btn_report",
+      "thesisUrl": "https://www.canva.com/design/DAGK6fsVIvA/z2V_i2B3aXp4y2b-M5tHwQ/view?utm_content=DAGK6fsVIvA&utm_campaign=designshare&utm_medium=link&utm_source=editor",
+      "thesisBtnKey": "modal_rpgLLM_btn_thesis"
     },
     "loki": {
       "titleKey": "modal_loki_title",
@@ -851,6 +878,25 @@ Blend in. Speak like an AI… or be eliminated.</p>
         "./index_files/img_OneWayTrip_Show_06.webp"
       ],
       "playUrl": ""
+    },
+    "who-is-lying": {
+      "titleKey": "modal_whoislying_title",
+      "imageUrl": "./index_files/img_WhoIsLying_Show_01.webp",
+      "descriptionKey": "modal_whoislying_description",
+      "badges": [
+        {"icon": "fa-solid fa-user", "textKey": "modal_whoislying_badge_alone"},
+        {"icon": "fa-regular fa-calendar-alt", "textKey": "modal_whoislying_badge_date"},
+        {"icon": "fa-regular fa-clock", "textKey": "modal_whoislying_badge_dev_time"},
+        {"icon": "fa-solid fa-gear", "textKey": "modal_whoislying_badge_role"},
+        {"icon": "fa-brands fa-unity", "textKey": "modal_whoislying_badge_engine"}
+      ],
+      "gallery": [
+        "./index_files/img_WhoIsLying_Show_02.webp",
+        "./index_files/img_WhoIsLying_Show_03.webp",
+        "./index_files/img_WhoIsLying_Show_04.webp",
+        "./index_files/img_WhoIsLying_Show_05.webp"
+      ],
+      "playUrl": ""
     }
   }
   </script>
@@ -871,6 +917,7 @@ Blend in. Speak like an AI… or be eliminated.</p>
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
               </iframe>
+              <img src="" alt="Project image" id="modal-image-element" style="display: none; width: 100%; height: auto; object-fit: cover;">
             </div>
             <img src="" alt="Hovered gallery image" id="modal-hover-image" class="modal-hover-image-style">
           </div>
@@ -886,9 +933,10 @@ Blend in. Speak like an AI… or be eliminated.</p>
           <p class="modal-description" data-translate-key="">
             Description will be populated by JS.
           </p>
-          <!-- "Play the Demo" Button -->
-          <button class="btn modal-play-btn" data-translate-key="modalPlayButton">Play</button>
-        </div>
+          <!-- Buttons Container -->
+          <div class="modal-buttons-container">
+            <button class="btn modal-play-btn" data-translate-key="modalPlayButton">Play</button>
+          </div>
       </div>
     </div>
   </div>
