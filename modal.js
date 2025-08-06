@@ -240,6 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (modalDataToDisplay) {
+      // Ensure the modal overlay has the correct theme class applied to it
+      const currentTheme = document.body.classList.contains('light-theme') ? 'light-theme' : 'dark-theme';
+      modalOverlay.classList.remove('light-theme', 'dark-theme'); // Remove any old theme classes
+      modalOverlay.classList.add(currentTheme); // Add the current theme class
+
       populateModal(modalDataToDisplay);
       modalOverlay.classList.add('active'); 
       document.body.classList.add('modal-open'); 
