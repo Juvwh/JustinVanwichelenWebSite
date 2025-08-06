@@ -456,5 +456,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 
+  /**
+   * Checks the URL hash on page load and opens the corresponding modal.
+   */
+  function openModalFromUrl() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const triggerElement = document.querySelector(`[data-modal-id="${hash}"]`);
+      if (triggerElement) {
+        console.log(`URL hash found: #${hash}. Opening corresponding modal.`);
+        openModal(triggerElement);
+      } else {
+        console.warn(`URL hash #${hash} found, but no corresponding modal trigger element could be found.`);
+      }
+    }
+  }
+
+  // Check for a URL hash to determine if a modal should be opened on page load.
+  openModalFromUrl();
+
   console.log("Modal and Lightbox scripts initialized.");
 });

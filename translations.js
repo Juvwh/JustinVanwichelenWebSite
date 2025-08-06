@@ -133,6 +133,7 @@ const translations = {
 
     modal_rpgLLM_btn_report: "Watch the defence",
     modal_rpgLLM_btn_thesis: "Read Thesis",
+    modal_rpgLLM_btn_defence: "View the defence",
 
     // Modal Data Store Content (prefixing with modal_ to avoid clashes)
     // -- The Human Variable (Modal)
@@ -319,6 +320,7 @@ const translations = {
     modalCloseButtonAriaLabel: "Fermer le module",
     modal_rpgLLM_btn_report: "Regarder la défense",
     modal_rpgLLM_btn_thesis: "Lire le mémoire",
+    modal_rpgLLM_btn_defence: "Voir la défense",
     // Contenu de la modale (préfixé avec modal_ pour éviter les conflits)
     // -- The Human Variable (Modale)
     modal_humanVariable_title: "The Human Variable",

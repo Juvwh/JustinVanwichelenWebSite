@@ -1259,6 +1259,12 @@ my-journey {
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+.modal-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 .dark-theme .modal-card {
   background-color: var(--modal-card-bg-color-dark);
   color: var(--modal-card-text-color-dark);
