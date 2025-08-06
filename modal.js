@@ -242,14 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalDataToDisplay) {
       populateModal(modalDataToDisplay);
       modalOverlay.classList.add('active'); 
-
-      // Force a reflow to ensure styles are applied correctly before the transition.
-      const modalCard = modalOverlay.querySelector('.modal-card');
-      if (modalCard) {
-        // Reading offsetHeight is a common way to trigger a reflow.
-        void modalCard.offsetHeight;
-      }
-
       document.body.classList.add('modal-open'); 
     } else {
       console.error("No data available to populate the modal for button:", triggerButton);
@@ -480,10 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Wait for the theme to be applied before checking for a modal hash
-  document.addEventListener('themeApplied', () => {
-    openModalFromUrl();
-  });
+  // On load, check if a modal needs to be opened from the URL hash.
+  openModalFromUrl();
 
   console.log("Modal and Lightbox scripts initialized.");
 });

@@ -49,8 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButtonAppearance();
   }
 
-  // Signal that the theme has been applied
-  document.dispatchEvent(new CustomEvent('themeApplied'));
-
   console.log("Theme switcher script initialized.");
 });
